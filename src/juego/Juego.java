@@ -78,7 +78,6 @@ public class Juego extends InterfaceJuego {
 			rayo = new Rayo(20, 20, vikinga.getX(), vikinga.getY(), 5,vikinga.getPiso());
 		}
 		
-		// Esta linea es a modo de prueba para el repo git
 		// Procesamiento de un instante de tiempo
 		// ...
 	}
