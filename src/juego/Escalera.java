@@ -18,14 +18,34 @@ public class Escalera {
 		
 		this.x = x;
 		this.y = y;
-		this.alto = 10;
-		this.ancho = 700;
+		this.alto = 20;
+		this.ancho = 680;
 		this.img = Herramientas.cargarImagen("escalera.png");
 	} 
 	
 	public void dibujarEscalera(Entorno e) {
 		e.dibujarRectangulo(x, y, ancho, alto, 0, Color.WHITE);
-		e.dibujarImagen(img, x, y, 0);
+		//e.dibujarImagen(img, x, y, 0);
 	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public int getAlto() {
+		return alto;
+	}
+
+	public int getAncho() {
+		return ancho;
+	}
+
+	
+	
+	
 
 }

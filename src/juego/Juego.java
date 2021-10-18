@@ -11,13 +11,20 @@ public class Juego extends InterfaceJuego {
 
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
+	
 	private Escalera escaUno;
 	private Escalera escaDos;
 	private Escalera escaTres;
 	private Escalera escaCuatro;
 	private Escalera escaCinco;
+	
 	private Vikinga vikinga;
-	private Velociraptor velociraptor;
+	
+	private Velociraptor raptor;
+	private Velociraptor raptor2;
+	private Velociraptor raptor3;
+	private Velociraptor raptor4;
+	
 	private Image fondo;
 	private Rayo rayo;
 	private Objetivo objetivo;
@@ -27,7 +34,12 @@ public class Juego extends InterfaceJuego {
 		// Inicializa el objeto entorno
 		this.entorno = new Entorno(this, "Prueba del Entorno", 800, 600);
 		vikinga = new Vikinga(65, 50, 5, 30, 555, 5, 9, 0, false);
-		velociraptor = new Velociraptor(100,entorno.alto() - 150,3);
+		
+		raptor = new Velociraptor(100,entorno.alto() - 150,3);
+		raptor2 = new Velociraptor(200,entorno.alto() - 250,3);
+		raptor3 = new Velociraptor (100, entorno.alto() - 350, 3);
+		raptor4 = new Velociraptor (200, entorno.alto() - 450, 3);
+		
 		objetivo = new Objetivo(50, 27, 50);
 		escaUno = new Escalera(entorno.ancho() / 2 - 60, entorno.alto() - 100);
 		escaDos = new Escalera (entorno.ancho() / 2 + 60, entorno.alto() - 200);
@@ -94,13 +106,26 @@ public class Juego extends InterfaceJuego {
 		
 		//Raptor
 		
-		velociraptor.dibujarRaptor(entorno);
+		raptor.dibujarRaptor(entorno);
+		raptor2.dibujarRaptor(entorno);
+		raptor3.dibujarRaptor(entorno);
+		raptor4.dibujarRaptor(entorno);
 		
-		velociraptor.mover();
+		raptor.mover();
+		raptor2.mover();
+		raptor3.mover();
+		raptor4.mover();
 		
-		if (velociraptor.chocasteEntorno(entorno)) {
-			velociraptor.cambiarDeDireccion();
+		if (raptor.finDeEscalera(escaUno) || raptor2.finDeEscalera(escaDos) || raptor3.finDeEscalera(escaTres) || raptor4.finDeEscalera(escaCuatro)) {
+			raptor.cambiarDeDireccion();
+			raptor2.cambiarDeDireccion();
+			raptor3.cambiarDeDireccion();
+			raptor4.cambiarDeDireccion();
 		}
+		
+		//if (raptor2.finDeEscalera(escaDos)) {
+			//raptor2.cambiarDeDireccion();
+		//}
 
 		// Procesamiento de un instante de tiempo
 		// ...

@@ -22,7 +22,7 @@ public class Velociraptor {
 	public Velociraptor(int x, int y, double velocidad) {
 		
 		this.alto = 80;
-		this.ancho = 40;
+		this.ancho = 120;
 		this.x = x;
 		this.y = y;
 		this.velocidad = velocidad;
@@ -40,12 +40,12 @@ public class Velociraptor {
 		
 	}
 	
-	public boolean chocasteEntorno(Entorno e) {
-		return x < ancho / 2 || x > e.ancho() - ancho / 2;
+	public boolean finDeEscalera(Escalera esca) {
+		return x < esca.getX() - esca.getAncho()/2 + ancho/2 || x > esca.getX() +esca.getAncho() /2 - ancho / 2; 
 	}
 	
 	public void cambiarDeDireccion() {
-		angulo += Math.PI ;
+		angulo += -Math.PI ;
 	}
 
 	
