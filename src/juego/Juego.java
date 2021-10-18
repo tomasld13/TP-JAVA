@@ -29,6 +29,7 @@ public class Juego extends InterfaceJuego {
 	private Rayo rayo;
 	private Objetivo objetivo;
 	
+	private boolean vuelta;
 
 	public Juego() {
 		// Inicializa el objeto entorno
@@ -47,6 +48,9 @@ public class Juego extends InterfaceJuego {
 		escaCuatro = new Escalera (entorno.ancho() / 2 + 60, entorno.alto() - 400);
 		escaCinco = new Escalera (entorno.ancho() / 2 - 60, entorno.alto() - 500);
 		fondo = Herramientas.cargarImagen("castlebien.png");
+		
+		vuelta=true;
+		
 		// Inicializar lo que haga falta para el juego
 		// ...
 
@@ -121,6 +125,19 @@ public class Juego extends InterfaceJuego {
 			raptor2.cambiarDeDireccion();
 			raptor3.cambiarDeDireccion();
 			raptor4.cambiarDeDireccion();
+			if (vuelta) {
+				raptor.cambiarDeDireccionImg(vuelta);
+				raptor2.cambiarDeDireccionImg(vuelta);
+				raptor3.cambiarDeDireccionImg(vuelta);
+				raptor4.cambiarDeDireccionImg(vuelta);
+				vuelta=false;
+			}else {
+				raptor.cambiarDeDireccionImg(vuelta);
+				raptor2.cambiarDeDireccionImg(vuelta);
+				raptor3.cambiarDeDireccionImg(vuelta);
+				raptor4.cambiarDeDireccionImg(vuelta);
+				vuelta=true;
+			}
 		}
 		
 		//if (raptor2.finDeEscalera(escaDos)) {

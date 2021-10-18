@@ -1,15 +1,13 @@
 package juego;
 
-import java.awt.Color;
 import java.awt.Image;
 
 import entorno.Entorno;
 import entorno.Herramientas;
 
 public class Velociraptor {
-	private int alto;
 	private int ancho;
-	
+	private int alto;
 	private int x;
 	private int y;
 
@@ -31,7 +29,7 @@ public class Velociraptor {
 	}
 	
 	public void dibujarRaptor(Entorno e) {
-		e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
+		//e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
 		e.dibujarImagen(img, x, y, angulo, 0.7);
 	}
 	
@@ -47,7 +45,15 @@ public class Velociraptor {
 	public void cambiarDeDireccion() {
 		angulo += -Math.PI ;
 	}
-
+	
+	public void cambiarDeDireccionImg(boolean a) {
+		if(a) {
+			this.img = Herramientas.cargarImagen("raptor.png");
+		}
+		else {
+			this.img = Herramientas.cargarImagen("raptorizq.png");
+		}
+	}
 	
 	
 	
