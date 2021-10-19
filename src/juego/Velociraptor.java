@@ -25,12 +25,12 @@ public class Velociraptor {
 		this.y = y;
 		this.velocidad = velocidad;
 		this.angulo = Math.PI ;
-		this.img = Herramientas.cargarImagen("raptor.png");
+		this.img = Herramientas.cargarImagen("raptorizq.gif");
 	}
 	
 	public void dibujarRaptor(Entorno e) {
 		//e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
-		e.dibujarImagen(img, x, y, angulo, 0.7);
+		e.dibujarImagen(img, x, y, angulo, 0.6);
 	}
 	
 	public void mover() {
@@ -48,10 +48,12 @@ public class Velociraptor {
 	
 	public void cambiarDeDireccionImg(boolean a) {
 		if(a) {
-			this.img = Herramientas.cargarImagen("raptor.png");
+			//this.img = Herramientas.cargarImagen("raptor.png");
+			this.img = Herramientas.cargarImagen("raptor.gif");
 		}
 		else {
-			this.img = Herramientas.cargarImagen("raptorizq.png");
+			//this.img = Herramientas.cargarImagen("raptorizq.png");
+			this.img = Herramientas.cargarImagen("raptorizq.gif");
 		}
 	}
 	

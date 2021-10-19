@@ -24,8 +24,8 @@ public class Escalera {
 	} 
 	
 	public void dibujarEscalera(Entorno e) {
-		e.dibujarRectangulo(x, y, ancho, alto, 0, Color.WHITE);
-		//e.dibujarImagen(img, x, y, 0);
+		//e.dibujarRectangulo(x, y, ancho, alto, 0, Color.WHITE);
+		e.dibujarImagen(img, x, y, 0);
 	}
 
 	public int getX() {

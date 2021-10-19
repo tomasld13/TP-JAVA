@@ -11,46 +11,46 @@ public class Juego extends InterfaceJuego {
 
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
-	
+
 	private Escalera escaUno;
 	private Escalera escaDos;
 	private Escalera escaTres;
 	private Escalera escaCuatro;
 	private Escalera escaCinco;
-	
+
 	private Vikinga vikinga;
-	
+
 	private Velociraptor raptor;
 	private Velociraptor raptor2;
 	private Velociraptor raptor3;
 	private Velociraptor raptor4;
-	
+
 	private Image fondo;
 	private Rayo rayo;
 	private Objetivo objetivo;
-	
+
 	private boolean vuelta;
 
 	public Juego() {
 		// Inicializa el objeto entorno
 		this.entorno = new Entorno(this, "Prueba del Entorno", 800, 600);
 		vikinga = new Vikinga(65, 50, 5, 30, 555, 5, 9, 0, false);
-		
-		raptor = new Velociraptor(100,entorno.alto() - 150,3);
-		raptor2 = new Velociraptor(200,entorno.alto() - 250,3);
-		raptor3 = new Velociraptor (100, entorno.alto() - 350, 3);
-		raptor4 = new Velociraptor (200, entorno.alto() - 450, 3);
-		
+
+		raptor = new Velociraptor(100, entorno.alto() - 150, 2);
+		raptor2 = new Velociraptor(200, entorno.alto() - 250, 2);
+		raptor3 = new Velociraptor(100, entorno.alto() - 350, 2);
+		raptor4 = new Velociraptor(200, entorno.alto() - 450, 2);
+
 		objetivo = new Objetivo(50, 27, 50);
 		escaUno = new Escalera(entorno.ancho() / 2 - 60, entorno.alto() - 100);
-		escaDos = new Escalera (entorno.ancho() / 2 + 60, entorno.alto() - 200);
-		escaTres = new Escalera (entorno.ancho() / 2 - 60, entorno.alto() - 300);
-		escaCuatro = new Escalera (entorno.ancho() / 2 + 60, entorno.alto() - 400);
-		escaCinco = new Escalera (entorno.ancho() / 2 - 60, entorno.alto() - 500);
+		escaDos = new Escalera(entorno.ancho() / 2 + 60, entorno.alto() - 200);
+		escaTres = new Escalera(entorno.ancho() / 2 - 60, entorno.alto() - 300);
+		escaCuatro = new Escalera(entorno.ancho() / 2 + 60, entorno.alto() - 400);
+		escaCinco = new Escalera(entorno.ancho() / 2 - 60, entorno.alto() - 500);
 		fondo = Herramientas.cargarImagen("castlebien.png");
-		
-		vuelta=true;
-		
+
+		vuelta = true;
+
 		// Inicializar lo que haga falta para el juego
 		// ...
 
@@ -68,14 +68,13 @@ public class Juego extends InterfaceJuego {
 	public void tick() {
 
 		entorno.dibujarImagen(fondo, entorno.ancho() / 2, entorno.alto() / 2, 0);
-		
+
 		escaUno.dibujarEscalera(entorno);
 		escaDos.dibujarEscalera(entorno);
 		escaTres.dibujarEscalera(entorno);
 		escaCuatro.dibujarEscalera(entorno);
 		escaCinco.dibujarEscalera(entorno);
-		
-		
+
 		entorno.cambiarFont("sans", 20, Color.white);
 		entorno.escribirTexto("Vidas: " + vikinga.getVidas() + " Puntos: 8", entorno.ancho() - 200, 22);
 
@@ -99,28 +98,29 @@ public class Juego extends InterfaceJuego {
 		if (entorno.estaPresionada(entorno.TECLA_DERECHA)) {
 			vikinga.moverHaciaDerecha(entorno);
 		}
-		if (entorno.estaPresionada('u') ) {
-			vikinga.saltar(entorno);   							 // salto
-			
+		if (entorno.estaPresionada('u')) {
+			vikinga.saltar(entorno); // salto
+
 		}
 
 		if (entorno.estaPresionada(entorno.TECLA_ESPACIO) && rayo == null) {
 			rayo = new Rayo(20, 20, vikinga.getX(), vikinga.getY(), 5, vikinga.getPiso());
 		}
-		
-		//Raptor
+
+		// Raptor
 		
 		raptor.dibujarRaptor(entorno);
 		raptor2.dibujarRaptor(entorno);
 		raptor3.dibujarRaptor(entorno);
 		raptor4.dibujarRaptor(entorno);
-		
+
 		raptor.mover();
 		raptor2.mover();
 		raptor3.mover();
 		raptor4.mover();
-		
-		if (raptor.finDeEscalera(escaUno) || raptor2.finDeEscalera(escaDos) || raptor3.finDeEscalera(escaTres) || raptor4.finDeEscalera(escaCuatro)) {
+
+		if (raptor.finDeEscalera(escaUno) || raptor2.finDeEscalera(escaDos) || raptor3.finDeEscalera(escaTres)
+				|| raptor4.finDeEscalera(escaCuatro)) {
 			raptor.cambiarDeDireccion();
 			raptor2.cambiarDeDireccion();
 			raptor3.cambiarDeDireccion();
@@ -130,19 +130,19 @@ public class Juego extends InterfaceJuego {
 				raptor2.cambiarDeDireccionImg(vuelta);
 				raptor3.cambiarDeDireccionImg(vuelta);
 				raptor4.cambiarDeDireccionImg(vuelta);
-				vuelta=false;
-			}else {
+				vuelta = false;
+			} else {
 				raptor.cambiarDeDireccionImg(vuelta);
 				raptor2.cambiarDeDireccionImg(vuelta);
 				raptor3.cambiarDeDireccionImg(vuelta);
 				raptor4.cambiarDeDireccionImg(vuelta);
-				vuelta=true;
+				vuelta = true;
 			}
 		}
-		
-		//if (raptor2.finDeEscalera(escaDos)) {
-			//raptor2.cambiarDeDireccion();
-		//}
+
+		// if (raptor2.finDeEscalera(escaDos)) {
+		// raptor2.cambiarDeDireccion();
+		// }
 
 		// Procesamiento de un instante de tiempo
 		// ...
