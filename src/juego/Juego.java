@@ -49,7 +49,7 @@ public class Juego extends InterfaceJuego {
 		escaTres = new Escalera(entorno.ancho() / 2 - 60, entorno.alto() - 300);
 		escaCuatro = new Escalera(entorno.ancho() / 2 + 60, entorno.alto() - 400);
 		escaCinco = new Escalera(entorno.ancho() / 2 - 60, entorno.alto() - 500);
-		fondo = Herramientas.cargarImagen("castlebien.png");
+		fondo = Herramientas.cargarImagen("fondo.png");
 
 		vuelta = true;
 		
