@@ -1,5 +1,6 @@
 package juego;
 
+import java.awt.Color;
 import java.awt.Image;
 
 import entorno.Entorno;
@@ -20,7 +21,7 @@ public class Velociraptor {
 	public Velociraptor(int x, int y, double velocidad) {
 		
 		this.alto = 80;
-		this.ancho = 120;
+		this.ancho = 130;
 		this.x = x;
 		this.y = y;
 		this.velocidad = velocidad;
@@ -57,6 +58,9 @@ public class Velociraptor {
 		}
 	}
 	
+	public boolean choqueRayo(Rayo rayo) {
+		return x < rayo.getX() + ancho / 2 && x > rayo.getX() - ancho / 2 && y > rayo.getY() - rayo.getAlto() && y < rayo.getY(); 
+	}
 	
 	
 }

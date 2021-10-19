@@ -30,6 +30,8 @@ public class Juego extends InterfaceJuego {
 	private Objetivo objetivo;
 
 	private boolean vuelta;
+	
+	private int puntaje;
 
 	public Juego() {
 		// Inicializa el objeto entorno
@@ -50,6 +52,8 @@ public class Juego extends InterfaceJuego {
 		fondo = Herramientas.cargarImagen("castlebien.png");
 
 		vuelta = true;
+		
+		int puntaje = 10;
 
 		// Inicializar lo que haga falta para el juego
 		// ...
@@ -76,7 +80,7 @@ public class Juego extends InterfaceJuego {
 		escaCinco.dibujarEscalera(entorno);
 
 		entorno.cambiarFont("sans", 20, Color.white);
-		entorno.escribirTexto("Vidas: " + vikinga.getVidas() + " Puntos: 8", entorno.ancho() - 200, 22);
+		entorno.escribirTexto("Vidas: " + vikinga.getVidas() + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
 
 		objetivo.dibujarObjetivo(entorno);
 		vikinga.dibujarVikinga(entorno);
@@ -109,12 +113,14 @@ public class Juego extends InterfaceJuego {
 
 		// Raptor
 		
-		raptor.dibujarRaptor(entorno);
+		
+		
+		//raptor.dibujarRaptor(entorno);
 		raptor2.dibujarRaptor(entorno);
 		raptor3.dibujarRaptor(entorno);
 		raptor4.dibujarRaptor(entorno);
 
-		raptor.mover();
+		//raptor.mover();
 		raptor2.mover();
 		raptor3.mover();
 		raptor4.mover();
@@ -139,10 +145,15 @@ public class Juego extends InterfaceJuego {
 				vuelta = true;
 			}
 		}
-
-		// if (raptor2.finDeEscalera(escaDos)) {
-		// raptor2.cambiarDeDireccion();
-		// }
+		
+		if (rayo != null && raptor.choqueRayo(rayo) ){
+			rayo = null;
+			raptor = null;
+			puntaje += 80;
+		} else {
+			raptor.dibujarRaptor(entorno);
+			raptor.mover();
+		}
 
 		// Procesamiento de un instante de tiempo
 		// ...
