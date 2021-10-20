@@ -1,6 +1,6 @@
 package juego;
 
-public class Pisos {
-
+// decidanse que onda con esto
+public class Pisos { // en singular
 
 }

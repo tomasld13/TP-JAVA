@@ -16,7 +16,7 @@ public class Rayo {
 	private Image img;
 	
 	public Rayo(int ancho, int alto, double x, double y, int daño, int direccion) {
-		super();
+		super(); // borrar
 		this.ancho = ancho;
 		this.alto = alto;
 		this.x = x;
@@ -46,7 +46,7 @@ public class Rayo {
 		return daño;
 	}
 
-	public void dibujarRayo(Entorno e) {
+	public void dibujar(Entorno e) {
 		//e.dibujarTriangulo(x, y, alto, ancho, Math.PI / 2, Color.yellow);
 		e.dibujarImagen(img, x, y, 1.05, 0.05);
 	}

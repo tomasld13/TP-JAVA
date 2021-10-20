@@ -6,7 +6,8 @@ import java.awt.Image;
 import entorno.Entorno;
 import entorno.Herramientas;
 
-public class Escalera {
+public class Escalera { // respeten los nombres del enunciado
+	
 	private int x;
 	private int y;
 

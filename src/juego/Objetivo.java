@@ -9,7 +9,6 @@ public class Objetivo {
 	private double y;
 
 	public Objetivo(int tamaño, double x, double y) {
-		super();
 		this.tamaño = tamaño;
 		this.x = x;
 		this.y = y;

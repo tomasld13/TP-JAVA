@@ -1,7 +1,3 @@
-
-//Aguante nestor
-
-
 package juego;
 
 import java.awt.Color;
@@ -11,10 +7,8 @@ import entorno.Entorno;
 import entorno.Herramientas;
 import entorno.InterfaceJuego;
 
-// Parece que todo funca bien!
 public class Juego extends InterfaceJuego {
-// vamos los pibes
-	//otro comentario
+
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 
@@ -30,6 +24,8 @@ public class Juego extends InterfaceJuego {
 	private Velociraptor raptor2;
 	private Velociraptor raptor3;
 	private Velociraptor raptor4;
+	
+	private Velociraptor[] raptors;
 
 	private Image fondo;
 	private Rayo rayo;
@@ -37,11 +33,11 @@ public class Juego extends InterfaceJuego {
 
 	private boolean vuelta;
 	
-	private int puntaje;
+	private int puntaje; // y también vidas? vidas--
 
 	public Juego() {
 		// Inicializa el objeto entorno
-		this.entorno = new Entorno(this, "Prueba del Entorno", 800, 600);
+		this.entorno = new Entorno(this, "Prueba del Peronismo", 800, 600);
 		vikinga = new Vikinga(65, 50, 5, 30, 555, 5, 9, 0, false);
 
 		raptor = new Velociraptor(100, entorno.alto() - 150, 2);
@@ -93,13 +89,16 @@ public class Juego extends InterfaceJuego {
 		// Velociraptor.dibujarVelociraptor(entorno);
 
 		if (rayo != null) {
-			rayo.dibujarRayo(entorno);
+			rayo.dibujar(entorno);
 			rayo.ida();
 			if (rayo.getX() > entorno.ancho() || rayo.getX() < 0) {
 				rayo = null;
 			}
 		}
 		vikinga.quePiso();
+		
+		// vikinga.establecerElPiso(pisos);
+		
 		vikinga.caer(entorno);
 
 		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('h')) {
