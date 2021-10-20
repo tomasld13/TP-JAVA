@@ -1,4 +1,7 @@
-//aguante todo//
+
+//Aguante nestor
+
+
 package juego;
 
 import java.awt.Color;
@@ -13,7 +16,7 @@ public class Juego extends InterfaceJuego {
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 
-	private Escalera escaUno;
+	private Escalera escalera1;
 	private Escalera escaDos;
 	private Escalera escaTres;
 	private Escalera escaCuatro;
@@ -45,7 +48,7 @@ public class Juego extends InterfaceJuego {
 		raptor4 = new Velociraptor(200, entorno.alto() - 450, 2);
 
 		objetivo = new Objetivo(50, 27, 50);
-		escaUno = new Escalera(entorno.ancho() / 2 - 60, entorno.alto() - 100);
+		escalera1 = new Escalera(entorno.ancho() / 2 - 60, entorno.alto() - 100);
 		escaDos = new Escalera(entorno.ancho() / 2 + 60, entorno.alto() - 200);
 		escaTres = new Escalera(entorno.ancho() / 2 - 60, entorno.alto() - 300);
 		escaCuatro = new Escalera(entorno.ancho() / 2 + 60, entorno.alto() - 400);
@@ -74,7 +77,7 @@ public class Juego extends InterfaceJuego {
 
 		entorno.dibujarImagen(fondo, entorno.ancho() / 2, entorno.alto() / 2, 0);
 
-		escaUno.dibujarEscalera(entorno);
+		escalera1.dibujarEscalera(entorno);
 		escaDos.dibujarEscalera(entorno);
 		escaTres.dibujarEscalera(entorno);
 		escaCuatro.dibujarEscalera(entorno);
@@ -97,10 +100,10 @@ public class Juego extends InterfaceJuego {
 		vikinga.quePiso();
 		vikinga.caer(entorno);
 
-		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA)) {
+		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('h')) {
 			vikinga.moverHaciaIzquierda(entorno);
 		}
-		if (entorno.estaPresionada(entorno.TECLA_DERECHA)) {
+		if (entorno.estaPresionada(entorno.TECLA_DERECHA) || entorno.estaPresionada('l')) {
 			vikinga.moverHaciaDerecha(entorno);
 		}
 		if (entorno.estaPresionada('u')) {
@@ -128,7 +131,7 @@ public class Juego extends InterfaceJuego {
 		raptor3.mover();
 		raptor4.mover();
 
-		if (raptor.finDeEscalera(escaUno) || raptor2.finDeEscalera(escaDos) || raptor3.finDeEscalera(escaTres)
+		if (raptor.finDeEscalera(escalera1) || raptor2.finDeEscalera(escaDos) || raptor3.finDeEscalera(escaTres)
 				|| raptor4.finDeEscalera(escaCuatro)) {
 			raptor.cambiarDeDireccion();
 			raptor2.cambiarDeDireccion();
