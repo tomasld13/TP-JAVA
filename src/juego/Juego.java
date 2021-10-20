@@ -8,6 +8,7 @@ import entorno.Entorno;
 import entorno.Herramientas;
 import entorno.InterfaceJuego;
 
+// Parece que todo funca bien!
 public class Juego extends InterfaceJuego {
 
 	// El objeto Entorno que controla el tiempo y otros
