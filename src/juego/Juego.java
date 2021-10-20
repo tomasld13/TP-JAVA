@@ -1,4 +1,4 @@
-//viva peron//
+//aguante todo//
 package juego;
 
 import java.awt.Color;
