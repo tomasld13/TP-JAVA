@@ -104,7 +104,9 @@ public class Juego extends InterfaceJuego {
 		}
 		if (entorno.estaPresionada('u')) {
 			vikinga.saltar(entorno); // salto
-
+		}
+		if (entorno.estaPresionada('e')) {
+			vikinga.escudo(entorno);
 		}
 
 		if (entorno.estaPresionada(entorno.TECLA_ESPACIO) && rayo == null) {

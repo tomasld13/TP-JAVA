@@ -1,5 +1,6 @@
 package juego;
 
+import java.awt.Color;
 import java.awt.Image;
 import entorno.Entorno;
 import entorno.Herramientas;
@@ -13,7 +14,9 @@ public class Vikinga {
 	private int velocidad;
 	private int velocidady; // para las caidas
 	private int piso;
+	private boolean direccion; //true=derecha false=izquierda
 	private Image img;
+	private Image imgescudo;
 	private boolean subir;		//agrego como bandera de salto de piso
 
 	public Vikinga(int alto, int ancho, int vidas, double x, double y, int velocidad, int velocidady, int piso, boolean subir) {
@@ -26,7 +29,10 @@ public class Vikinga {
 		this.velocidady = velocidady; // caidas
 		this.piso = piso;
 		this.img = Herramientas.cargarImagen("per.png");
-		this.subir = subir;								//flag salto de piso
+		this.imgescudo = Herramientas.cargarImagen("");
+		this.subir = subir;
+		this.direccion=true;
+		//flag salto de piso
 	}
 
 	public int getAlto() {
@@ -95,6 +101,7 @@ public class Vikinga {
 		if (x > ancho / 2) {
 			x -= velocidad;
 			img = Herramientas.cargarImagen("peri.png");
+			direccion=false;
 		}
 	}
 
@@ -102,6 +109,7 @@ public class Vikinga {
 		if (x < e.ancho() - ancho / 2) {
 			x += velocidad;
 			img = Herramientas.cargarImagen("per.png");
+			direccion=true;
 		}
 	}	
 	public void saltar(Entorno e) {												//salto
@@ -162,7 +170,17 @@ public class Vikinga {
 			y = 95 + alto;
 		}
 	}
-
+	
+	public void escudo(Entorno e) {
+		//e.dibujarImagen(imgescudo, x, y, 0, 0.20);
+		if(direccion) {
+			e.dibujarRectangulo(x+40, y, 5, alto, 0, Color.cyan);
+		}
+		else {
+			e.dibujarRectangulo(x-40, y, 5, alto, 0, Color.cyan);
+		}
+		
+	}
 	
 
 }
