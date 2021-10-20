@@ -1,4 +1,7 @@
-// Aguante Cristina
+
+//Aguante nestor
+
+
 package juego;
 
 import java.awt.Color;
@@ -10,7 +13,7 @@ import entorno.InterfaceJuego;
 
 // Parece que todo funca bien!
 public class Juego extends InterfaceJuego {
-
+// vamos los pibes
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 
