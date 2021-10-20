@@ -12,7 +12,7 @@ import entorno.Herramientas;
 import entorno.InterfaceJuego;
 
 public class Juego extends InterfaceJuego {
-
+// vamos los pibes
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 
