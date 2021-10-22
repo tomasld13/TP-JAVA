@@ -12,11 +12,7 @@ public class Juego extends InterfaceJuego {
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 
-	private Escalera escalera1;
-	private Escalera escaDos;
-	private Escalera escaTres;
-	private Escalera escaCuatro;
-	private Escalera escaCinco;
+	private Piso[] pisos = new Piso[5];
 
 	private Vikinga vikinga;
 
@@ -24,15 +20,15 @@ public class Juego extends InterfaceJuego {
 	private Velociraptor raptor2;
 	private Velociraptor raptor3;
 	private Velociraptor raptor4;
-	
-	private Velociraptor[] raptors;
+
+	// private Velociraptor[] raptors;
 
 	private Image fondo;
 	private Rayo rayo;
 	private Objetivo objetivo;
 
 	private boolean vuelta;
-	
+
 	private int puntaje; // y también vidas? vidas--
 
 	public Juego() {
@@ -46,15 +42,17 @@ public class Juego extends InterfaceJuego {
 		raptor4 = new Velociraptor(200, entorno.alto() - 450, 2);
 
 		objetivo = new Objetivo(50, 27, 50);
-		escalera1 = new Escalera(entorno.ancho() / 2 - 60, entorno.alto() - 100);
-		escaDos = new Escalera(entorno.ancho() / 2 + 60, entorno.alto() - 200);
-		escaTres = new Escalera(entorno.ancho() / 2 - 60, entorno.alto() - 300);
-		escaCuatro = new Escalera(entorno.ancho() / 2 + 60, entorno.alto() - 400);
-		escaCinco = new Escalera(entorno.ancho() / 2 - 60, entorno.alto() - 500);
+		
+		pisos[0] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 100);
+		pisos[1] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 200);
+		pisos[2] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 300);
+		pisos[3] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 400);
+		pisos[4] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 500);
+		
 		fondo = Herramientas.cargarImagen("fondo.png");
 
 		vuelta = true;
-		
+
 		int puntaje = 10;
 
 		// Inicializar lo que haga falta para el juego
@@ -75,11 +73,9 @@ public class Juego extends InterfaceJuego {
 
 		entorno.dibujarImagen(fondo, entorno.ancho() / 2, entorno.alto() / 2, 0);
 
-		escalera1.dibujarEscalera(entorno);
-		escaDos.dibujarEscalera(entorno);
-		escaTres.dibujarEscalera(entorno);
-		escaCuatro.dibujarEscalera(entorno);
-		escaCinco.dibujarEscalera(entorno);
+		for (int i = 0; i < pisos.length; i++) {
+			pisos[i].dibujar(entorno);
+		}
 
 		entorno.cambiarFont("sans", 20, Color.white);
 		entorno.escribirTexto("Vidas: " + vikinga.getVidas() + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
@@ -96,9 +92,9 @@ public class Juego extends InterfaceJuego {
 			}
 		}
 		vikinga.quePiso();
-		
+
 		// vikinga.establecerElPiso(pisos);
-		
+
 		vikinga.caer(entorno);
 
 		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('h')) {
@@ -119,21 +115,19 @@ public class Juego extends InterfaceJuego {
 		}
 
 		// Raptor
-		
-		
-		
-		//raptor.dibujarRaptor(entorno);
+
+		// raptor.dibujarRaptor(entorno);
 		raptor2.dibujarRaptor(entorno);
 		raptor3.dibujarRaptor(entorno);
 		raptor4.dibujarRaptor(entorno);
 
-		//raptor.mover();
+		// raptor.mover();
 		raptor2.mover();
 		raptor3.mover();
 		raptor4.mover();
 
-		if (raptor.finDeEscalera(escalera1) || raptor2.finDeEscalera(escaDos) || raptor3.finDeEscalera(escaTres)
-				|| raptor4.finDeEscalera(escaCuatro)) {
+		if (raptor.finDeEscalera(pisos[0]) || raptor2.finDeEscalera(pisos[1]) || raptor3.finDeEscalera(pisos[2])
+				|| raptor4.finDeEscalera(pisos[3])) {
 			raptor.cambiarDeDireccion();
 			raptor2.cambiarDeDireccion();
 			raptor3.cambiarDeDireccion();
@@ -152,8 +146,8 @@ public class Juego extends InterfaceJuego {
 				vuelta = true;
 			}
 		}
-		
-		if (rayo != null && raptor.choqueRayo(rayo) ){
+
+		if (rayo != null && raptor.choqueRayo(rayo)) {
 			rayo = null;
 			raptor = null;
 			puntaje += 80;

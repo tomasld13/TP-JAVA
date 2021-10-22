@@ -13,7 +13,7 @@ public class Vikinga {
 	private int alto;  // tamaño, size
 	private int ancho; // 0.5 * size
 	
-//	private int vidas;
+	private int vidas;
 
 	private int velocidad;
 	private int velocidady; // para las caidas
