@@ -21,7 +21,7 @@ public class Juego extends InterfaceJuego {
 	private Velociraptor raptor3;
 	private Velociraptor raptor4;
 
-	// private Velociraptor[] raptors;
+	private Velociraptor[] raptors = new Velociraptor[4];
 
 	private Image fondo;
 	private Rayo rayo;
@@ -36,19 +36,19 @@ public class Juego extends InterfaceJuego {
 		this.entorno = new Entorno(this, "Prueba del Peronismo", 800, 600);
 		vikinga = new Vikinga(65, 50, 5, 30, 555, 5, 9, 0, false);
 
-		raptor = new Velociraptor(100, entorno.alto() - 150, 2);
-		raptor2 = new Velociraptor(200, entorno.alto() - 250, 2);
-		raptor3 = new Velociraptor(100, entorno.alto() - 350, 2);
-		raptor4 = new Velociraptor(200, entorno.alto() - 450, 2);
+		raptors[0] = new Velociraptor(100, entorno.alto() - 150, 2);
+		raptors[1] = new Velociraptor(200, entorno.alto() - 250, 2);
+		raptors[2] = new Velociraptor(100, entorno.alto() - 350, 2);
+		raptors[3] = new Velociraptor(200, entorno.alto() - 450, 2);
 
 		objetivo = new Objetivo(50, 27, 50);
-		
+
 		pisos[0] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 100);
 		pisos[1] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 200);
 		pisos[2] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 300);
 		pisos[3] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 400);
 		pisos[4] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 500);
-		
+
 		fondo = Herramientas.cargarImagen("fondo.png");
 
 		vuelta = true;
@@ -115,46 +115,29 @@ public class Juego extends InterfaceJuego {
 		}
 
 		// Raptor
-
-		// raptor.dibujarRaptor(entorno);
-		raptor2.dibujarRaptor(entorno);
-		raptor3.dibujarRaptor(entorno);
-		raptor4.dibujarRaptor(entorno);
-
-		// raptor.mover();
-		raptor2.mover();
-		raptor3.mover();
-		raptor4.mover();
-
-		if (raptor.finDeEscalera(pisos[0]) || raptor2.finDeEscalera(pisos[1]) || raptor3.finDeEscalera(pisos[2])
-				|| raptor4.finDeEscalera(pisos[3])) {
-			raptor.cambiarDeDireccion();
-			raptor2.cambiarDeDireccion();
-			raptor3.cambiarDeDireccion();
-			raptor4.cambiarDeDireccion();
-			if (vuelta) {
-				raptor.cambiarDeDireccionImg(vuelta);
-				raptor2.cambiarDeDireccionImg(vuelta);
-				raptor3.cambiarDeDireccionImg(vuelta);
-				raptor4.cambiarDeDireccionImg(vuelta);
-				vuelta = false;
-			} else {
-				raptor.cambiarDeDireccionImg(vuelta);
-				raptor2.cambiarDeDireccionImg(vuelta);
-				raptor3.cambiarDeDireccionImg(vuelta);
-				raptor4.cambiarDeDireccionImg(vuelta);
-				vuelta = true;
+		for (int i = 0; i < raptors.length; i++) {
+			raptors[i].dibujar(entorno);
+			raptors[i].mover();
+			if (raptors[i].finDeEscalera(pisos[i])) {
+				raptors[i].cambiarDeDireccion();
+				if (vuelta) {
+					raptors[i].cambiarDeDireccionImg(vuelta);
+					vuelta = false;
+				} else {
+					raptors[i].cambiarDeDireccionImg(vuelta);
+					vuelta = true;
+				}
 			}
 		}
 
-		if (rayo != null && raptor.choqueRayo(rayo)) {
-			rayo = null;
-			raptor = null;
-			puntaje += 80;
-		} else {
-			raptor.dibujarRaptor(entorno);
-			raptor.mover();
-		}
+//		if (rayo != null && raptor.choqueRayo(rayo)) {
+//			rayo = null;
+//			raptor = null;
+//			puntaje += 80;
+//		} else {
+//			raptor.dibujar(entorno);
+//			raptor.mover();
+//		}
 
 		// Procesamiento de un instante de tiempo
 		// ...

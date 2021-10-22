@@ -28,7 +28,7 @@ public class Velociraptor {
 		this.img = Herramientas.cargarImagen("raptorizq.gif");
 	}
 
-	public void dibujarRaptor(Entorno e) {
+	public void dibujar(Entorno e) {
 		// e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
 		e.dibujarImagen(img, x, y, angulo, 0.6);
 	}
