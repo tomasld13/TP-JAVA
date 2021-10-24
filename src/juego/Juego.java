@@ -122,16 +122,23 @@ public class Juego extends InterfaceJuego {
 		// Raptor
 		
 		
-		
-		//raptor.dibujarRaptor(entorno);
+		if (raptor != null){
+		raptor.dibujarRaptor(entorno);
+		raptor.mover();}
+		if (raptor != null){
 		raptor2.dibujarRaptor(entorno);
+		raptor2.mover();}
+		if (raptor != null){
 		raptor3.dibujarRaptor(entorno);
+		raptor3.mover();}
+		if (raptor != null){
 		raptor4.dibujarRaptor(entorno);
+		raptor4.mover();}
 
-		//raptor.mover();
-		raptor2.mover();
-		raptor3.mover();
-		raptor4.mover();
+
+		
+		
+		
 
 		if (raptor.finDeEscalera(escalera1) || raptor2.finDeEscalera(escaDos) || raptor3.finDeEscalera(escaTres)
 				|| raptor4.finDeEscalera(escaCuatro)) {
@@ -158,10 +165,10 @@ public class Juego extends InterfaceJuego {
 			rayo = null;
 			raptor = null;
 			puntaje += 80;
-		} else {
-			raptor.dibujarRaptor(entorno);
-			raptor.mover();
-		}
+		} //else {
+			//raptor.dibujarRaptor(entorno);
+			//raptor.mover();
+		//}
 
 		// Procesamiento de un instante de tiempo
 		// ...

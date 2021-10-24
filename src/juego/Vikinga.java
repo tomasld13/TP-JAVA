@@ -148,6 +148,8 @@ public class Vikinga {
 		
 		subir= false;
 		
+		//si subir(zona de salto) es verdadero y  
+		
 	}
 	}
 	
