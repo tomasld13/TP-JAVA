@@ -1,4 +1,4 @@
-package juego;						// en este caso la commodor
+package juego; // en este caso la commodor
 
 import java.awt.Color;
 import entorno.Entorno;
@@ -9,7 +9,6 @@ public class Objetivo {
 	private double y;
 
 	public Objetivo(int tamaño, double x, double y) {
-		super();
 		this.tamaño = tamaño;
 		this.x = x;
 		this.y = y;

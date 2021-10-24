@@ -6,7 +6,8 @@ import java.awt.Image;
 import entorno.Entorno;
 import entorno.Herramientas;
 
-public class Escalera {
+public class Piso { // respeten los nombres del enunciado
+
 	private int x;
 	private int y;
 
@@ -14,7 +15,7 @@ public class Escalera {
 	private int ancho;
 	private Image img;
 
-	public Escalera(int x, int y) {
+	public Piso(int x, int y) {
 
 		this.x = x;
 		this.y = y;
@@ -23,7 +24,7 @@ public class Escalera {
 		this.img = Herramientas.cargarImagen("escalera.png");
 	}
 
-	public void dibujarEscalera(Entorno e) {
+	public void dibujar(Entorno e) {
 		// e.dibujarRectangulo(x, y, ancho, alto, 0, Color.WHITE);
 		e.dibujarImagen(img, x, y, 0);
 	}
