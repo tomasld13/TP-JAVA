@@ -106,19 +106,19 @@ public class Juego extends InterfaceJuego {
 		}
 // Raptors		
 		
-
-		raptor1.dibujar(entorno);
-		raptor1.mover();
+		if (raptor1 != null) { 
+			raptor1.dibujar(entorno);
+			raptor1.mover();
 			
-		raptor1.quePiso();
-		if (raptor1.banderaDeCaida()) {
+			raptor1.quePiso();
+			if (raptor1.banderaDeCaida()) {
 				raptor1.caer(entorno);
-		}
+			}
 
-//		if (raptor1.getX() <20  || raptor1.getX() > 78){
-//			raptor1.cambiarDeDireccion();
-//			raptor1.cambiarDeDireccionImg(vuelta);
-//		}
+		if (raptor1.getX() <20  || raptor1.getX() > 780){
+			raptor1.cambiarDeDireccion();
+			raptor1.cambiarDeDireccionImg(vuelta);
+		}
 //				|| raptor4.finDeEscalera(escaCuatro)) {
 //			raptor.cambiarDeDireccion();
 //			raptor2.cambiarDeDireccion();
@@ -137,17 +137,18 @@ public class Juego extends InterfaceJuego {
 //				raptor4.cambiarDeDireccionImg(vuelta);
 //				vuelta = true;
 //			}
-//		}
+		}
 
-//		if (rayo != null && raptor.choqueRayo(rayo) ){
-//			rayo = null;
-//			raptor = null;
-//			puntaje += 80;
-//		} //else {
+		if (rayo != null && raptor1.choqueRayo(rayo) ){
+			rayo = null;
+			raptor1 = null;
+			puntaje += 80;
+		} //else {
 		// raptor.dibujarRaptor(entorno);
 		// raptor.mover();
 		// }
-//=======
+		
+//Array de Raptors =======													
 //		for (int i = 0; i < raptors.length; i++) {
 //			raptors[i].dibujar(entorno);
 //			raptors[i].mover();
@@ -160,22 +161,11 @@ public class Juego extends InterfaceJuego {
 //				} else {
 //					raptors[i].cambiarDeDireccionImg(vuelta);
 //					vuelta = true;
-//				}
+//	=====			}
 			}
 	
 
-//		if (rayo != null && raptor.choqueRayo(rayo)) {
-//			rayo = null;
-//			raptor = null;
-//			puntaje += 80;
-//		} else {
-//			raptor.dibujar(entorno);
-//			raptor.mover();
-//		}
-//>>>>>>> f1c7e761a32953cfbd6d43a2dddacaa1353f7105
 
-		// Procesamiento de un instante de tiempo
-		// ...
 	
 
 	@SuppressWarnings("unused")
