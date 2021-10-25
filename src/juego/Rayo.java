@@ -4,6 +4,7 @@ package juego;
 
 import java.awt.Image;
 
+
 import entorno.Entorno;
 import entorno.Herramientas;
 
@@ -12,14 +13,20 @@ public class Rayo {
 	private double y;
 	private int direccion;
 	private Image img;
+	private int ancho;
+	private int alto;
 
 	public Rayo(double x, double y, int direccion) {
 		this.x = x;
 		this.y = y;
 		this.direccion = direccion;
 		this.img = Herramientas.cargarImagen("rayo.png");
+		this.ancho = 30;
+		this.alto = 30;
 	}
-
+	
+	
+	
 	public double getX() {
 		return x;
 	}
@@ -27,9 +34,12 @@ public class Rayo {
 	public double getY() {
 		return y;
 	}
-
+	
+	public int getAlto() {
+		return alto;
+	}
+	
 	public void dibujar(Entorno e) {
-		// e.dibujarTriangulo(x, y, alto, ancho, Math.PI / 2, Color.yellow);
 		e.dibujarImagen(img, x, y, 1.05, 0.05);
 	}
 
