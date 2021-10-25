@@ -39,7 +39,7 @@ public class Juego extends InterfaceJuego {
 
 		this.entorno = new Entorno(this, "Blanco_CarroAvila_Ledesma_Equipo3", 800, 600);
 
-		vikinga = new Vikinga(65, 50, 5, 30, 555, 5, 9, 0, false, false, false);
+		vikinga = new Vikinga(65, 50, 5, 30, 555, 5, 9, false, false, false);
 
 		objetivo = new Objetivo(50, 55, 50);
 
@@ -63,7 +63,7 @@ public class Juego extends InterfaceJuego {
 	}
 
 	public void tick() {
-
+		
 		entorno.dibujarImagen(fondo, entorno.ancho() / 2, entorno.alto() / 2, 0);
 
 		for (int i = 0; i < pisos.length; i++) {
@@ -75,12 +75,16 @@ public class Juego extends InterfaceJuego {
 
 		objetivo.dibujarObjetivo(entorno);
 // vikinga
-
+	
 		vikinga.dibujarVikinga(entorno);
 		
 		vikinga.quePiso(pisos);
 		System.out.println(vikinga.getPiso());
-
+		
+		if(vikinga.banderaDeCaida()) {
+			vikinga.caer(entorno);
+		}
+		
 		if (vikinga.banderaDeCaida()) {
 			vikinga.caer(entorno); // Gravedad
 		}

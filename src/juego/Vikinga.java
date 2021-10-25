@@ -20,13 +20,14 @@ public class Vikinga {
 
 	private boolean banderaDeSaltoDePiso;
 	private boolean banderaDeCaida;
+	private boolean enElAire;
 
 	private int piso;
 	private boolean direccion; // true=derecha false=izquierda
 	private Image img; // img
 	private Image imagenDelEscudo; // imagenDelEscudo
 
-	public Vikinga(int alto, int ancho, int vidas, double x, double y, int velocidad, int velocidadDeCaida, int piso,
+	public Vikinga(int alto, int ancho, int vidas, double x, double y, int velocidad, int velocidadDeCaida,
 			boolean banderaDeSaltoDePiso, boolean banderaDeCaida, boolean direccion) {
 		this.alto = alto;
 		this.ancho = ancho;
@@ -35,7 +36,7 @@ public class Vikinga {
 		this.y = y;
 		this.velocidad = velocidad;
 		this.velocidadDeCaida = velocidadDeCaida; // caidas
-		this.piso = piso;
+		this.piso = 0;
 		this.img = Herramientas.cargarImagen("per.png");
 //		this.imgescudo = Herramientas.cargarImagen("");
 		this.banderaDeSaltoDePiso = banderaDeSaltoDePiso;
@@ -87,11 +88,12 @@ public class Vikinga {
 	}
 
 	public void quePiso(Piso[] pisos) {
-		piso = 1;
-		for (int i = 1; i < pisos.length - 1; i++) {
-			if (y  < pisos[i].getY() + pisos[i].getAlto() && y  - alto / 2> pisos[i + 1].getY() + pisos[i + 1].getAlto()) {
-				piso += i;
-				System.out.println("IF");
+		for (int i = 0; i < pisos.length - 1; i++) {
+			if (y + alto /2  < pisos[i].getY()-pisos[i].getAlto()/2 && y  - alto / 2 > pisos[i + 1].getY() + pisos[i + 1].getAlto()/2) {
+				piso = i;
+				enElAire=false;
+			}else {
+				enElAire=true;
 			}
 		}
 	}
@@ -120,42 +122,40 @@ public class Vikinga {
 	public void saltar(Entorno e) {
 		y -= 10;
 	} // img = Herramientas.cargarImagen("img.png");
-
+	
+	
 	public boolean banderaDeSaltoDePiso() {
-
+		
 		if (x > 700 && x < 800) {
-			if (piso == 1 || piso == 3 || piso == 5 || piso == 0) {
+			if (piso == 0 || piso == 2 || piso == 4 || enElAire) {
 				banderaDeSaltoDePiso = true;
 			} else
 				banderaDeSaltoDePiso = false;
-		} else
-
+		} else 
 		if (x > 0 && x < 100) {
-			if (piso == 2 || piso == 4 || piso == 0) {
+			if (piso == 1 || piso == 3 || enElAire) {
 				banderaDeSaltoDePiso = true;
 			} else
 				banderaDeSaltoDePiso = false;
 		} else
 			banderaDeSaltoDePiso = false;
 		return banderaDeSaltoDePiso;
+		
 
 	}
 
 	public boolean banderaDeCaida() {
-
-		if (piso == 1) {
+		if (piso == 0) {
 			banderaDeCaida = false;
-		} else if (x < 700 && (piso == 2 || piso == 4 || piso == 6)) {
+		} else if (x < 700 && (piso == 1 || piso == 3 || piso == 5)) {
 			banderaDeCaida = false;
-		} else if (x > 100 && (piso == 3 || piso == 5)) {
+		} else if (x > 100 && (piso == 2 || piso == 4)) {
 			banderaDeCaida = false;
-
 		} else
 			banderaDeCaida = true;
 		return banderaDeCaida;
-
 	}
-
+	
 	public void caer(Entorno e) {
 
 		y = y + 3; // modificado para prueba. ajustar velocidad de caida

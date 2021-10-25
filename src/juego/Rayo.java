@@ -45,7 +45,7 @@ public class Rayo {
 	}
 
 	public void ida() {
-		if (direccion == 1 || direccion == 3 || direccion == 5) {
+		if (direccion == 0 || direccion == 2 || direccion == 4) {
 			x += 5;
 		} else {
 			x -= 5;

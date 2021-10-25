@@ -33,7 +33,7 @@ public class Velociraptor {
 	}
 
 	public void dibujar(Entorno e) {
-		//e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
+		e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
 		e.dibujarImagen(img, x, y, angulo, 0.6);
 	}
 
@@ -43,11 +43,9 @@ public class Velociraptor {
 	}
 
 	public void quePiso(Piso[] pisos) {
-		piso = 0;
 		for (int i = 0; i < pisos.length - 1; i++) {
-			if (y < pisos[i].getY() - pisos[i].getAlto() && y  - alto / 2> pisos[i + 1].getY() + pisos[i + 1].getAlto()) {
-				piso += i;
-				System.out.println("IF");
+			if (y + alto /2  < pisos[i].getY()-pisos[i].getAlto()/2 && y  - alto / 2 > pisos[i + 1].getY() + pisos[i + 1].getAlto()/2) {
+				piso = i;
 			}
 		}
 	}
@@ -68,14 +66,12 @@ public class Velociraptor {
 	
 
 	public boolean banderaDeCaida() {
-
-		if (piso == 1) {
+		if (piso == 0) {
 			banderaDeCaida = false;
-		} else if (x < 700 && (piso == 2 || piso == 4 || piso == 6)) {
+		} else if (x < 700 && (piso == 1 || piso == 3 || piso == 5)) {
 			banderaDeCaida = false;
-		} else if (x > 100 && (piso == 3 || piso == 5)) {
+		} else if (x > 100 && (piso == 2 || piso == 4)) {
 			banderaDeCaida = false;
-
 		} else
 			banderaDeCaida = true;
 		return banderaDeCaida;
@@ -85,7 +81,7 @@ public class Velociraptor {
 		y = y + 5;
 	}
 
-	public void cambiarDeDireccion() {
+	public void cambiarDeDireccion() { //modificar ya que es lo que nos da vuelta al dino
 		angulo += -Math.PI;
 	}
 
@@ -93,9 +89,11 @@ public class Velociraptor {
 		if (a) {
 			// this.img = Herramientas.cargarImagen("raptor.png");
 			this.img = Herramientas.cargarImagen("raptor.gif");
+
 		} else {
 			// this.img = Herramientas.cargarImagen("raptorizq.png");
 			this.img = Herramientas.cargarImagen("raptorizq.gif");
+
 		}
 	}
 
