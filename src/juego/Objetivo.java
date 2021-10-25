@@ -2,20 +2,22 @@ package juego; // en este caso la commodor
 
 import java.awt.Color;
 import entorno.Entorno;
+import entorno.Herramientas;
+import java.awt.Image;
 
 public class Objetivo {
-	private int tamaño;
 	private double x;
 	private double y;
+	private Image img;
 
 	public Objetivo(int tamaño, double x, double y) {
-		this.tamaño = tamaño;
 		this.x = x;
 		this.y = y;
+		this.img = Herramientas.cargarImagen("commodore.png");
 	}
 
 	public void dibujarObjetivo(Entorno e) {
-		e.dibujarTriangulo(x, y, tamaño, tamaño, Math.PI / 2, Color.red); // reemplazar imagen
+		e.dibujarImagen(img, x, y, 0,0.15);
 	}
 
 }

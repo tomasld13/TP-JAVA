@@ -39,7 +39,7 @@ public class Juego extends InterfaceJuego {
 		
 		vikinga = new Vikinga(65, 50, 5, 30, 555, 5, 9, 0, false, false, false);
 
-		objetivo = new Objetivo(50, 27, 50);
+		objetivo = new Objetivo(50, 55, 50);
 
 		pisos[0] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 100);
 		pisos[1] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 200);

@@ -24,7 +24,7 @@ public class Vikinga {
 	private int piso;
 	private boolean direccion; // true=derecha false=izquierda
 	private Image img; // img
-//	private Image imgescudo; // imagenDelEscudo
+	private Image imagenDelEscudo; // imagenDelEscudo
 
 	public Vikinga(int alto, int ancho, int vidas, double x, double y, int velocidad, int velocidadDeCaida, int piso,
 			boolean banderaDeSaltoDePiso, boolean banderaDeCaida, boolean direccion) {
@@ -41,6 +41,7 @@ public class Vikinga {
 		this.banderaDeSaltoDePiso = banderaDeSaltoDePiso;
 		this.banderaDeCaida = banderaDeCaida;
 		this.direccion = true;
+		this.imagenDelEscudo = Herramientas.cargarImagen("escudo.png");
 
 	}
 
@@ -183,11 +184,12 @@ public class Vikinga {
 
 
 	public void escudo(Entorno e) {
-		// e.dibujarImagen(imgescudo, x, y, 0, 0.20);
 		if (direccion) {
-			e.dibujarRectangulo(x + 40, y, 5, alto, 0, Color.cyan);
+			e.dibujarImagen(imagenDelEscudo, x + 60, y, 0, 0.07);
+			//e.dibujarRectangulo(x + 40, y, 5, alto, 0, Color.cyan);
 		} else {
-			e.dibujarRectangulo(x - 40, y, 5, alto, 0, Color.cyan);
+			e.dibujarImagen(imagenDelEscudo, x - 60, y, 0, 0.07);
+			//e.dibujarRectangulo(x - 40, y, 5, alto, 0, Color.cyan);
 		}
 
 	}
