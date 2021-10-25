@@ -41,5 +41,9 @@ public class Piso { // respeten los nombres del enunciado
 	public int getAncho() {
 		return ancho;
 	}
+	
+	public int getAlto() {
+		return alto;
+	}
 
 }

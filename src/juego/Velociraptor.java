@@ -33,7 +33,7 @@ public class Velociraptor {
 	}
 
 	public void dibujar(Entorno e) {
-		e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
+		//e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
 		e.dibujarImagen(img, x, y, angulo, 0.6);
 	}
 
@@ -42,22 +42,30 @@ public class Velociraptor {
 
 	}
 
-	public void quePiso() {
-		if (y > 547) {
-			piso = 1;
-		} else if (y > 457 && y < 460) {
-			piso = 2;
-		} else if (y > 355 && y < 360) {
-			piso = 3;
-		} else if (y > 257 && y < 262) {
-			piso = 4;
-		} else if (y > 157 && y < 162) {
-			piso = 5;
-		} else if (y > 56 && y < 60) {
-			piso = 6;
-		} else
-			piso = 0;
+	public void quePiso(Piso[] pisos) {
+		piso = 0;
+		for (int i = 0; i < pisos.length - 1; i++) {
+			if (y < pisos[i].getY() - pisos[i].getAlto() && y  - alto / 2> pisos[i + 1].getY() + pisos[i + 1].getAlto()) {
+				piso += i;
+				System.out.println("IF");
+			}
+		}
 	}
+//		if (y > 547) {
+//			piso = 1;
+//		} else if (y > 457 && y < 460) {
+//			piso = 2;
+//		} else if (y > 355 && y < 360) {
+//			piso = 3;
+//		} else if (y > 257 && y < 262) {
+//			piso = 4;
+//		} else if (y > 157 && y < 162) {
+//			piso = 5;
+//		} else if (y > 56 && y < 60) {
+//			piso = 6;
+//		} else
+//			piso = 0;
+	
 
 	public boolean banderaDeCaida() {
 
@@ -115,6 +123,10 @@ public class Velociraptor {
 	
 	public int getAlto() {
 		return alto;
+	}
+	
+	public int getPiso() {
+		return piso;
 	}
 
 }

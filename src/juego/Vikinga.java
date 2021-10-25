@@ -86,23 +86,14 @@ public class Vikinga {
 		return direccion;
 	}
 
-	public void quePiso() {
-
-		if (y > 547) {
-			piso = 1;
-		} else if (y > 457 && y < 460) {
-			piso = 2;
-		} else if (y > 355 && y < 360) {
-			piso = 3;
-		} else if (y > 257 && y < 262) {
-			piso = 4;
-		} else if (y > 157 && y < 162) {
-			piso = 5;
-		} else if (y > 56 && y < 60) {
-			piso = 6;
-		} else
-			piso = 0;
-	
+	public void quePiso(Piso[] pisos) {
+		piso = 1;
+		for (int i = 1; i < pisos.length - 1; i++) {
+			if (y  < pisos[i].getY() + pisos[i].getAlto() && y  - alto / 2> pisos[i + 1].getY() + pisos[i + 1].getAlto()) {
+				piso += i;
+				System.out.println("IF");
+			}
+		}
 	}
 
 	public void dibujarVikinga(Entorno e) {
@@ -183,14 +174,13 @@ public class Vikinga {
 	}
 
 	public boolean ChoqueRaptor(Velociraptor raptor) {
-		return x < raptor.getX() + raptor.getAncho() - ancho / 2 && x > raptor.getX() - raptor.getAncho() + ancho / 2 && y < raptor.getY() + raptor.getAlto()/2 && y > raptor.getY() - raptor.getAlto();
+		return x < raptor.getX() + raptor.getAncho() - ancho / 2 && x > raptor.getX() - raptor.getAncho() + ancho / 2
+				&& y < raptor.getY() + raptor.getAlto() / 2 && y > raptor.getY() - raptor.getAlto();
 	}
 
 	public void muerte() {
 		x = 20;
 		y = 550;
 	}
-	
-
 
 }
