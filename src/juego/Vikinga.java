@@ -86,22 +86,22 @@ public class Vikinga {
 	}
 	
 	public void quePiso() {
-		if (y > 554) { 
+		if (y > 547) { 
 			piso = 1;
 		}else
-		if (y > 455 && y < 470) {
+		if (y > 457 && y < 460) {
 			piso = 2;
 		}else
-		if (y > 370 && y < 400) {
+		if (y > 355 && y < 360) {
 			piso = 3;
 		}else
-		if (y > 270 && y < 300) {
+		if (y > 257 && y < 262) {
 			piso = 4;
 		}else
-		if (y > 170 && y < 200) {
+		if (y > 157 && y < 162) {
 			piso = 5;
 		}else
-		if (y > 70 && y < 100) {
+		if (y > 56 && y < 60) {
 			piso = 6;
 		}else
 			piso=0;
@@ -129,76 +129,57 @@ public class Vikinga {
 	}
 
 	public void saltar(Entorno e) { 
-		
-		y-=5;
-		}
-				
-		// img = Herramientas.cargarImagen("img.png");
-
+		y-=10;
+		}			// img = Herramientas.cargarImagen("img.png");
 	
 
-	public void banderaDeSaltoDePiso(Entorno e) {
+	public boolean banderaDeSaltoDePiso() {
 
-		if (x > 740 && x < 800) {
-			if (piso == 1 || piso == 3) {
+		if (x > 700 && x < 800) {
+			if (piso == 1 || piso == 3 || piso== 5|| piso == 0) {
 				banderaDeSaltoDePiso = true;
+			}else
+				banderaDeSaltoDePiso = false;
 			}
-		}
+		else
 		
-		if (x > 0 && x < 60) {
-			if (piso == 2 || piso == 4) {
+		if (x > 0 && x < 100) {
+			if (piso == 2 || piso == 4 || piso == 0) {
 				banderaDeSaltoDePiso = true;
+			}else
+				banderaDeSaltoDePiso = false;
 			}
-		}else
+		else
 			banderaDeSaltoDePiso=false;
+		return banderaDeSaltoDePiso;
 
 	}
-	public void banderaDeCaida(Entorno e) {
+	public boolean banderaDeCaida() {
 			
 		if (piso == 1) {
 			banderaDeCaida = false;
 		}else
-		if (x < e.ancho() - 85  && piso == 2) {
+		if (x < 700  && (piso == 2 || piso == 4 || piso == 6)) {
 			banderaDeCaida = false;
 		}else
-		if (x > 85 && piso == 3) {
+		if (x > 100 && (piso == 3 || piso == 5)) {
 			banderaDeCaida = false;
-		}else
-		if (x < e.ancho() - 85 && piso == 4) {
-			banderaDeCaida = false;
-		}else
-		if (x > 85 && piso == 5) {
-			banderaDeCaida = false;
-		}else
-		if (x < e.ancho() - 85 && piso == 6) {
-			banderaDeCaida = false;
+		
 		}else
 			banderaDeCaida = true;
-	}
-	public void subirDePiso (Entorno e) {
-		if ((piso == 1 || piso == 3) && banderaDeSaltoDePiso == true) {
-				x = x-3;
-				y = y - 40;
-				piso =piso +1;
-				banderaDeSaltoDePiso = false;
-			}
+		return banderaDeCaida;
+			
 		
-		if ((piso == 2 || piso == 4)&& banderaDeSaltoDePiso == true) {
-				x = x+3;
-				y = y - 100;
-				piso =piso +1;
-				banderaDeSaltoDePiso = false;
-			}
-		}
+
+
+	}	
 	
 	public void caer(Entorno e){
-		if (banderaDeCaida == true && piso == 0) {
-			y = y+1;						// modificado para prueba. ajustar velocidad de caida
-			
-				
-			
+		
+			y = y+3;						// modificado para prueba. ajustar velocidad de caida
+						
 		}
-	}
+	
 
 
 	public void escudo(Entorno e) {

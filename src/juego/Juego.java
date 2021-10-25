@@ -35,7 +35,7 @@ public class Juego extends InterfaceJuego {
 		
 		this.entorno = new Entorno(this, "Prueba del Peronismo", 800, 600);
 		
-		vikinga = new Vikinga(65, 50, 5, 30, 555, 5, 9, 0, false, true, false);
+		vikinga = new Vikinga(65, 50, 5, 30, 555, 5, 9, 0, false, false, false);
 
 		raptors[0] = new Velociraptor(100,50 ,350, entorno.alto() - 150, 2,0);
 		raptors[1] = new Velociraptor(100,50 ,350, entorno.alto() - 300, 2,0);
@@ -76,7 +76,7 @@ public class Juego extends InterfaceJuego {
 		vikinga.dibujarVikinga(entorno);
 
 		vikinga.quePiso();
-		vikinga.caer(entorno);   //gravedad
+		//vikinga.caer(entorno);   //gravedad
 
 		if (rayo != null) {
 			rayo.dibujar(entorno);
@@ -84,6 +84,9 @@ public class Juego extends InterfaceJuego {
 			if (rayo.getX() > entorno.ancho() || rayo.getX() < 0) {
 				rayo = null;
 			}
+		}
+		if (vikinga.banderaDeCaida()){
+			vikinga.caer(entorno);
 		}
 		
 				
@@ -94,7 +97,9 @@ public class Juego extends InterfaceJuego {
 			vikinga.moverHaciaDerecha(entorno);
 		}
 		if (entorno.estaPresionada('w')) {
+			if (vikinga.banderaDeSaltoDePiso()) {
 			vikinga.saltar(entorno); 
+
 		}
 		if (entorno.estaPresionada('e')) {
 			vikinga.escudo(entorno);
@@ -104,12 +109,7 @@ public class Juego extends InterfaceJuego {
 			rayo = new Rayo(20, 20, vikinga.getX(), vikinga.getY(), 5, vikinga.getPiso());
 		}
 		
-		if (entorno.estaPresionada('u')) {
-			vikinga.subirDePiso(entorno);
-		}
 
- // si ninguna tecla esta presionada, entonces:
-			vikinga.caer(entorno);
 //		}
 
 
@@ -157,6 +157,7 @@ public class Juego extends InterfaceJuego {
 					vuelta = true;
 				}
 			}
+		}
 		}
 	
 
