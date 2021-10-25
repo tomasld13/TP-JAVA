@@ -11,9 +11,10 @@ import entorno.Herramientas;
 public class Rayo {
 	private double x;
 	private double y;
+	
 	private int direccion;
+	
 	private Image img;
-	private int ancho;
 	private int alto;
 
 	public Rayo(double x, double y, int direccion) {
@@ -21,7 +22,7 @@ public class Rayo {
 		this.y = y;
 		this.direccion = direccion;
 		this.img = Herramientas.cargarImagen("rayo.png");
-		this.ancho = 30;
+
 		this.alto = 30;
 	}
 	

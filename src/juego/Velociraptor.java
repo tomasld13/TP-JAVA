@@ -18,9 +18,14 @@ public class Velociraptor {
 		return x;
 	}
 
-	public void setX(int x) {
-		this.x = x;
+	public int getY() {
+		return y;
 	}
+	
+	public int getAncho() {
+		return ancho;
+	}
+	
 
 	private Image img;
 	private boolean banderaDeCaida;

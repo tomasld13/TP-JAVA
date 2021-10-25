@@ -21,22 +21,23 @@ public class Juego extends InterfaceJuego {
 //	private Velociraptor raptor3;
 //	private Velociraptor raptor4;
 
-	private Velociraptor raptor1 = new Velociraptor(100,5 ,350, 55, 2,0);
-	private Velociraptor raptor2 = new Velociraptor(100,5 ,100, 55, 2,0);
-	private Velociraptor raptor3 = new Velociraptor(100,5 ,600, 55, 2,0);
-	
+	private Velociraptor raptor1 = new Velociraptor(100, 5, 350, 55, 2, 0);
+	private Velociraptor raptor2 = new Velociraptor(100, 5, 100, 55, 2, 0);
+	private Velociraptor raptor3 = new Velociraptor(100, 5, 600, 55, 2, 0);
+
 	private Image fondo;
 	private Rayo rayo;
 	private Objetivo objetivo;
 
 	private boolean vuelta;
 
+	private int vidas = 5;
 	private int puntaje; // y también vidas? vidas--
 
 	public Juego() {
-		
+
 		this.entorno = new Entorno(this, "Blanco_CarroAvila_Ledesma_Equipo3", 800, 600);
-		
+
 		vikinga = new Vikinga(65, 50, 5, 30, 555, 5, 9, 0, false, false, false);
 
 		objetivo = new Objetivo(50, 55, 50);
@@ -67,17 +68,17 @@ public class Juego extends InterfaceJuego {
 		}
 
 		entorno.cambiarFont("sans", 20, Color.white);
-		entorno.escribirTexto("Vidas: " + vikinga.getVidas() + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
+		entorno.escribirTexto("Vidas: " + vidas + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
 
 		objetivo.dibujarObjetivo(entorno);
 // vikinga
-		
+
 		vikinga.dibujarVikinga(entorno);
 
 		vikinga.quePiso();
-		
-		if (vikinga.banderaDeCaida()){   
-			vikinga.caer(entorno);				// Gravedad
+
+		if (vikinga.banderaDeCaida()) {
+			vikinga.caer(entorno); // Gravedad
 		}
 		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('a')) {
 			vikinga.moverHaciaIzquierda(entorno);
@@ -87,12 +88,17 @@ public class Juego extends InterfaceJuego {
 		}
 		if (entorno.estaPresionada('w')) {
 			if (vikinga.banderaDeSaltoDePiso()) {
-			vikinga.saltar(entorno); 
+				vikinga.saltar(entorno);
 			}
 		}
 		if (entorno.estaPresionada('e')) {
 			vikinga.escudo(entorno);
-		}		
+		}
+		
+		if (vikinga.ChoqueRaptor(raptor1)) {
+			vikinga.muerte();
+			vidas -= 1;
+		}
 //Rayo		
 		if (rayo != null) {
 			rayo.dibujar(entorno);
@@ -105,19 +111,20 @@ public class Juego extends InterfaceJuego {
 			rayo = new Rayo(vikinga.getX(), vikinga.getY(), vikinga.getPiso());
 		}
 // Raptors		
-		
-		if (raptor1 != null) { 
+
+		if (raptor1 != null) {
 			raptor1.dibujar(entorno);
 			raptor1.mover();
-			
+
 			raptor1.quePiso();
 			if (raptor1.banderaDeCaida()) {
 				raptor1.caer(entorno);
 			}
 
-		if (raptor1.getX() <20  || raptor1.getX() > 780){
-			raptor1.cambiarDeDireccion();
-			raptor1.cambiarDeDireccionImg(vuelta);
+			if (raptor1.getX() < 20 || raptor1.getX() > 780) {
+				raptor1.cambiarDeDireccion();
+				raptor1.cambiarDeDireccionImg(vuelta);
+			}
 		}
 //				|| raptor4.finDeEscalera(escaCuatro)) {
 //			raptor.cambiarDeDireccion();
@@ -137,17 +144,16 @@ public class Juego extends InterfaceJuego {
 //				raptor4.cambiarDeDireccionImg(vuelta);
 //				vuelta = true;
 //			}
-		}
 
-		if (rayo != null && raptor1.choqueRayo(rayo) ){
+		if (rayo != null && raptor1.choqueRayo(rayo)) {
 			rayo = null;
 			raptor1 = null;
 			puntaje += 80;
-		} //else {
-		// raptor.dibujarRaptor(entorno);
-		// raptor.mover();
-		// }
-		
+		} // else {
+			// raptor.dibujarRaptor(entorno);
+			// raptor.mover();
+			// }
+
 //Array de Raptors =======													
 //		for (int i = 0; i < raptors.length; i++) {
 //			raptors[i].dibujar(entorno);
@@ -162,11 +168,7 @@ public class Juego extends InterfaceJuego {
 //					raptors[i].cambiarDeDireccionImg(vuelta);
 //					vuelta = true;
 //	=====			}
-			}
-	
-
-
-	
+	}
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {

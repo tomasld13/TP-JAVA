@@ -193,5 +193,15 @@ public class Vikinga {
 		}
 
 	}
+	
+	public boolean ChoqueRaptor(Velociraptor raptor) {
+		return x < raptor.getX() + ancho / 2 && x > raptor.getX() - ancho / 2 && y > raptor.getY() - raptor.getAncho()
+				&& y < raptor.getY();
+	}
+	
+	public void muerte() {
+		x = 200;
+		y= 200;
+	}
 
 }
