@@ -77,35 +77,32 @@ public class Vikinga {
 	public boolean getbanderaDeSaltoDePiso() {
 		return banderaDeSaltoDePiso;
 	}
-	
+
 	public boolean getbanderaDeCaida() {
 		return banderaDeCaida;
 	}
-	
+
 	public boolean getdireccion() {
 		return direccion;
 	}
-	
+
 	public void quePiso() {
-		if (y > 547) { 
+
+		if (y > 547) {
 			piso = 1;
-		}else
-		if (y > 457 && y < 460) {
+		} else if (y > 457 && y < 460) {
 			piso = 2;
-		}else
-		if (y > 355 && y < 360) {
+		} else if (y > 355 && y < 360) {
 			piso = 3;
-		}else
-		if (y > 257 && y < 262) {
+		} else if (y > 257 && y < 262) {
 			piso = 4;
-		}else
-		if (y > 157 && y < 162) {
+		} else if (y > 157 && y < 162) {
 			piso = 5;
-		}else
-		if (y > 56 && y < 60) {
+		} else if (y > 56 && y < 60) {
 			piso = 6;
-		}else
-			piso=0;
+		} else
+			piso = 0;
+	
 	}
 
 	public void dibujarVikinga(Entorno e) {
@@ -129,79 +126,75 @@ public class Vikinga {
 		}
 	}
 
-	public void saltar(Entorno e) { 
-		y-=10;
-		}			// img = Herramientas.cargarImagen("img.png");
-	
+	public void saltar(Entorno e) {
+		y -= 10;
+	} // img = Herramientas.cargarImagen("img.png");
 
 	public boolean banderaDeSaltoDePiso() {
 
 		if (x > 700 && x < 800) {
-			if (piso == 1 || piso == 3 || piso== 5|| piso == 0) {
+			if (piso == 1 || piso == 3 || piso == 5 || piso == 0) {
 				banderaDeSaltoDePiso = true;
-			}else
+			} else
 				banderaDeSaltoDePiso = false;
-			}
-		else
-		
+		} else
+
 		if (x > 0 && x < 100) {
 			if (piso == 2 || piso == 4 || piso == 0) {
 				banderaDeSaltoDePiso = true;
-			}else
+			} else
 				banderaDeSaltoDePiso = false;
-			}
-		else
-			banderaDeSaltoDePiso=false;
+		} else
+			banderaDeSaltoDePiso = false;
 		return banderaDeSaltoDePiso;
 
 	}
+
 	public boolean banderaDeCaida() {
-			
+
 		if (piso == 1) {
 			banderaDeCaida = false;
-		}else
-		if (x < 700  && (piso == 2 || piso == 4 || piso == 6)) {
+		} else if (x < 700 && (piso == 2 || piso == 4 || piso == 6)) {
 			banderaDeCaida = false;
-		}else
-		if (x > 100 && (piso == 3 || piso == 5)) {
+		} else if (x > 100 && (piso == 3 || piso == 5)) {
 			banderaDeCaida = false;
-		
-		}else
+
+		} else
 			banderaDeCaida = true;
 		return banderaDeCaida;
-			
-		
 
+	}
 
-	}	
-	
-	public void caer(Entorno e){
-		
-			y = y+3;						// modificado para prueba. ajustar velocidad de caida
-						
-		}
-	
+	public void caer(Entorno e) {
 
+		y = y + 3; // modificado para prueba. ajustar velocidad de caida
+
+	}
 
 	public void escudo(Entorno e) {
 		if (direccion) {
 			e.dibujarImagen(imagenDelEscudo, x + 60, y, 0, 0.07);
-			//e.dibujarRectangulo(x + 40, y, 5, alto, 0, Color.cyan);
+			// e.dibujarRectangulo(x + 40, y, 5, alto, 0, Color.cyan);
 		} else {
 			e.dibujarImagen(imagenDelEscudo, x - 60, y, 0, 0.07);
-			//e.dibujarRectangulo(x - 40, y, 5, alto, 0, Color.cyan);
+			// e.dibujarRectangulo(x - 40, y, 5, alto, 0, Color.cyan);
 		}
 
 	}
-	
+
 	public boolean ChoqueRaptor(Velociraptor raptor) {
 		return x < raptor.getX() + ancho / 2 && x > raptor.getX() - ancho / 2 && y > raptor.getY() - raptor.getAncho()
 				&& y < raptor.getY();
 	}
-	
+
 	public void muerte() {
-		x = 200;
-		y= 200;
+		x = 20;
+		y = 550;
+	}
+	
+	public boolean choquePiso(Piso[] pisos) {
+		while (x)
+		return x
 	}
 
 }

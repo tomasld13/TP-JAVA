@@ -12,7 +12,7 @@ public class Juego extends InterfaceJuego {
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 
-	private Piso[] pisos = new Piso[5];
+	private Piso[] pisos = new Piso[6];
 
 	private Vikinga vikinga;
 
@@ -25,30 +25,33 @@ public class Juego extends InterfaceJuego {
 	private Velociraptor raptor2 = new Velociraptor(100, 5, 100, 55, 2, 0);
 	private Velociraptor raptor3 = new Velociraptor(100, 5, 600, 55, 2, 0);
 
+	private Image gameOver;
 	private Image fondo;
 	private Rayo rayo;
 	private Objetivo objetivo;
 
 	private boolean vuelta;
 
-	private int vidas = 5;
+	private int vidas = 3;
 	private int puntaje; // y también vidas? vidas--
 
 	public Juego() {
 
 		this.entorno = new Entorno(this, "Blanco_CarroAvila_Ledesma_Equipo3", 800, 600);
 
-		vikinga = new Vikinga(65, 50, 5, 30, 555, 5, 9, 0, false, false, false);
+		vikinga = new Vikinga(65, 50, 5, 30, 400, 5, 9, 0, false, false, false);
 
 		objetivo = new Objetivo(50, 55, 50);
 
-		pisos[0] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 100);
-		pisos[1] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 200);
-		pisos[2] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 300);
-		pisos[3] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 400);
-		pisos[4] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 500);
+		pisos[0] = new Piso(entorno.ancho() / 2 - 60, entorno.alto());
+		pisos[1] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 100);
+		pisos[2] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 200);
+		pisos[3] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 300);
+		pisos[4] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 400);
+		pisos[5] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 500);
 
 		fondo = Herramientas.cargarImagen("fondo.png");
+		gameOver = Herramientas.cargarImagen("gameoverphrase.jpg");
 
 		vuelta = true;
 
@@ -94,7 +97,7 @@ public class Juego extends InterfaceJuego {
 		if (entorno.estaPresionada('e')) {
 			vikinga.escudo(entorno);
 		}
-		
+
 		if (vikinga.ChoqueRaptor(raptor1)) {
 			vikinga.muerte();
 			vidas -= 1;
@@ -116,6 +119,23 @@ public class Juego extends InterfaceJuego {
 			raptor1.dibujar(entorno);
 			raptor1.mover();
 
+			for (int i = 0; i < pisos.length; i++) {
+				if (raptor1.finDeEscalera(pisos[i]) || raptor1.getX() < 20 || raptor1.getX() > 780) {
+					raptor1.cambiarDeDireccion();
+					if(vuelta) {
+						raptor1.cambiarDeDireccionImg(vuelta);
+						vuelta = false;
+					} else {
+						raptor1.cambiarDeDireccionImg(vuelta);
+						vuelta = true;
+					}
+					
+					System.out.println("me caí");
+				} else {
+					System.out.println("NADAAA");
+				}
+
+			}
 			raptor1.quePiso();
 			if (raptor1.banderaDeCaida()) {
 				raptor1.caer(entorno);
@@ -149,10 +169,15 @@ public class Juego extends InterfaceJuego {
 			rayo = null;
 			raptor1 = null;
 			puntaje += 80;
-		} // else {
-			// raptor.dibujarRaptor(entorno);
-			// raptor.mover();
-			// }
+		}
+
+		if (vidas == 0) {
+			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
+		}
+		// else {
+		// raptor.dibujarRaptor(entorno);
+		// raptor.mover();
+		// }
 
 //Array de Raptors =======													
 //		for (int i = 0; i < raptors.length; i++) {
