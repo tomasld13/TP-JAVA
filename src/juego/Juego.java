@@ -21,8 +21,10 @@ public class Juego extends InterfaceJuego {
 //	private Velociraptor raptor3;
 //	private Velociraptor raptor4;
 
-	private Velociraptor[] raptors = new Velociraptor[4];
-
+	private Velociraptor raptor1 = new Velociraptor(100,5 ,350, 55, 2,0);
+	private Velociraptor raptor2 = new Velociraptor(100,5 ,100, 55, 2,0);
+	private Velociraptor raptor3 = new Velociraptor(100,5 ,600, 55, 2,0);
+	
 	private Image fondo;
 	private Rayo rayo;
 	private Objetivo objetivo;
@@ -33,14 +35,9 @@ public class Juego extends InterfaceJuego {
 
 	public Juego() {
 		
-		this.entorno = new Entorno(this, "Prueba del Peronismo", 800, 600);
+		this.entorno = new Entorno(this, "Blanco_CarroAvila_Ledesma_Equipo3", 800, 600);
 		
 		vikinga = new Vikinga(65, 50, 5, 30, 555, 5, 9, 0, false, false, false);
-
-		raptors[0] = new Velociraptor(100,50 ,350, entorno.alto() - 150, 2,0);
-		raptors[1] = new Velociraptor(100,50 ,350, entorno.alto() - 300, 2,0);
-		raptors[2] = new Velociraptor(100,50 ,350, entorno.alto() - 450, 2,0);
-		raptors[3] = new Velociraptor(100,50 ,350, entorno.alto() - 500, 2,0);
 
 		objetivo = new Objetivo(50, 27, 50);
 
@@ -73,23 +70,15 @@ public class Juego extends InterfaceJuego {
 		entorno.escribirTexto("Vidas: " + vikinga.getVidas() + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
 
 		objetivo.dibujarObjetivo(entorno);
+// vikinga
+		
 		vikinga.dibujarVikinga(entorno);
 
 		vikinga.quePiso();
-		//vikinga.caer(entorno);   //gravedad
-
-		if (rayo != null) {
-			rayo.dibujar(entorno);
-			rayo.ida();
-			if (rayo.getX() > entorno.ancho() || rayo.getX() < 0) {
-				rayo = null;
-			}
-		}
-		if (vikinga.banderaDeCaida()){
-			vikinga.caer(entorno);
-		}
 		
-				
+		if (vikinga.banderaDeCaida()){   
+			vikinga.caer(entorno);				// Gravedad
+		}
 		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('a')) {
 			vikinga.moverHaciaIzquierda(entorno);
 		}
@@ -99,27 +88,43 @@ public class Juego extends InterfaceJuego {
 		if (entorno.estaPresionada('w')) {
 			if (vikinga.banderaDeSaltoDePiso()) {
 			vikinga.saltar(entorno); 
-
+			}
 		}
 		if (entorno.estaPresionada('e')) {
 			vikinga.escudo(entorno);
+		}		
+//Rayo		
+		if (rayo != null) {
+			rayo.dibujar(entorno);
+			rayo.ida();
+			if (rayo.getX() > entorno.ancho() || rayo.getX() < 0) {
+				rayo = null;
+			}
 		}
-
 		if (entorno.estaPresionada(entorno.TECLA_ESPACIO) && rayo == null) {
 			rayo = new Rayo(20, 20, vikinga.getX(), vikinga.getY(), 5, vikinga.getPiso());
 		}
+// Raptors		
 		
 
+		raptor1.dibujar(entorno);
+		raptor1.mover();
+			
+		raptor1.quePiso();
+		if (raptor1.banderaDeCaida()) {
+				raptor1.caer(entorno);
+		}
+
+//		if (raptor1.getX() <20  || raptor1.getX() > 78){
+//			raptor1.cambiarDeDireccion();
+//			raptor1.cambiarDeDireccionImg(vuelta);
 //		}
-
-
-//		if (raptor.finDeEscalera(escalera1) || raptor2.finDeEscalera(escaDos) || raptor3.finDeEscalera(escaTres)
 //				|| raptor4.finDeEscalera(escaCuatro)) {
 //			raptor.cambiarDeDireccion();
 //			raptor2.cambiarDeDireccion();
 //			raptor3.cambiarDeDireccion();
 //			raptor4.cambiarDeDireccion();
-//			if (vuelta) {
+//		}			if (vuelta) {
 //				raptor.cambiarDeDireccionImg(vuelta);
 //				raptor2.cambiarDeDireccionImg(vuelta);
 //				raptor3.cambiarDeDireccionImg(vuelta);
@@ -143,22 +148,20 @@ public class Juego extends InterfaceJuego {
 		// raptor.mover();
 		// }
 //=======
-		for (int i = 0; i < raptors.length; i++) {
-			raptors[i].dibujar(entorno);
-			raptors[i].mover();
-			if (raptors[i].finDeEscalera(pisos[i])) {
-				raptors[i].cambiarDeDireccion();
+//		for (int i = 0; i < raptors.length; i++) {
+//			raptors[i].dibujar(entorno);
+//			raptors[i].mover();
+//			if (raptors[i].finDeEscalera(pisos[i])) {
+//				raptors[i].cambiarDeDireccion();
+//			}
+//				if (vuelta) {
+//					raptors[i].cambiarDeDireccionImg(vuelta);
+//					vuelta = false;
+//				} else {
+//					raptors[i].cambiarDeDireccionImg(vuelta);
+//					vuelta = true;
+//				}
 			}
-				if (vuelta) {
-					raptors[i].cambiarDeDireccionImg(vuelta);
-					vuelta = false;
-				} else {
-					raptors[i].cambiarDeDireccionImg(vuelta);
-					vuelta = true;
-				}
-			}
-		}
-		}
 	
 
 //		if (rayo != null && raptor.choqueRayo(rayo)) {

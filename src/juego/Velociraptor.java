@@ -8,18 +8,25 @@ import entorno.Herramientas;
 
 public class Velociraptor {
 	private int ancho;
-	private int alto;
+	private int piso;
 	private int x;
 	private int y;
-
 	private double velocidad;
 	private double angulo;
+	
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
 
 	private Image img;
-
-	public Velociraptor(int ancho, int alto, int x, int y, double velocidad, double angulo) {
+	private boolean banderaDeCaida;
+	public Velociraptor(int ancho, int piso, int x, int y, double velocidad, double angulo) {
 		
-		this.alto = 80;
+		this.piso = piso;
 		this.ancho = 130;
 		this.x = x;
 		this.y = y;
@@ -37,10 +44,45 @@ public class Velociraptor {
 		x += velocidad * Math.cos(angulo);
 
 	}
-
-	public boolean finDeEscalera(Piso pisos) {
-		return x < pisos.getX() - pisos.getAncho() / 2 + ancho / 2
-				|| x > pisos.getX() + pisos.getAncho() / 2 - ancho / 2;
+	
+	public void quePiso() {
+		if (y > 547) { 
+			piso = 1;
+		}else
+		if (y > 457 && y < 460) {
+			piso = 2;
+		}else
+		if (y > 355 && y < 360) {
+			piso = 3;
+		}else
+		if (y > 257 && y < 262) {
+			piso = 4;
+		}else
+		if (y > 157 && y < 162) {
+			piso = 5;
+		}else
+		if (y > 56 && y < 60) {
+			piso = 6;
+		}else
+			piso=0;
+	}
+	public boolean banderaDeCaida() {
+		
+		if (piso == 1) {
+			banderaDeCaida = false;
+		}else
+		if (x < 700  && (piso == 2 || piso == 4 || piso == 6)) {
+			banderaDeCaida = false;
+		}else
+		if (x > 100 && (piso == 3 || piso == 5)) {
+			banderaDeCaida = false;
+		
+		}else
+			banderaDeCaida = true;
+		return banderaDeCaida;
+	}
+	public void caer(Entorno e) {
+	 y = y+5;
 	}
 
 	public void cambiarDeDireccion() {
