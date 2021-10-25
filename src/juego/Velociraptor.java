@@ -8,23 +8,14 @@ import entorno.Herramientas;
 
 public class Velociraptor {
 	private int ancho;
+	private int alto;
 	private int piso;
 	private int x;
 	private int y;
 	private double velocidad;
 	private double angulo;
 
-	public int getX() {
-		return x;
-	}
 
-	public int getY() {
-		return y;
-	}
-
-	public int getAncho() {
-		return ancho;
-	}
 
 	private Image img;
 	private boolean banderaDeCaida;
@@ -33,6 +24,7 @@ public class Velociraptor {
 
 		this.piso = piso;
 		this.ancho = 130;
+		this.alto = 80;
 		this.x = x;
 		this.y = y;
 		this.velocidad = velocidad;
@@ -41,7 +33,7 @@ public class Velociraptor {
 	}
 
 	public void dibujar(Entorno e) {
-		// e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
+		e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
 		e.dibujarImagen(img, x, y, angulo, 0.6);
 	}
 
@@ -101,12 +93,28 @@ public class Velociraptor {
 
 	public boolean choqueRayo(Rayo rayo) {
 		return x < rayo.getX() + ancho / 2 && x > rayo.getX() - ancho / 2 && y > rayo.getY() - rayo.getAlto()
-				&& y < rayo.getY();
+				&& y < rayo.getY() + rayo.getAlto();
 	}
 
-	public boolean finDeEscalera(Piso pisos) {
+	public boolean finDePiso(Piso pisos) {
 		return x > pisos.getX() + pisos.getAncho() / 2 + ancho / 2
 				|| x < pisos.getX() - pisos.getAncho() / 2 - ancho / 2;
+	}
+	
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public int getAncho() {
+		return ancho;
+	}
+	
+	public int getAlto() {
+		return alto;
 	}
 
 }

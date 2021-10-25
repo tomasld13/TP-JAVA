@@ -183,8 +183,7 @@ public class Vikinga {
 	}
 
 	public boolean ChoqueRaptor(Velociraptor raptor) {
-		return x < raptor.getX() + ancho / 2 && x > raptor.getX() - ancho / 2 && y > raptor.getY() - raptor.getAncho()
-				&& y < raptor.getY();
+		return x < raptor.getX() + raptor.getAncho() - ancho / 2 && x > raptor.getX() - raptor.getAncho() + ancho / 2 && y < raptor.getY() + raptor.getAlto()/2 && y > raptor.getY() - raptor.getAlto();
 	}
 
 	public void muerte() {
@@ -192,9 +191,6 @@ public class Vikinga {
 		y = 550;
 	}
 	
-	public boolean choquePiso(Piso[] pisos) {
-		while (x)
-		return x
-	}
+
 
 }

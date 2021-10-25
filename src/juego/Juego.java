@@ -101,6 +101,7 @@ public class Juego extends InterfaceJuego {
 		if (vikinga.ChoqueRaptor(raptor1)) {
 			vikinga.muerte();
 			vidas -= 1;
+			System.out.println("Me mordió");
 		}
 //Rayo		
 		if (rayo != null) {
@@ -119,65 +120,39 @@ public class Juego extends InterfaceJuego {
 			raptor1.dibujar(entorno);
 			raptor1.mover();
 
-			for (int i = 0; i < pisos.length; i++) {
-				if (raptor1.finDeEscalera(pisos[i]) || raptor1.getX() < 20 || raptor1.getX() > 780) {
-					raptor1.cambiarDeDireccion();
-					if(vuelta) {
-						raptor1.cambiarDeDireccionImg(vuelta);
-						vuelta = false;
-					} else {
-						raptor1.cambiarDeDireccionImg(vuelta);
-						vuelta = true;
-					}
-					
-					System.out.println("me caí");
-				} else {
-					System.out.println("NADAAA");
-				}
-
+//			for (int i = 0; i < pisos.length; i++) {
+//				if (raptor1.finDePiso(pisos[i])) {
+//					raptor1.cambiarDeDireccion();
+//					if(vuelta) {
+//						raptor1.cambiarDeDireccionImg(vuelta);
+//						vuelta = false;
+//					} else {
+//						raptor1.cambiarDeDireccionImg(vuelta);
+//						vuelta = true;
+//					}
 			}
 			raptor1.quePiso();
 			if (raptor1.banderaDeCaida()) {
 				raptor1.caer(entorno);
 			}
 
-			if (raptor1.getX() < 20 || raptor1.getX() > 780) {
+			if (raptor1.getX() < 0 + raptor1.getAncho() / 2 || raptor1.getX() > 800 - raptor1.getAncho() / 2) {
 				raptor1.cambiarDeDireccion();
 				raptor1.cambiarDeDireccionImg(vuelta);
+				System.out.println("CHOCA");
 			}
-		}
-//				|| raptor4.finDeEscalera(escaCuatro)) {
-//			raptor.cambiarDeDireccion();
-//			raptor2.cambiarDeDireccion();
-//			raptor3.cambiarDeDireccion();
-//			raptor4.cambiarDeDireccion();
-//		}			if (vuelta) {
-//				raptor.cambiarDeDireccionImg(vuelta);
-//				raptor2.cambiarDeDireccionImg(vuelta);
-//				raptor3.cambiarDeDireccionImg(vuelta);
-//				raptor4.cambiarDeDireccionImg(vuelta);
-//				vuelta = false;
-//			} else {
-//				raptor.cambiarDeDireccionImg(vuelta);
-//				raptor2.cambiarDeDireccionImg(vuelta);
-//				raptor3.cambiarDeDireccionImg(vuelta);
-//				raptor4.cambiarDeDireccionImg(vuelta);
-//				vuelta = true;
-//			}
-
-		if (rayo != null && raptor1.choqueRayo(rayo)) {
-			rayo = null;
-			raptor1 = null;
-			puntaje += 80;
-		}
-
+			
+			if (rayo != null && raptor1.choqueRayo(rayo)) {
+				rayo = null;
+				raptor1 = null;
+				puntaje += 80;
+				System.out.println("morite gil");
+			}
+		
 		if (vidas == 0) {
 			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
+			}
 		}
-		// else {
-		// raptor.dibujarRaptor(entorno);
-		// raptor.mover();
-		// }
 
 //Array de Raptors =======													
 //		for (int i = 0; i < raptors.length; i++) {
@@ -193,7 +168,7 @@ public class Juego extends InterfaceJuego {
 //					raptors[i].cambiarDeDireccionImg(vuelta);
 //					vuelta = true;
 //	=====			}
-	}
+	
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
