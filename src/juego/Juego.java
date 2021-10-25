@@ -34,13 +34,13 @@ public class Juego extends InterfaceJuego {
 	public Juego() {
 		
 		this.entorno = new Entorno(this, "Prueba del Peronismo", 800, 600);
-
+		
 		vikinga = new Vikinga(65, 50, 5, 30, 555, 5, 9, 0, false, true, false);
 
 		raptors[0] = new Velociraptor(100,50 ,350, entorno.alto() - 150, 2,0);
-		raptors[1] = new Velociraptor(100,50 ,350, entorno.alto() - 150, 2,0);
-		raptors[2] = new Velociraptor(100,50 ,350, entorno.alto() - 150, 2,0);
-		raptors[3] = new Velociraptor(100,50 ,350, entorno.alto() - 150, 2,0);
+		raptors[1] = new Velociraptor(100,50 ,350, entorno.alto() - 300, 2,0);
+		raptors[2] = new Velociraptor(100,50 ,350, entorno.alto() - 450, 2,0);
+		raptors[3] = new Velociraptor(100,50 ,350, entorno.alto() - 500, 2,0);
 
 		objetivo = new Objetivo(50, 27, 50);
 
@@ -61,12 +61,6 @@ public class Juego extends InterfaceJuego {
 
 	}
 
-	/**
-	 * Durante el juego, el mÃ©todo tick() serÃ¡ ejecutado en cada instante y por lo
-	 * tanto es el mÃ©todo mÃ¡s importante de esta clase. AquÃ­ se debe actualizar
-	 * el estado interno del juego para simular el paso del tiempo (ver el enunciado
-	 * del TP para mayor detalle).
-	 */
 	public void tick() {
 
 		entorno.dibujarImagen(fondo, entorno.ancho() / 2, entorno.alto() / 2, 0);
@@ -80,6 +74,7 @@ public class Juego extends InterfaceJuego {
 
 		objetivo.dibujarObjetivo(entorno);
 		vikinga.dibujarVikinga(entorno);
+
 		vikinga.quePiso();
 		vikinga.caer(entorno);   //gravedad
 
@@ -91,15 +86,14 @@ public class Juego extends InterfaceJuego {
 			}
 		}
 		
-		vikinga.caer(entorno);
-		
-		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('h')) {
+				
+		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('a')) {
 			vikinga.moverHaciaIzquierda(entorno);
 		}
-		if (entorno.estaPresionada(entorno.TECLA_DERECHA) || entorno.estaPresionada('l')) {
+		if (entorno.estaPresionada(entorno.TECLA_DERECHA) || entorno.estaPresionada('d')) {
 			vikinga.moverHaciaDerecha(entorno);
 		}
-		if (entorno.estaPresionada('y')) {
+		if (entorno.estaPresionada('w')) {
 			vikinga.saltar(entorno); 
 		}
 		if (entorno.estaPresionada('e')) {
@@ -114,7 +108,7 @@ public class Juego extends InterfaceJuego {
 			vikinga.subirDePiso(entorno);
 		}
 
-//		if (vikinga.banderaDeCaida == true){
+ // si ninguna tecla esta presionada, entonces:
 			vikinga.caer(entorno);
 //		}
 
@@ -164,6 +158,7 @@ public class Juego extends InterfaceJuego {
 				}
 			}
 		}
+	
 
 //		if (rayo != null && raptor.choqueRayo(rayo)) {
 //			rayo = null;

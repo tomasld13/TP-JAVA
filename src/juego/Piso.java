@@ -29,6 +29,7 @@ public class Piso { // respeten los nombres del enunciado
 		e.dibujarImagen(img, x, y, 0);
 	}
 
+	
 	public int getX() {
 		return x;
 	}

@@ -81,23 +81,27 @@ public class Vikinga {
 		return banderaDeCaida;
 	}
 	
+	public boolean getdireccion() {
+		return direccion;
+	}
+	
 	public void quePiso() {
-		if (y > 525) { 
+		if (y > 554) { 
 			piso = 1;
 		}else
-		if (y > 467 && y < 470) {
+		if (y > 455 && y < 470) {
 			piso = 2;
 		}else
-		if (y > 397 && y < 400) {
+		if (y > 370 && y < 400) {
 			piso = 3;
 		}else
-		if (y > 297 && y < 300) {
+		if (y > 270 && y < 300) {
 			piso = 4;
 		}else
-		if (y > 197 && y < 200) {
+		if (y > 170 && y < 200) {
 			piso = 5;
 		}else
-		if (y > 97 && y < 100) {
+		if (y > 70 && y < 100) {
 			piso = 6;
 		}else
 			piso=0;
@@ -126,7 +130,7 @@ public class Vikinga {
 
 	public void saltar(Entorno e) { 
 		
-		y-=3;
+		y-=5;
 		}
 				
 		// img = Herramientas.cargarImagen("img.png");
@@ -135,19 +139,22 @@ public class Vikinga {
 
 	public void banderaDeSaltoDePiso(Entorno e) {
 
-		if (x < 85) {
-			if (piso == 2 || piso == 4) {
-				banderaDeSaltoDePiso = true;
-			}
-		}
-		if (x > e.ancho() - 120) {
+		if (x > 740 && x < 800) {
 			if (piso == 1 || piso == 3) {
 				banderaDeSaltoDePiso = true;
 			}
 		}
+		
+		if (x > 0 && x < 60) {
+			if (piso == 2 || piso == 4) {
+				banderaDeSaltoDePiso = true;
+			}
+		}else
+			banderaDeSaltoDePiso=false;
 
 	}
 	public void banderaDeCaida(Entorno e) {
+			
 		if (piso == 1) {
 			banderaDeCaida = false;
 		}else
@@ -169,22 +176,25 @@ public class Vikinga {
 			banderaDeCaida = true;
 	}
 	public void subirDePiso (Entorno e) {
-		if (piso == 1 || piso == 3) {
-			if (banderaDeSaltoDePiso == true){
+		if ((piso == 1 || piso == 3) && banderaDeSaltoDePiso == true) {
 				x = x-3;
-				y = y - velocidadDeCaida;
+				y = y - 40;
+				piso =piso +1;
+				banderaDeSaltoDePiso = false;
 			}
-		}
-		if (piso == 2 || piso == 4) {
-			if (banderaDeSaltoDePiso == true){
+		
+		if ((piso == 2 || piso == 4)&& banderaDeSaltoDePiso == true) {
 				x = x+3;
-				y = y - velocidadDeCaida;
+				y = y - 100;
+				piso =piso +1;
+				banderaDeSaltoDePiso = false;
 			}
 		}
-	}
+	
 	public void caer(Entorno e){
 		if (banderaDeCaida == true && piso == 0) {
-			y = y+velocidadDeCaida;
+			y = y+1;						// modificado para prueba. ajustar velocidad de caida
+			
 				
 			
 		}

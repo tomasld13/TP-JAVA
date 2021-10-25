@@ -1,6 +1,7 @@
+// utilizar booleano de direccion de la vikinga, para dirigir el rayo
+
 package juego;
 
-import java.awt.Color;
 import java.awt.Image;
 
 import entorno.Entorno;
