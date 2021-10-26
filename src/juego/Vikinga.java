@@ -88,6 +88,10 @@ public class Vikinga {
 	}
 
 	public void quePiso(Piso[] pisos) {
+		if(y < pisos[5].getY()) {
+			piso=5;
+			enElAire=false;
+		}else {
 		for (int i = 0; i < pisos.length - 1; i++) {
 			if (y + alto /2  < pisos[i].getY()-pisos[i].getAlto()/2 && y  - alto / 2 > pisos[i + 1].getY() + pisos[i + 1].getAlto()/2) {
 				piso = i;
@@ -95,6 +99,7 @@ public class Vikinga {
 			}else {
 				enElAire=true;
 			}
+		}
 		}
 	}
 

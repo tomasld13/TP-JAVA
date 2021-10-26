@@ -21,7 +21,7 @@ public class Juego extends InterfaceJuego {
 //	private Velociraptor raptor3;
 //	private Velociraptor raptor4;
 
-	private Velociraptor raptor1 = new Velociraptor(100, 5, 350, 55, 2, 0);
+	private Velociraptor raptor1 = new Velociraptor(100, 5, 300, 55, 2, 0);
 	private Velociraptor raptor2 = new Velociraptor(100, 5, 100, 55, 2, 0);
 	private Velociraptor raptor3 = new Velociraptor(100, 5, 600, 55, 2, 0);
 

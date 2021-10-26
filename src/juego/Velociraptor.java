@@ -33,12 +33,13 @@ public class Velociraptor {
 	}
 
 	public void dibujar(Entorno e) {
-		e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
-		e.dibujarImagen(img, x, y, angulo, 0.6);
+		//e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
+		e.dibujarImagen(img, x, y, 0, 0.6);
 	}
 
 	public void mover() {
 		x += velocidad * Math.cos(angulo);
+		
 
 	}
 
