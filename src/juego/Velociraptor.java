@@ -20,7 +20,7 @@ public class Velociraptor {
 	private Image img;
 	private boolean banderaDeCaida;
 
-	public Velociraptor(int ancho, int piso, int x, int y, double velocidad, double angulo) {
+	public Velociraptor(int piso, int x, double velocidad) {
 
 		this.piso = piso;
 		this.ancho = 130;
@@ -29,7 +29,7 @@ public class Velociraptor {
 		this.y = y;
 		this.velocidad = velocidad;
 		this.angulo = Math.PI;
-		this.img = Herramientas.cargarImagen("raptorizq.gif");
+		this.img = Herramientas.cargarImagen("raptorIzq.gif");
 	}
 
 	public void dibujar(Entorno e) {
@@ -89,7 +89,7 @@ public class Velociraptor {
 
 		} else {
 			// this.img = Herramientas.cargarImagen("raptorizq.png");
-			this.img = Herramientas.cargarImagen("raptorizq.gif");
+			this.img = Herramientas.cargarImagen("raptorIzq.gif");
 
 		}
 	}

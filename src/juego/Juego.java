@@ -20,9 +20,9 @@ public class Juego extends InterfaceJuego {
 //	private Velociraptor raptor3;
 //	private Velociraptor raptor4;
 
-	private Velociraptor raptor1 = new Velociraptor(100, 5, 300, 55, 2, 0);
-	private Velociraptor raptor2 = new Velociraptor(100, 5, 100, 55, 2, 0);
-	private Velociraptor raptor3 = new Velociraptor(100, 5, 600, 55, 2, 0);
+	private Velociraptor raptor1 = new Velociraptor(5, 300,2);
+	private Velociraptor raptor2 = new Velociraptor(5, 100,2);
+	private Velociraptor raptor3 = new Velociraptor(5, 600,2);
 
 	private Image gameOver;
 	private Image fondo;
@@ -51,7 +51,6 @@ public class Juego extends InterfaceJuego {
 
 		fondo = Herramientas.cargarImagen("fondo.png");
 		gameOver = Herramientas.cargarImagen("gameoverphrase.jpg");
-
 		vuelta = true;
 
 //		int puntaje = 10;
@@ -139,9 +138,16 @@ public class Juego extends InterfaceJuego {
 			}
 
 			if (raptor1.getX() < 0 + raptor1.getAncho() / 2 || raptor1.getX() > 800 - raptor1.getAncho() / 2) {
+				if (vuelta) {
 				raptor1.cambiarDeDireccion();
 				raptor1.cambiarDeDireccionImg(vuelta);
-				System.out.println("CHOCA");
+				vuelta = false;
+				System.out.println("CHOCA");}
+				else {
+					raptor1.cambiarDeDireccion();
+					raptor1.cambiarDeDireccionImg(vuelta);
+					vuelta = true;
+				}
 			}
 			
 			if (rayo != null && raptor1.choqueRayo(rayo)) {
