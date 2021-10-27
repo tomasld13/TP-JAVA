@@ -43,13 +43,13 @@ public class Velociraptor {
 
 	}
 
-	public void quePiso(Piso[] pisos) {
-		for (int i = 0; i < pisos.length - 1; i++) {
-			if (y + alto /2  < pisos[i].getY()-pisos[i].getAlto()/2 && y  - alto / 2 > pisos[i + 1].getY() + pisos[i + 1].getAlto()/2) {
-				piso = i;
-			}
-		}
-	}
+//	public void quePiso(Piso[] pisos) {
+//		for (int i = 0; i < pisos.length - 1; i++) {
+//			if (y + alto /2  < pisos[i].getY()-pisos[i].getAlto()/2 && y  - alto / 2 > pisos[i + 1].getY() + pisos[i + 1].getAlto()/2) {
+//				piso = i;
+//			}
+//		}
+//	}
 //		if (y > 547) {
 //			piso = 1;
 //		} else if (y > 457 && y < 460) {
@@ -66,17 +66,13 @@ public class Velociraptor {
 //			piso = 0;
 	
 
-	public boolean banderaDeCaida() {
-		if (piso == 0) {
-			banderaDeCaida = false;
-		} else if (x < 700 && (piso == 1 || piso == 3 || piso == 5)) {
-			banderaDeCaida = false;
-		} else if (x > 100 && (piso == 2 || piso == 4)) {
-			banderaDeCaida = false;
-		} else
-			banderaDeCaida = true;
-		return banderaDeCaida;
+	public boolean banderaDeCaida(Piso[]pisos) {
+		if (pisos[0].tocaTecho(y+alto/2, x) || pisos[1].tocaTecho(y+alto/2, x) || pisos[2].tocaTecho(y+alto/2, x) || pisos[3].tocaTecho(y+alto/2, x) || pisos[4].tocaTecho(y+alto/2, x) || pisos[5].tocaTecho(y+alto/2, x)){
+			return false;
+		}
+		return true;
 	}
+
 
 	public void caer(Entorno e) {
 		y = y + 5;

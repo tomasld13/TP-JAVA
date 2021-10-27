@@ -55,7 +55,7 @@ public class Piso { // respeten los nombres del enunciado
 	}
 	
 	public boolean tocaPiso(double YdelObjeto, double XdelObjeto) {
-		if(YdelObjeto >= y + alto/2 && YdelObjeto < y && XdelObjeto < x + ancho/2 && XdelObjeto > x - ancho/2) {
+		if(YdelObjeto < y + alto/2 && YdelObjeto > y && XdelObjeto < x + ancho/2 && XdelObjeto > x - ancho/2) {
 			return true;
 		}else {
 			return false;

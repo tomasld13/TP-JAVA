@@ -42,12 +42,12 @@ public class Juego extends InterfaceJuego {
 
 		objetivo = new Objetivo(50, 55, 50);
 
-		pisos[0] = new Piso(entorno.ancho() / 2, entorno.alto(),800);
-		pisos[1] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 100,680);
-		pisos[2] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 200,680);
-		pisos[3] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 300,680);
-		pisos[4] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 400,680);
-		pisos[5] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 500,680);
+		pisos[0] = new Piso(entorno.ancho() / 2, entorno.alto()-10,800);
+		pisos[1] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 110,680);
+		pisos[2] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 210,680);
+		pisos[3] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 310,680);
+		pisos[4] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 410,680);
+		pisos[5] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 510,680);
 
 		fondo = Herramientas.cargarImagen("fondo.png");
 		gameOver = Herramientas.cargarImagen("gameoverphrase.jpg");
@@ -134,8 +134,7 @@ public class Juego extends InterfaceJuego {
 //						vuelta = true;
 //					}
 			}
-			raptor1.quePiso(pisos);
-			if (raptor1.banderaDeCaida()) {
+			if (raptor1.banderaDeCaida(pisos)) {
 				raptor1.caer(entorno);
 			}
 
