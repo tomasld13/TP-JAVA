@@ -100,7 +100,7 @@ public class Vikinga {
 //			}
 //		}
 //		}
-	//}
+	// }
 
 	public void dibujarVikinga(Entorno e) {
 		// e.dibujarTriangulo(x, y, alto, ancho, Math.PI/2, Color.CYAN);
@@ -126,21 +126,25 @@ public class Vikinga {
 	public void saltar(Entorno e) {
 		y -= 7;
 	} // img = Herramientas.cargarImagen("img.png");
-	
-	
-	public boolean banderaDeSalto(Piso[]pisos) {
-			if (pisos[0].tocaPiso(y-alto/2,x)||pisos[1].tocaPiso(y-alto/2,x)||pisos[2].tocaPiso(y-alto/2,x)||pisos[3].tocaPiso(y-alto/2,x)||pisos[4].tocaPiso(y-alto/2,x)){
-				return false;
+
+	public boolean banderaDeSalto(Piso[] pisos) {
+		if (pisos[0].tocaPiso(y - alto / 2, x) || pisos[1].tocaPiso(y - alto / 2, x)
+				|| pisos[2].tocaPiso(y - alto / 2, x) || pisos[3].tocaPiso(y - alto / 2, x)
+				|| pisos[4].tocaPiso(y - alto / 2, x) || pisos[5].tocaPiso(y - alto / 2, x)) {
+			return false;
 		}
 		return true;
 	}
-	public boolean banderaDeCaida(Piso[]pisos) {
-			if (pisos[0].tocaTecho(y+alto/2, x) || pisos[1].tocaTecho(y+alto/2, x) || pisos[2].tocaTecho(y+alto/2, x) || pisos[3].tocaTecho(y+alto/2, x) || pisos[4].tocaTecho(y+alto/2, x) || pisos[5].tocaTecho(y+alto/2, x)){
-				return false;
-			}
-			return true;
+
+	public boolean banderaDeCaida(Piso[] pisos) {
+		if (pisos[0].tocaTecho(y + alto / 2, x) || pisos[1].tocaTecho(y + alto / 2, x)
+				|| pisos[2].tocaTecho(y + alto / 2, x) || pisos[3].tocaTecho(y + alto / 2, x)
+				|| pisos[4].tocaTecho(y + alto / 2, x) || pisos[5].tocaTecho(y + alto / 2, x)) {
+			return false;
+		}
+		return true;
 	}
-	
+
 	public void caer(Entorno e) {
 
 		y = y + 3; // modificado para prueba. ajustar velocidad de caida
