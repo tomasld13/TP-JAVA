@@ -2,7 +2,6 @@ package juego;
 
 import java.awt.Color;
 import java.awt.Image;
-
 import entorno.Entorno;
 import entorno.Herramientas;
 import entorno.InterfaceJuego;
@@ -43,12 +42,12 @@ public class Juego extends InterfaceJuego {
 
 		objetivo = new Objetivo(50, 55, 50);
 
-		pisos[0] = new Piso(entorno.ancho() / 2 - 60, entorno.alto());
-		pisos[1] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 100);
-		pisos[2] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 200);
-		pisos[3] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 300);
-		pisos[4] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 400);
-		pisos[5] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 500);
+		pisos[0] = new Piso(entorno.ancho() / 2, entorno.alto(),800);
+		pisos[1] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 100,680);
+		pisos[2] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 200,680);
+		pisos[3] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 300,680);
+		pisos[4] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 400,680);
+		pisos[5] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 500,680);
 
 		fondo = Herramientas.cargarImagen("fondo.png");
 		gameOver = Herramientas.cargarImagen("gameoverphrase.jpg");
@@ -75,29 +74,28 @@ public class Juego extends InterfaceJuego {
 
 		objetivo.dibujarObjetivo(entorno);
 // vikinga
-	
-		vikinga.dibujarVikinga(entorno);
 		
-		vikinga.quePiso(pisos);
-		System.out.println(vikinga.getPiso());
-		
-		if(vikinga.banderaDeCaida()) {
+		if (entorno.estaPresionada('w')) {
+			if (vikinga.banderaDeSalto(pisos)) {
+				vikinga.saltar(entorno);
+			}
+		}
+		if(vikinga.banderaDeCaida(pisos)) {
 			vikinga.caer(entorno);
 		}
+		vikinga.dibujarVikinga(entorno);
 		
-		if (vikinga.banderaDeCaida()) {
-			vikinga.caer(entorno); // Gravedad
-		}
+//		vikinga.quePiso(pisos);
+//		System.out.println(vikinga.getPiso());
+		
+
+		
+
 		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('a')) {
 			vikinga.moverHaciaIzquierda(entorno);
 		}
 		if (entorno.estaPresionada(entorno.TECLA_DERECHA) || entorno.estaPresionada('d')) {
 			vikinga.moverHaciaDerecha(entorno);
-		}
-		if (entorno.estaPresionada('w')) {
-			if (vikinga.banderaDeSaltoDePiso()) {
-				vikinga.saltar(entorno);
-			}
 		}
 		if (entorno.estaPresionada('e')) {
 			vikinga.escudo(entorno);

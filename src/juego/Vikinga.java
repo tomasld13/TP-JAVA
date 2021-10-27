@@ -87,21 +87,21 @@ public class Vikinga {
 		return direccion;
 	}
 
-	public void quePiso(Piso[] pisos) {
-		if(y < pisos[5].getY()) {
-			piso=5;
-			enElAire=false;
-		}else {
-		for (int i = 0; i < pisos.length - 1; i++) {
-			if (y + alto /2  < pisos[i].getY()-pisos[i].getAlto()/2 && y  - alto / 2 > pisos[i + 1].getY() + pisos[i + 1].getAlto()/2) {
-				piso = i;
-				enElAire=false;
-			}else {
-				enElAire=true;
-			}
-		}
-		}
-	}
+//	public void quePiso(Piso[] pisos) {
+//		if(y < pisos[5].getY()) {
+//			piso=5;
+//			enElAire=false;
+//		}else {
+//		for (int i = 0; i < pisos.length - 1; i++) {
+//			if (y + alto /2  < pisos[i].getY()-pisos[i].getAlto()/2 && y  - alto / 2 > pisos[i + 1].getY() + pisos[i + 1].getAlto()/2) {
+//				piso = i;
+//				enElAire=false;
+//			}else {
+//				enElAire=true;
+//			}
+//		}
+//		}
+	//}
 
 	public void dibujarVikinga(Entorno e) {
 		// e.dibujarTriangulo(x, y, alto, ancho, Math.PI/2, Color.CYAN);
@@ -125,40 +125,21 @@ public class Vikinga {
 	}
 
 	public void saltar(Entorno e) {
-		y -= 10;
+		y -= 7;
 	} // img = Herramientas.cargarImagen("img.png");
 	
 	
-	public boolean banderaDeSaltoDePiso() {
-		
-		if (x > 700 && x < 800) {
-			if (piso == 0 || piso == 2 || piso == 4 || enElAire) {
-				banderaDeSaltoDePiso = true;
-			} else
-				banderaDeSaltoDePiso = false;
-		} else 
-		if (x > 0 && x < 100) {
-			if (piso == 1 || piso == 3 || enElAire) {
-				banderaDeSaltoDePiso = true;
-			} else
-				banderaDeSaltoDePiso = false;
-		} else
-			banderaDeSaltoDePiso = false;
-		return banderaDeSaltoDePiso;
-		
-
+	public boolean banderaDeSalto(Piso[]pisos) {
+			if (pisos[0].tocaPiso(y-alto/2,x)||pisos[1].tocaPiso(y-alto/2,x)||pisos[2].tocaPiso(y-alto/2,x)||pisos[3].tocaPiso(y-alto/2,x)||pisos[4].tocaPiso(y-alto/2,x)){
+				return false;
+		}
+		return true;
 	}
-
-	public boolean banderaDeCaida() {
-		if (piso == 0) {
-			banderaDeCaida = false;
-		} else if (x < 700 && (piso == 1 || piso == 3 || piso == 5)) {
-			banderaDeCaida = false;
-		} else if (x > 100 && (piso == 2 || piso == 4)) {
-			banderaDeCaida = false;
-		} else
-			banderaDeCaida = true;
-		return banderaDeCaida;
+	public boolean banderaDeCaida(Piso[]pisos) {
+			if (pisos[0].tocaTecho(y+alto/2, x) || pisos[1].tocaTecho(y+alto/2, x) || pisos[2].tocaTecho(y+alto/2, x) || pisos[3].tocaTecho(y+alto/2, x) || pisos[4].tocaTecho(y+alto/2, x) || pisos[5].tocaTecho(y+alto/2, x)){
+				return false;
+			}
+			return true;
 	}
 	
 	public void caer(Entorno e) {
