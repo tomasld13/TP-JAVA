@@ -41,21 +41,12 @@ public class Rayo {
 		e.dibujarImagen(img, x, y, 1.05, 0.05);
 	}
 
-//	public void ida() {
-//		if (direccion == 0 || direccion == 2 || direccion == 4) {
-//			x += 5;
-//		} else {
-//			x -= 5;
-//		}
-
 	public void mover(Entorno e) {
 		if (direccion == true && x <= 800) {
 			x += 6;
 		}
 		if (direccion == false && x >= 0) {
 			x -= 6;
-		} else {
-
 		}
 	}
 }

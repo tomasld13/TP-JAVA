@@ -1,12 +1,11 @@
 package juego;
 
-import java.awt.Color;
 import java.awt.Image;
 
 import entorno.Entorno;
 import entorno.Herramientas;
 
-public class Piso { // respeten los nombres del enunciado
+public class Piso {
 
 	private int x;
 	private int y;
@@ -25,7 +24,6 @@ public class Piso { // respeten los nombres del enunciado
 	}
 
 	public void dibujar(Entorno e) {
-		// e.dibujarRectangulo(x, y, ancho, alto, 0, Color.WHITE);
 		e.dibujarImagen(img, x, y, 0);
 	}
 

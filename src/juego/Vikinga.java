@@ -1,6 +1,5 @@
 package juego;
 
-import java.awt.Color;
 import java.awt.Image;
 import entorno.Entorno;
 import entorno.Herramientas;
@@ -13,34 +12,21 @@ public class Vikinga {
 	private int alto; // tamaño, size
 	private int ancho; // 0.5 * size
 
-	private int vidas;
-
 	private int velocidad;
-	private int velocidadDeCaida;
 
-	private boolean banderaDeSaltoDePiso;
-	private boolean banderaDeCaida;
-
-	private int piso;
 	private boolean direccion; // true=derecha false=izquierda
 	private Image img; // img
 	private Image imagenDelEscudo; // imagenDelEscudo
 
-	public Vikinga(int alto, int ancho, int vidas, double x, double y, int velocidad, int velocidadDeCaida,
-			boolean banderaDeSaltoDePiso, boolean banderaDeCaida, boolean direccion) {
-		this.alto = alto;
-		this.ancho = ancho;
-		this.vidas = vidas;
+	public Vikinga(double x, double y) {
+		this.alto = 65;
+		this.ancho = 50;
 		this.x = x;
 		this.y = y;
-		this.velocidad = velocidad;
-		this.velocidadDeCaida = velocidadDeCaida; // caidas
-		this.piso = 0;
+		this.velocidad = 5;
 		this.img = Herramientas.cargarImagen("per.png");
-//		this.imgescudo = Herramientas.cargarImagen("");
-		this.banderaDeSaltoDePiso = banderaDeSaltoDePiso;
-		this.banderaDeCaida = banderaDeCaida;
-		this.direccion = true;
+
+		this.direccion = false;
 		this.imagenDelEscudo = Herramientas.cargarImagen("escudo.png");
 
 	}
@@ -53,10 +39,6 @@ public class Vikinga {
 		return ancho;
 	}
 
-	public int getVidas() {
-		return vidas;
-	}
-
 	public double getX() {
 		return x;
 	}
@@ -65,45 +47,13 @@ public class Vikinga {
 		return y;
 	}
 
-	public int getVelocidadDeCaida() {
-		return velocidadDeCaida;
-	}
-//	}
-
-	public int getPiso() {
-		return piso;
-	}
-
-	public boolean getbanderaDeSaltoDePiso() {
-		return banderaDeSaltoDePiso;
-	}
-
-	public boolean getbanderaDeCaida() {
-		return banderaDeCaida;
-	}
-
 	public boolean getdireccion() {
 		return direccion;
 	}
 
-//	public void quePiso(Piso[] pisos) {
-//		if(y < pisos[5].getY()) {
-//			piso=5;
-//			enElAire=false;
-//		}else {
-//		for (int i = 0; i < pisos.length - 1; i++) {
-//			if (y + alto /2  < pisos[i].getY()-pisos[i].getAlto()/2 && y  - alto / 2 > pisos[i + 1].getY() + pisos[i + 1].getAlto()/2) {
-//				piso = i;
-//				enElAire=false;
-//			}else {
-//				enElAire=true;
-//			}
-//		}
-//		}
-	// }
-
-	public void dibujarVikinga(Entorno e) {
-		// e.dibujarTriangulo(x, y, alto, ancho, Math.PI/2, Color.CYAN);
+	public void dibujar(Entorno e) {
+		// e.dibujarTriangulo(x, y, alto, ancho, Math.PI/2, Color.CYAN); chequear
+		// colisiones
 		e.dibujarImagen(img, x, y, 0, 0.20);
 	}
 
@@ -124,7 +74,7 @@ public class Vikinga {
 	}
 
 	public void saltar(Entorno e) {
-		y -= 9;
+		y -= 9; // aumentar para traspasar pisos
 	} // img = Herramientas.cargarImagen("img.png");
 
 	public boolean banderaDeSalto(Piso[] pisos) {
@@ -169,7 +119,7 @@ public class Vikinga {
 
 	public void muerte() {
 		x = 20;
-		y = 550;
+		y = 555;
 	}
 
 }
