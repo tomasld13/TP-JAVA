@@ -14,17 +14,17 @@ public class Juego extends InterfaceJuego {
 	private Piso[] pisos = new Piso[6];
 	private Vikinga vikinga;
 
-	
+
 	private Image gameOver;
 	private Image fondo;
 	private Rayo rayo;
 	private Objetivo objetivo;
 	private int contador;
-	
+
 	private boolean vuelta;
 
 	private int vidas = 3;
-	private int puntaje; // y también vidas? vidas--
+	private int puntaje; // y tambiÃ©n vidas? vidas--
 
 	public Juego() {
 		contador = 1000;
@@ -34,18 +34,19 @@ public class Juego extends InterfaceJuego {
 
 		objetivo = new Objetivo(50, 55, 50);
 
-		pisos[0] = new Piso(entorno.ancho() / 2, entorno.alto()-10,800);
-		pisos[1] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 110,680);
-		pisos[2] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 210,680);
-		pisos[3] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 310,680);
-		pisos[4] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 410,680);
-		pisos[5] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 510,680);
+		pisos[0] = new Piso(entorno.ancho() / 2, entorno.alto() - 10, 800);
+		pisos[1] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 110, 680);
+		pisos[2] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 210, 680);
+		pisos[3] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 310, 680);
+		pisos[4] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 410, 680);
+		pisos[5] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 510, 680);
 
 		fondo = Herramientas.cargarImagen("fondo.png");
 		gameOver = Herramientas.cargarImagen("gameoverphrase.jpg");
+
 		vuelta = true;
 
-//		int puntaje = 10;
+//        int puntaje = 10;
 
 //      inicia el juego
 		this.entorno.iniciar();
@@ -53,7 +54,7 @@ public class Juego extends InterfaceJuego {
 	}
 
 	public void tick() {
-		
+
 		entorno.dibujarImagen(fondo, entorno.ancho() / 2, entorno.alto() / 2, 0);
 
 		for (int i = 0; i < pisos.length; i++) {
@@ -65,19 +66,17 @@ public class Juego extends InterfaceJuego {
 
 		objetivo.dibujarObjetivo(entorno);
 // vikinga
-		
+
 		if (entorno.estaPresionada('w')) {
 			if (vikinga.banderaDeSalto(pisos)) {
 				vikinga.saltar(entorno);
 			}
 		}
-		if(vikinga.banderaDeCaida(pisos)) {
+		if (vikinga.banderaDeCaida(pisos)) {
 			vikinga.caer(entorno);
 		}
 		vikinga.dibujarVikinga(entorno);
-		
-//		vikinga.quePiso(pisos);
-//		System.out.println(vikinga.getPiso());
+
 
 		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('a')) {
 			vikinga.moverHaciaIzquierda(entorno);
@@ -90,7 +89,10 @@ public class Juego extends InterfaceJuego {
 		}
 
 
-//Rayo		
+
+		
+//Rayo        
+
 		if (rayo != null) {
 			rayo.dibujar(entorno);
 			rayo.mover(entorno);
@@ -101,8 +103,11 @@ public class Juego extends InterfaceJuego {
 		if (entorno.estaPresionada(entorno.TECLA_ESPACIO) && rayo == null) {
 			rayo = new Rayo(vikinga.getX(), vikinga.getY(), vikinga.getdireccion());
 		}
-// Raptors		
+
 		
+
+// Raptors        
+
 		for (int e = 0; e < raptors.length; e++) {
 			if (raptors[e] != null) {
 				raptors[e].dibujar(entorno);
@@ -149,8 +154,6 @@ public class Juego extends InterfaceJuego {
 			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
 		}
 	}
-
-	
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
