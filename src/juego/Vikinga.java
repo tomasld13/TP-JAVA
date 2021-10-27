@@ -20,7 +20,6 @@ public class Vikinga {
 
 	private boolean banderaDeSaltoDePiso;
 	private boolean banderaDeCaida;
-	private boolean enElAire;
 
 	private int piso;
 	private boolean direccion; // true=derecha false=izquierda

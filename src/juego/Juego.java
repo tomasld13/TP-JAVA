@@ -10,32 +10,24 @@ public class Juego extends InterfaceJuego {
 
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
-
+	private Velociraptor[] raptors = new Velociraptor[4];
 	private Piso[] pisos = new Piso[6];
-
 	private Vikinga vikinga;
 
-//	private Velociraptor raptor;
-//	private Velociraptor raptor2;
-//	private Velociraptor raptor3;
-//	private Velociraptor raptor4;
-
-	private Velociraptor raptor1 = new Velociraptor(5, 300,2);
-	private Velociraptor raptor2 = new Velociraptor(5, 100,2);
-	private Velociraptor raptor3 = new Velociraptor(5, 600,2);
-
+	
 	private Image gameOver;
 	private Image fondo;
 	private Rayo rayo;
 	private Objetivo objetivo;
-
+	private int contador;
+	
 	private boolean vuelta;
 
 	private int vidas = 3;
 	private int puntaje; // y también vidas? vidas--
 
 	public Juego() {
-
+		contador = 1000;
 		this.entorno = new Entorno(this, "Blanco_CarroAvila_Ledesma_Equipo3", 800, 600);
 
 		vikinga = new Vikinga(65, 50, 5, 30, 555, 5, 9, false, false, false);
@@ -86,9 +78,6 @@ public class Juego extends InterfaceJuego {
 		
 //		vikinga.quePiso(pisos);
 //		System.out.println(vikinga.getPiso());
-		
-
-		
 
 		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('a')) {
 			vikinga.moverHaciaIzquierda(entorno);
@@ -100,82 +89,67 @@ public class Juego extends InterfaceJuego {
 			vikinga.escudo(entorno);
 		}
 
-		if (vikinga.ChoqueRaptor(raptor1)) {
-			vikinga.muerte();
-			vidas -= 1;
-			System.out.println("Me mordió");
-		}
+
 //Rayo		
 		if (rayo != null) {
 			rayo.dibujar(entorno);
-			rayo.ida();
+			rayo.mover(entorno);
 			if (rayo.getX() > entorno.ancho() || rayo.getX() < 0) {
 				rayo = null;
 			}
 		}
 		if (entorno.estaPresionada(entorno.TECLA_ESPACIO) && rayo == null) {
-			rayo = new Rayo(vikinga.getX(), vikinga.getY(), vikinga.getPiso());
+			rayo = new Rayo(vikinga.getX(), vikinga.getY(), vikinga.getdireccion());
 		}
 // Raptors		
-
-		if (raptor1 != null) {
-			raptor1.dibujar(entorno);
-			raptor1.mover();
-
-//			for (int i = 0; i < pisos.length; i++) {
-//				if (raptor1.finDePiso(pisos[i])) {
-//					raptor1.cambiarDeDireccion();
-//					if(vuelta) {
-//						raptor1.cambiarDeDireccionImg(vuelta);
-//						vuelta = false;
-//					} else {
-//						raptor1.cambiarDeDireccionImg(vuelta);
-//						vuelta = true;
-//					}
-			}
-			if (raptor1.banderaDeCaida(pisos)) {
-				raptor1.caer(entorno);
-			}
-
-			if (raptor1.getX() < 0 + raptor1.getAncho() / 2 || raptor1.getX() > 800 - raptor1.getAncho() / 2) {
-				if (vuelta) {
-				raptor1.cambiarDeDireccion();
-				raptor1.cambiarDeDireccionImg(vuelta);
-				vuelta = false;
-				System.out.println("CHOCA");}
-				else {
-					raptor1.cambiarDeDireccion();
-					raptor1.cambiarDeDireccionImg(vuelta);
-					vuelta = true;
+		
+		for (int e = 0; e < raptors.length; e++) {
+			if (raptors[e] != null) {
+				raptors[e].dibujar(entorno);
+				raptors[e].mover();
+				if (raptors[e].banderaDeCaida(pisos)) {
+					raptors[e].caer(entorno);
+				}
+				if (raptors[e].getX() < 0 + raptors[e].getAncho() / 2
+						|| raptors[e].getX() > 800 - raptors[e].getAncho() / 2) {
+					if (vuelta) {
+						raptors[e].cambiarDeDireccion();
+						raptors[e].cambiarDeDireccionImg(vuelta);
+						vuelta = false;
+					} else {
+						raptors[e].cambiarDeDireccion();
+						raptors[e].cambiarDeDireccionImg(vuelta);
+						vuelta = true;
+					}
+				}
+				if (vikinga.ChoqueRaptor(raptors[e])) {
+					vikinga.muerte();
+					vidas -= 1;
+				}
+				if (rayo != null && raptors[e].choqueRayo(rayo)) {
+					rayo = null;
+					raptors[e] = null;
+					puntaje += 80;
 				}
 			}
-			
-			if (rayo != null && raptor1.choqueRayo(rayo)) {
-				rayo = null;
-				raptor1 = null;
-				puntaje += 80;
-				System.out.println("morite gil");
-			}
-		
-		if (vidas == 0) {
-			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
+		}
+		if (contador == 1000) {
+			int i = 0;
+			while (i == 0) {
+				if (raptors[i] == null) {
+					raptors[i] = new Velociraptor(5, 300, 2);
+					i += 1;
+					contador = 0;
+				}
 			}
 		}
+		contador += 1;
+		System.out.println(contador);
+		if (vidas == 0) {
+			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
+		}
+	}
 
-//Array de Raptors =======													
-//		for (int i = 0; i < raptors.length; i++) {
-//			raptors[i].dibujar(entorno);
-//			raptors[i].mover();
-//			if (raptors[i].finDeEscalera(pisos[i])) {
-//				raptors[i].cambiarDeDireccion();
-//			}
-//				if (vuelta) {
-//					raptors[i].cambiarDeDireccionImg(vuelta);
-//					vuelta = false;
-//				} else {
-//					raptors[i].cambiarDeDireccionImg(vuelta);
-//					vuelta = true;
-//	=====			}
 	
 
 	@SuppressWarnings("unused")
