@@ -4,16 +4,15 @@ package juego;
 
 import java.awt.Image;
 
-
 import entorno.Entorno;
 import entorno.Herramientas;
 
 public class Rayo {
 	private double x;
 	private double y;
-	
+
 	private boolean direccion;
-	
+
 	private Image img;
 	private int alto;
 
@@ -25,9 +24,7 @@ public class Rayo {
 
 		this.alto = 30;
 	}
-	
-	
-	
+
 	public double getX() {
 		return x;
 	}
@@ -35,11 +32,11 @@ public class Rayo {
 	public double getY() {
 		return y;
 	}
-	
+
 	public int getAlto() {
 		return alto;
 	}
-	
+
 	public void dibujar(Entorno e) {
 		e.dibujarImagen(img, x, y, 1.05, 0.05);
 	}
@@ -50,18 +47,15 @@ public class Rayo {
 //		} else {
 //			x -= 5;
 //		}
-	
 
 	public void mover(Entorno e) {
 		if (direccion == true && x <= 800) {
-			x+=3;}
-		if (direccion == false && x >= 0) {	
-			x-= 3;
-		}else {
-			
+			x += 6;
+		}
+		if (direccion == false && x >= 0) {
+			x -= 6;
+		} else {
+
 		}
 	}
 }
-		
-	
-		

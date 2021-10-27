@@ -15,8 +15,6 @@ public class Velociraptor {
 	private double velocidad;
 	private double angulo;
 
-
-
 	private Image img;
 	private boolean banderaDeCaida;
 
@@ -33,13 +31,12 @@ public class Velociraptor {
 	}
 
 	public void dibujar(Entorno e) {
-		//e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
+		// e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
 		e.dibujarImagen(img, x, y, 0, 0.6);
 	}
 
 	public void mover() {
 		x += velocidad * Math.cos(angulo);
-		
 
 	}
 
@@ -64,21 +61,21 @@ public class Velociraptor {
 //			piso = 6;
 //		} else
 //			piso = 0;
-	
 
-	public boolean banderaDeCaida(Piso[]pisos) {
-		if (pisos[0].tocaTecho(y+alto/2, x) || pisos[1].tocaTecho(y+alto/2, x) || pisos[2].tocaTecho(y+alto/2, x) || pisos[3].tocaTecho(y+alto/2, x) || pisos[4].tocaTecho(y+alto/2, x) || pisos[5].tocaTecho(y+alto/2, x)){
+	public boolean banderaDeCaida(Piso[] pisos) {
+		if (pisos[0].tocaTecho(y + alto / 2, x) || pisos[1].tocaTecho(y + alto / 2, x)
+				|| pisos[2].tocaTecho(y + alto / 2, x) || pisos[3].tocaTecho(y + alto / 2, x)
+				|| pisos[4].tocaTecho(y + alto / 2, x) || pisos[5].tocaTecho(y + alto / 2, x)) {
 			return false;
 		}
 		return true;
 	}
 
-
 	public void caer(Entorno e) {
 		y = y + 5;
 	}
 
-	public void cambiarDeDireccion() { //modificar ya que es lo que nos da vuelta al dino
+	public void cambiarDeDireccion() { // modificar ya que es lo que nos da vuelta al dino
 		angulo += -Math.PI;
 	}
 
@@ -103,7 +100,7 @@ public class Velociraptor {
 		return x > pisos.getX() + pisos.getAncho() / 2 + ancho / 2
 				|| x < pisos.getX() - pisos.getAncho() / 2 - ancho / 2;
 	}
-	
+
 	public int getX() {
 		return x;
 	}
@@ -115,11 +112,11 @@ public class Velociraptor {
 	public int getAncho() {
 		return ancho;
 	}
-	
+
 	public int getAlto() {
 		return alto;
 	}
-	
+
 	public int getPiso() {
 		return piso;
 	}

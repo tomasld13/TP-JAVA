@@ -14,7 +14,6 @@ public class Juego extends InterfaceJuego {
 	private Piso[] pisos = new Piso[6];
 	private Vikinga vikinga;
 
-
 	private Image gameOver;
 	private Image fondo;
 	private Rayo rayo;
@@ -22,12 +21,12 @@ public class Juego extends InterfaceJuego {
 	private int contador;
 
 	private boolean vuelta;
-
+	
 	private int vidas = 3;
 	private int puntaje; // y tambiÃ©n vidas? vidas--
 
 	public Juego() {
-		contador = 1000;
+		contador = 400;
 		this.entorno = new Entorno(this, "Blanco_CarroAvila_Ledesma_Equipo3", 800, 600);
 
 		vikinga = new Vikinga(65, 50, 5, 30, 555, 5, 9, false, false, false);
@@ -45,6 +44,7 @@ public class Juego extends InterfaceJuego {
 		gameOver = Herramientas.cargarImagen("gameoverphrase.jpg");
 
 		vuelta = true;
+		
 
 //        int puntaje = 10;
 
@@ -54,7 +54,7 @@ public class Juego extends InterfaceJuego {
 	}
 
 	public void tick() {
-
+		
 		entorno.dibujarImagen(fondo, entorno.ancho() / 2, entorno.alto() / 2, 0);
 
 		for (int i = 0; i < pisos.length; i++) {
@@ -77,7 +77,6 @@ public class Juego extends InterfaceJuego {
 		}
 		vikinga.dibujarVikinga(entorno);
 
-
 		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('a')) {
 			vikinga.moverHaciaIzquierda(entorno);
 		}
@@ -88,9 +87,6 @@ public class Juego extends InterfaceJuego {
 			vikinga.escudo(entorno);
 		}
 
-
-
-		
 //Rayo        
 
 		if (rayo != null) {
@@ -103,8 +99,6 @@ public class Juego extends InterfaceJuego {
 		if (entorno.estaPresionada(entorno.TECLA_ESPACIO) && rayo == null) {
 			rayo = new Rayo(vikinga.getX(), vikinga.getY(), vikinga.getdireccion());
 		}
-
-		
 
 // Raptors        
 
@@ -135,25 +129,26 @@ public class Juego extends InterfaceJuego {
 					rayo = null;
 					raptors[e] = null;
 					puntaje += 80;
+					contador = 480;
 				}
 			}
 		}
-		if (contador == 1000) {
+		if (contador == 500) {
 			int i = 0;
-			while (i == 0) {
-				if (raptors[i] == null) {
-					raptors[i] = new Velociraptor(5, 300, 2);
-					i += 1;
-					contador = 0;
-				}
+			if (raptors[i] == null) {
+				raptors[i] = new Velociraptor(5, 300, 3);
+				i += 1;
+				contador = 0;
 			}
 		}
+
 		contador += 1;
 		System.out.println(contador);
-		if (vidas == 0) {
+		if (vidas <= 0) {
 			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
 		}
 	}
+	
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {

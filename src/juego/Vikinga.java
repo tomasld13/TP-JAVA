@@ -124,7 +124,7 @@ public class Vikinga {
 	}
 
 	public void saltar(Entorno e) {
-		y -= 7;
+		y -= 9;
 	} // img = Herramientas.cargarImagen("img.png");
 
 	public boolean banderaDeSalto(Piso[] pisos) {
