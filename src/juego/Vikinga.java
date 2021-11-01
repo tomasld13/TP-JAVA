@@ -16,10 +16,9 @@ public class Vikinga {
 	private int velocidad;
 
 	private boolean direccion; // true=derecha false=izquierda
-	
-	private boolean estáSaltando; // ??
-	private boolean estáAgachada; // ??
-	private boolean estáQuieta;   // ??
+	private Rayo rayo;
+	private boolean estaSaltando;
+	private boolean estaQuieta;  
 	
 	private Image img; // img
 	private Image imagenDelEscudo; // imagenDelEscudo
@@ -38,18 +37,30 @@ public class Vikinga {
 	}
 
 	public void dibujar(Entorno e) {
-		if (direccion) {
-			
+		e.dibujarImagen(img, x, y, 0, 0.20);
+		
+		if (direccion) {img = Herramientas.cargarImagen("vikingaizq.gif");	
+		} else {
+			img = Herramientas.cargarImagen("vikinga.gif");
+		}
+		if (estaQuieta) {
+			img = Herramientas.cargarImagen("vikingaidel.gif");
+		}
+		
+		if (estaSaltando && direccion) {
+			img = Herramientas.cargarImagen("vikingajump.gif");
+		} else {
+			img = Herramientas.cargarImagen("vikingajumpizq.gif");
 		}
 		// e.dibujarTriangulo(x, y, alto, ancho, Math.PI / 2, Color.CYAN);
 		// colisiones
-		e.dibujarImagen(img, x, y, 0, 0.20);
+		
 	}
 
 	public void moverHaciaIzquierda(Entorno e) {
 		if (x > ancho / 2) {
 			x -= velocidad;
-			img = Herramientas.cargarImagen("vikingaizq.gif");
+			
 			direccion = false;
 		}
 	}
@@ -63,12 +74,8 @@ public class Vikinga {
 	}
 
 	public void saltar(Entorno e) {
-		y -= 9; // aumentar para traspasar pisos
-		if (direccion == true) {
-			img = Herramientas.cargarImagen("vikingajump.gif");
-		} else {
-			img = Herramientas.cargarImagen("vikingajumpizq.gif");
-		}
+		y -= 9;
+		estaSaltando = true;
 	}
 
 	// FIXME
@@ -93,7 +100,7 @@ public class Vikinga {
 	}
 
 	public void caer(Entorno e) {
-		y = y + 3; // modificado para prueba. ajustar velocidad de caida
+		y = y + 3; 
 	}
 
 	public void escudo(Entorno e) {
@@ -106,6 +113,10 @@ public class Vikinga {
 		}
 
 	}
+	
+	public void disparar (Rayo rayo) {
+		rayo = new Rayo(x, y, direccion);
+	}
 
 	public boolean ChoqueRaptor(Velociraptor raptor) {  // chocasteConUnRaptor
 		return x < raptor.getX() + raptor.getAncho() - ancho / 2 && x > raptor.getX() - raptor.getAncho() + ancho / 2
@@ -115,6 +126,11 @@ public class Vikinga {
 	public void respawn() {
 		x = 20;
 		y = 550;
+	}
+	
+	public boolean recuperasteCommodore(Commodore commodore) {
+		return x < commodore.getX() + ancho / 2 && x > commodore.getX() - ancho / 2 && y > commodore.getY() - commodore.getTamaño()
+		&& y < commodore.getY() + commodore.getTamaño();
 	}
 
 }

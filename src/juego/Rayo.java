@@ -37,6 +37,10 @@ public class Rayo {
 			x -= 6;
 		}
 	}
+	public boolean teExcedisteDelEntorno(Entorno e) {
+		return x < 0 || x > e.ancho();
+	}
+
 	
 	public double getX() {
 		return x;
@@ -50,4 +54,5 @@ public class Rayo {
 		return alto;
 	}
 
+	
 }

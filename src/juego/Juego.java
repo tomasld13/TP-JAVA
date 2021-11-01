@@ -20,13 +20,12 @@ public class Juego extends InterfaceJuego {
 	private Commodore commodore;
 	private int contador; // contadorDeTiempo, tiempo, cantidadDeFrames, cantidadDeTics
 
-	private boolean vuelta;
-
-	private int vidas = 3; // fixme
+	private int vidas; // fixme
 	private int puntaje;
 
 	public Juego() {
 		contador = 400;
+		vidas = 3;
 		this.entorno = new Entorno(this, "Blanco_CarroAvila_Ledesma_Equipo3", 800, 600);
 
 		vikinga = new Vikinga(30, 550);
@@ -45,10 +44,6 @@ public class Juego extends InterfaceJuego {
 		fondo = Herramientas.cargarImagen("fondo.png");
 		gameOver = Herramientas.cargarImagen("gameoverphrase.jpg");
 
-		vuelta = true;
-
-//        int puntaje = 10;
-
 //      inicia el juego
 		this.entorno.iniciar();
 
@@ -57,24 +52,21 @@ public class Juego extends InterfaceJuego {
 	public void tick() {
 
 		if (vidas < 3) {
-			// hacés todo lo de perder
+			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
+			entorno.escribirTexto("Perdiste tu puntuacion fue" + puntaje, entorno.ancho() / 2, 400);
 			return;
 		}
-		
-		if ("ganaste") {
-			// hacés todo lo de ganar
+
+		if (vikinga.recuperasteCommodore(commodore)) {
+			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
 			return;
 		}
-		
-		entorno.dibujarImagen(fondo, entorno.ancho() / 2, entorno.alto() / 2, 0);	
-			
+
+		entorno.dibujarImagen(fondo, entorno.ancho() / 2, entorno.alto() / 2, 0);
+
 		for (Piso p : pisos) {
 			p.dibujar(entorno);
 		}
-		
-//		for (int i = 0; i < pisos.length; i++) {
-//			pisos[i].dibujar(entorno);
-//		}
 
 		entorno.cambiarFont("sans", 20, Color.white);
 		entorno.escribirTexto("Vidas: " + vidas + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
@@ -85,7 +77,7 @@ public class Juego extends InterfaceJuego {
 		if (entorno.estaPresionada('w') && vikinga.banderaDeSalto(pisos)) {
 			vikinga.saltar(entorno);
 		}
-		
+
 		if (vikinga.banderaDeCaida(pisos)) {
 			vikinga.caer(entorno);
 		}
@@ -93,9 +85,7 @@ public class Juego extends InterfaceJuego {
 
 		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('a')) {
 			vikinga.moverHaciaIzquierda(entorno);
-		} else {
-			vikinga.dibujar(entorno);
-		}
+		} 
 		if (entorno.estaPresionada(entorno.TECLA_DERECHA) || entorno.estaPresionada('d')) {
 			vikinga.moverHaciaDerecha(entorno);
 		}
@@ -112,18 +102,10 @@ public class Juego extends InterfaceJuego {
 				rayo = null;
 			}
 		}
-		
-		if (entorno.estaPresionada(entorno.TECLA_ESPACIO) && rayo == null) {
-			rayo = vikinga.disparar();
-			
-			Bebe bebe = null;
-			bebe = vikinga.tenerBebe();
-			
-			int monedas = 0;
-			monedas = mario.cantidadDeMonedas();
-			
-			rayo = new Rayo(vikinga.getX(), vikinga.getY(), vikinga.getdireccion());
-		}
+
+//		if (entorno.estaPresionada(entorno.TECLA_ESPACIO) && rayo == null) {
+//			rayo = vikinga.disparar(rayo);
+//		}
 
 // Raptors        
 
@@ -134,17 +116,8 @@ public class Juego extends InterfaceJuego {
 				if (!raptors[e].estasParadoEnUnPiso(pisos)) {
 					raptors[e].caer(entorno);
 				}
-				if (raptors[e].getX() < 0 + raptors[e].getAncho() / 2
-						|| raptors[e].getX() > 800 - raptors[e].getAncho() / 2) {
-					if (vuelta) {
-						raptors[e].cambiarDeDireccion();
-						raptors[e].cambiarDeDireccionImg(vuelta);
-						vuelta = false;
-					} else {
-						raptors[e].cambiarDeDireccion();
-						raptors[e].cambiarDeDireccionImg(vuelta);
-						vuelta = true;
-					}
+				if (raptors[e].chocasteConEntorno(entorno)) {
+					raptors[e].cambiarDeDireccion();
 				}
 				if (vikinga.ChoqueRaptor(raptors[e])) {
 					vikinga.respawn();
@@ -168,16 +141,6 @@ public class Juego extends InterfaceJuego {
 
 		contador += 1;
 		System.out.println(contador);
-		if (vidas <= 0) {
-			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
-			entorno.escribirTexto("Perdiste tu puntuacion fue" + puntaje, entorno.ancho() / 2, 400);
-		}
-
-		// esto va en vikinga
-		if (commodore.recuperasteCompu(vikinga)) {
-			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
-
-		}
 	}
 
 	@SuppressWarnings("unused")

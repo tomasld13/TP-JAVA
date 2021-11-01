@@ -7,10 +7,10 @@ import entorno.Entorno;
 import entorno.Herramientas;
 
 public class Velociraptor {
-	
+
 	private int x;
 	private int y;
-	
+
 	private int ancho;
 	private int alto;
 
@@ -30,7 +30,7 @@ public class Velociraptor {
 	}
 
 	public void dibujar(Entorno e) {
-		if ("para donde va el angulo") {
+		if (angulo >= Math.PI) {
 			// this.img = Herramientas.cargarImagen("raptor.png");
 			this.img = Herramientas.cargarImagen("raptor.gif");
 
@@ -41,7 +41,11 @@ public class Velociraptor {
 		}
 		// e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
 		e.dibujarImagen(img, x, y, 0, 0.6);
-		
+
+	}
+
+	public boolean chocasteConEntorno(Entorno e) {
+		return x < 0 + ancho / 2 || x > 800 - ancho / 2;
 	}
 
 	public void mover() {
@@ -52,8 +56,10 @@ public class Velociraptor {
 	// CHECK ME
 	public boolean estasParadoEnUnPiso(Piso[] pisos) {
 		if (pisos[0].chocasteParteSuperiorCon(x, y + alto / 2) || pisos[1].chocasteParteSuperiorCon(y + alto / 2, x)
-				|| pisos[2].chocasteParteSuperiorCon(x, y + alto / 2) || pisos[3].chocasteParteSuperiorCon(y + alto / 2, x)
-				|| pisos[4].chocasteParteSuperiorCon(x, y + alto / 2) || pisos[5].chocasteParteSuperiorCon(y + alto / 2, x)) {
+				|| pisos[2].chocasteParteSuperiorCon(x, y + alto / 2)
+				|| pisos[3].chocasteParteSuperiorCon(y + alto / 2, x)
+				|| pisos[4].chocasteParteSuperiorCon(x, y + alto / 2)
+				|| pisos[5].chocasteParteSuperiorCon(y + alto / 2, x)) {
 			return true;
 		}
 		return false;
@@ -63,7 +69,7 @@ public class Velociraptor {
 		y = y + 5;
 	}
 
-	private void cambiarDeDireccion() { // modificar ya que es lo que nos da vuelta al dino
+	public void cambiarDeDireccion() {
 		angulo += -Math.PI;
 	}
 

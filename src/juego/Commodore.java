@@ -21,11 +21,17 @@ public class Commodore {
 	public void dibujar(Entorno e) {
 		e.dibujarImagen(img, x, y, 0,0.15);
 	}
-	
-	// va en vikinga
-//	public boolean recuperasteCompu(Vikinga vikinga) {
-//		return x < vikinga.getX() + tamaño / 2 && x > vikinga.getX() - tamaño / 2 && y > vikinga.getY() - vikinga.getAlto()
-//				&& y < vikinga.getY() + vikinga.getAlto();
-//	}
+
+	public int getTamaño() {
+		return tamaño;
+	}
+
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
+	}
 
 }
