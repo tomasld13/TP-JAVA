@@ -5,6 +5,7 @@ import entorno.Herramientas;
 import java.awt.Image;
 
 public class Commodore {
+	
 	private int tamaño;
 	private double x;
 	private double y;
@@ -21,10 +22,10 @@ public class Commodore {
 		e.dibujarImagen(img, x, y, 0,0.15);
 	}
 	
-	public boolean recuperasteCompu(Vikinga vikinga) {
-		return x < vikinga.getX() + tamaño / 2 && x > vikinga.getX() - tamaño / 2 && y > vikinga.getY() - vikinga.getAlto()
-				&& y < vikinga.getY() + vikinga.getAlto();
-	}
-	
+	// va en vikinga
+//	public boolean recuperasteCompu(Vikinga vikinga) {
+//		return x < vikinga.getX() + tamaño / 2 && x > vikinga.getX() - tamaño / 2 && y > vikinga.getY() - vikinga.getAlto()
+//				&& y < vikinga.getY() + vikinga.getAlto();
+//	}
 
 }

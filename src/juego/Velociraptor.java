@@ -7,18 +7,19 @@ import entorno.Entorno;
 import entorno.Herramientas;
 
 public class Velociraptor {
+	
+	private int x;
+	private int y;
+	
 	private int ancho;
 	private int alto;
 
-	private int x;
-	private int y;
 	private double velocidad;
 	private double angulo;
 
 	private Image img;
 
 	public Velociraptor(int y, int x, double velocidad) {
-
 		this.ancho = 130;
 		this.alto = 80;
 		this.x = x;
@@ -29,34 +30,7 @@ public class Velociraptor {
 	}
 
 	public void dibujar(Entorno e) {
-		// e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
-		e.dibujarImagen(img, x, y, 0, 0.6);
-	}
-
-	public void mover() {
-		x += velocidad * Math.cos(angulo);
-
-	}
-
-	public boolean banderaDeCaida(Piso[] pisos) {
-		if (pisos[0].tocaTecho(y + alto / 2, x) || pisos[1].tocaTecho(y + alto / 2, x)
-				|| pisos[2].tocaTecho(y + alto / 2, x) || pisos[3].tocaTecho(y + alto / 2, x)
-				|| pisos[4].tocaTecho(y + alto / 2, x) || pisos[5].tocaTecho(y + alto / 2, x)) {
-			return false;
-		}
-		return true;
-	}
-
-	public void caer(Entorno e) {
-		y = y + 5;
-	}
-
-	public void cambiarDeDireccion() { // modificar ya que es lo que nos da vuelta al dino
-		angulo += -Math.PI;
-	}
-
-	public void cambiarDeDireccionImg(boolean a) {
-		if (a) {
+		if ("para donde va el angulo") {
 			// this.img = Herramientas.cargarImagen("raptor.png");
 			this.img = Herramientas.cargarImagen("raptor.gif");
 
@@ -65,9 +39,51 @@ public class Velociraptor {
 			this.img = Herramientas.cargarImagen("raptorIzq.gif");
 
 		}
+		// e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
+		e.dibujarImagen(img, x, y, 0, 0.6);
+		
 	}
 
-	public boolean choqueRayo(Rayo rayo) {
+	public void mover() {
+		x += velocidad * Math.cos(angulo);
+
+	}
+
+	// CHECK ME
+	public boolean estasParadoEnUnPiso(Piso[] pisos) {
+		if (pisos[0].chocasteParteSuperiorCon(x, y + alto / 2) || pisos[1].chocasteParteSuperiorCon(y + alto / 2, x)
+				|| pisos[2].chocasteParteSuperiorCon(x, y + alto / 2) || pisos[3].chocasteParteSuperiorCon(y + alto / 2, x)
+				|| pisos[4].chocasteParteSuperiorCon(x, y + alto / 2) || pisos[5].chocasteParteSuperiorCon(y + alto / 2, x)) {
+			return true;
+		}
+		return false;
+	}
+
+	public void caer(Entorno e) {
+		y = y + 5;
+	}
+
+	private void cambiarDeDireccion() { // modificar ya que es lo que nos da vuelta al dino
+		angulo += -Math.PI;
+	}
+
+//	public void cambiarDeDireccionImg(boolean a) {
+//		if (a) {
+//			// this.img = Herramientas.cargarImagen("raptor.png");
+//			this.img = Herramientas.cargarImagen("raptor.gif");
+//
+//		} else {
+//			// this.img = Herramientas.cargarImagen("raptorizq.png");
+//			this.img = Herramientas.cargarImagen("raptorIzq.gif");
+//
+//		}
+//	}
+
+	// isEmpty()
+	// hasColour()
+	// isChocandoUnRayo()
+	// estásChocandoUnRayo()
+	public boolean chocasteUnRayo(Rayo rayo) {
 		return x < rayo.getX() + ancho / 2 && x > rayo.getX() - ancho / 2 && y > rayo.getY() - rayo.getAlto()
 				&& y < rayo.getY() + rayo.getAlto();
 	}

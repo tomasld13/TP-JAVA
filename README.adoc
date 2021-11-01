@@ -1,10 +1,10 @@
-= *Castlevania, Barbarianna Viking Edition*
+= Castlevania, Barbarianna Viking Edition
 // completar mails
 Blanco Gabriel <@gmail.com>; Carro_Avila Emmanuel <CarroavilaEmm@gmail.com>; Ledesma Tomas <@gmail.com>
 v1.0, {docdate}
 :toc:
 :toc-title:Contenidos
-:Numbered:
+:numbered:
 
 == El Juego (introduccion )
 

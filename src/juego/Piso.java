@@ -43,19 +43,17 @@ public class Piso {
 		return alto;
 	}
 
-	public boolean tocaTecho(double YdelObjeto, double XdelObjeto) {
-		if (YdelObjeto > y - alto / 2 && YdelObjeto < y && XdelObjeto < x + ancho / 2 && XdelObjeto > x - ancho / 2) {
-			return true;
-		} else {
-			return false;
-		}
+	public boolean chocasteParteSuperiorCon(double xDeUnPersonaje, double yDeUnPersonaje) {
+		return yDeUnPersonaje > y - alto / 2 && yDeUnPersonaje < y && xDeUnPersonaje < x + ancho / 2 && xDeUnPersonaje > x - ancho / 2;
 	}
 
-	public boolean tocaPiso(double YdelObjeto, double XdelObjeto) {
+	// FIXME!!!
+	public boolean tocaPiso(double XdelObjeto, double YdelObjeto) {
 		if (YdelObjeto < y + alto / 2 && YdelObjeto > y && XdelObjeto < x + ancho / 2 && XdelObjeto > x - ancho / 2) {
 			return true;
 		} else {
 			return false;
 		}
 	}
+	
 }

@@ -16,6 +16,11 @@ public class Vikinga {
 	private int velocidad;
 
 	private boolean direccion; // true=derecha false=izquierda
+	
+	private boolean estáSaltando; // ??
+	private boolean estáAgachada; // ??
+	private boolean estáQuieta;   // ??
+	
 	private Image img; // img
 	private Image imagenDelEscudo; // imagenDelEscudo
 
@@ -32,27 +37,10 @@ public class Vikinga {
 
 	}
 
-	public int getAlto() {
-		return alto;
-	}
-
-	public int getAncho() {
-		return ancho;
-	}
-
-	public double getX() {
-		return x;
-	}
-
-	public double getY() {
-		return y;
-	}
-
-	public boolean getdireccion() {
-		return direccion;
-	}
-
 	public void dibujar(Entorno e) {
+		if (direccion) {
+			
+		}
 		// e.dibujarTriangulo(x, y, alto, ancho, Math.PI / 2, Color.CYAN);
 		// colisiones
 		e.dibujarImagen(img, x, y, 0, 0.20);
@@ -83,6 +71,7 @@ public class Vikinga {
 		}
 	}
 
+	// FIXME
 	public boolean banderaDeSalto(Piso[] pisos) {
 		if (pisos[0].tocaPiso(y - alto / 2, x) || pisos[1].tocaPiso(y - alto / 2, x)
 				|| pisos[2].tocaPiso(y - alto / 2, x) || pisos[3].tocaPiso(y - alto / 2, x)
@@ -92,19 +81,19 @@ public class Vikinga {
 		return true;
 	}
 
+	// !estasParadeEnUnPiso()
+	// CHECKME
 	public boolean banderaDeCaida(Piso[] pisos) {
-		if (pisos[0].tocaTecho(y + alto / 2, x) || pisos[1].tocaTecho(y + alto / 2, x)
-				|| pisos[2].tocaTecho(y + alto / 2, x) || pisos[3].tocaTecho(y + alto / 2, x)
-				|| pisos[4].tocaTecho(y + alto / 2, x) || pisos[5].tocaTecho(y + alto / 2, x)) {
+		if (pisos[0].chocasteParteSuperiorCon(y + alto / 2, x) || pisos[1].chocasteParteSuperiorCon(y + alto / 2, x)
+				|| pisos[2].chocasteParteSuperiorCon(y + alto / 2, x) || pisos[3].chocasteParteSuperiorCon(y + alto / 2, x)
+				|| pisos[4].chocasteParteSuperiorCon(y + alto / 2, x) || pisos[5].chocasteParteSuperiorCon(y + alto / 2, x)) {
 			return false;
 		}
 		return true;
 	}
 
 	public void caer(Entorno e) {
-
 		y = y + 3; // modificado para prueba. ajustar velocidad de caida
-
 	}
 
 	public void escudo(Entorno e) {
@@ -118,12 +107,12 @@ public class Vikinga {
 
 	}
 
-	public boolean ChoqueRaptor(Velociraptor raptor) {
+	public boolean ChoqueRaptor(Velociraptor raptor) {  // chocasteConUnRaptor
 		return x < raptor.getX() + raptor.getAncho() - ancho / 2 && x > raptor.getX() - raptor.getAncho() + ancho / 2
 				&& y < raptor.getY() + raptor.getAlto() / 2 && y > raptor.getY() - raptor.getAlto();
 	}
 
-	public void muerte() {
+	public void respawn() {
 		x = 20;
 		y = 550;
 	}

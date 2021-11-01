@@ -10,19 +10,19 @@ public class Juego extends InterfaceJuego {
 
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
-	private Velociraptor[] raptors = new Velociraptor[4];
-	private Piso[] pisos = new Piso[6];
+	private Velociraptor[] raptors;
+	private Piso[] pisos = new Piso[6]; // fixme
 	private Vikinga vikinga;
 
 	private Image gameOver;
 	private Image fondo;
 	private Rayo rayo;
 	private Commodore commodore;
-	private int contador;
+	private int contador; // contadorDeTiempo, tiempo, cantidadDeFrames, cantidadDeTics
 
 	private boolean vuelta;
 
-	private int vidas = 3;
+	private int vidas = 3; // fixme
 	private int puntaje;
 
 	public Juego() {
@@ -32,6 +32,8 @@ public class Juego extends InterfaceJuego {
 		vikinga = new Vikinga(30, 550);
 
 		commodore = new Commodore(50, 55, 50);
+
+		raptors = new Velociraptor[4];
 
 		pisos[0] = new Piso(entorno.ancho() / 2, entorno.alto() - 10, 800);
 		pisos[1] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 110, 680);
@@ -54,11 +56,25 @@ public class Juego extends InterfaceJuego {
 
 	public void tick() {
 
-		entorno.dibujarImagen(fondo, entorno.ancho() / 2, entorno.alto() / 2, 0);
-
-		for (int i = 0; i < pisos.length; i++) {
-			pisos[i].dibujar(entorno);
+		if (vidas < 3) {
+			// hacés todo lo de perder
+			return;
 		}
+		
+		if ("ganaste") {
+			// hacés todo lo de ganar
+			return;
+		}
+		
+		entorno.dibujarImagen(fondo, entorno.ancho() / 2, entorno.alto() / 2, 0);	
+			
+		for (Piso p : pisos) {
+			p.dibujar(entorno);
+		}
+		
+//		for (int i = 0; i < pisos.length; i++) {
+//			pisos[i].dibujar(entorno);
+//		}
 
 		entorno.cambiarFont("sans", 20, Color.white);
 		entorno.escribirTexto("Vidas: " + vidas + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
@@ -66,11 +82,10 @@ public class Juego extends InterfaceJuego {
 		commodore.dibujar(entorno);
 // vikinga
 
-		if (entorno.estaPresionada('w')) {
-			if (vikinga.banderaDeSalto(pisos)) {
-				vikinga.saltar(entorno);
-			}
+		if (entorno.estaPresionada('w') && vikinga.banderaDeSalto(pisos)) {
+			vikinga.saltar(entorno);
 		}
+		
 		if (vikinga.banderaDeCaida(pisos)) {
 			vikinga.caer(entorno);
 		}
@@ -93,11 +108,20 @@ public class Juego extends InterfaceJuego {
 		if (rayo != null) {
 			rayo.dibujar(entorno);
 			rayo.mover(entorno);
-			if (rayo.getX() > entorno.ancho() || rayo.getX() < 0) {
+			if (rayo.teExcedisteDelEntorno(entorno)) {
 				rayo = null;
 			}
 		}
+		
 		if (entorno.estaPresionada(entorno.TECLA_ESPACIO) && rayo == null) {
+			rayo = vikinga.disparar();
+			
+			Bebe bebe = null;
+			bebe = vikinga.tenerBebe();
+			
+			int monedas = 0;
+			monedas = mario.cantidadDeMonedas();
+			
 			rayo = new Rayo(vikinga.getX(), vikinga.getY(), vikinga.getdireccion());
 		}
 
@@ -107,7 +131,7 @@ public class Juego extends InterfaceJuego {
 			if (raptors[e] != null) {
 				raptors[e].dibujar(entorno);
 				raptors[e].mover();
-				if (raptors[e].banderaDeCaida(pisos)) {
+				if (!raptors[e].estasParadoEnUnPiso(pisos)) {
 					raptors[e].caer(entorno);
 				}
 				if (raptors[e].getX() < 0 + raptors[e].getAncho() / 2
@@ -123,10 +147,10 @@ public class Juego extends InterfaceJuego {
 					}
 				}
 				if (vikinga.ChoqueRaptor(raptors[e])) {
-					vikinga.muerte();
+					vikinga.respawn();
 					vidas -= 1;
 				}
-				if (rayo != null && raptors[e].choqueRayo(rayo)) {
+				if (rayo != null && raptors[e].chocasteUnRayo(rayo)) {
 					rayo = null;
 					raptors[e] = null;
 					puntaje += 80;
@@ -149,6 +173,7 @@ public class Juego extends InterfaceJuego {
 			entorno.escribirTexto("Perdiste tu puntuacion fue" + puntaje, entorno.ancho() / 2, 400);
 		}
 
+		// esto va en vikinga
 		if (commodore.recuperasteCompu(vikinga)) {
 			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
 

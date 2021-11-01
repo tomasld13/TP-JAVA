@@ -6,6 +6,7 @@ import entorno.Entorno;
 import entorno.Herramientas;
 
 public class Laser {
+	
 	private int tamaño;
 	private double x;
 	private double y;
@@ -21,11 +22,11 @@ public class Laser {
 		e.dibujarTriangulo(x, y, tamaño, tamaño, Math.PI / 2, Color.yellow);
 	}
 	
-	public void lanzarLaser(boolean direccion) {
-		if(direccion) {
-			x+=5;
-		}else {
-			x-=5;
-		}
-	}
+//	public void lanzarLaser(boolean direccion) {
+//		if(direccion) {
+//			x+=5;
+//		}else {
+//			x-=5;
+//		}
+//	}
 }

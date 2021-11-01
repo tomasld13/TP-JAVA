@@ -8,33 +8,21 @@ import entorno.Entorno;
 import entorno.Herramientas;
 
 public class Rayo {
+	
 	private double x;
 	private double y;
 
+	private int alto;
 	private boolean direccion;
 
 	private Image img;
-	private int alto;
 
 	public Rayo(double x, double y, boolean direccion) {
 		this.x = x;
 		this.y = y;
 		this.direccion = direccion;
 		this.img = Herramientas.cargarImagen("rayo.png");
-
 		this.alto = 30;
-	}
-
-	public double getX() {
-		return x;
-	}
-
-	public double getY() {
-		return y;
-	}
-
-	public int getAlto() {
-		return alto;
 	}
 
 	public void dibujar(Entorno e) {
@@ -49,4 +37,17 @@ public class Rayo {
 			x -= 6;
 		}
 	}
+	
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public int getAlto() {
+		return alto;
+	}
+
 }
