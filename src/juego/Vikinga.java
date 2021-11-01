@@ -1,5 +1,6 @@
 package juego;
 
+import java.awt.Color;
 import java.awt.Image;
 import entorno.Entorno;
 import entorno.Herramientas;
@@ -24,7 +25,7 @@ public class Vikinga {
 		this.x = x;
 		this.y = y;
 		this.velocidad = 5;
-		this.img = Herramientas.cargarImagen("per.png");
+		this.img = Herramientas.cargarImagen("vikingaidle.gif");
 
 		this.direccion = false;
 		this.imagenDelEscudo = Herramientas.cargarImagen("escudo.png");
@@ -52,7 +53,7 @@ public class Vikinga {
 	}
 
 	public void dibujar(Entorno e) {
-		// e.dibujarTriangulo(x, y, alto, ancho, Math.PI/2, Color.CYAN); chequear
+		// e.dibujarTriangulo(x, y, alto, ancho, Math.PI / 2, Color.CYAN);
 		// colisiones
 		e.dibujarImagen(img, x, y, 0, 0.20);
 	}
@@ -60,7 +61,7 @@ public class Vikinga {
 	public void moverHaciaIzquierda(Entorno e) {
 		if (x > ancho / 2) {
 			x -= velocidad;
-			img = Herramientas.cargarImagen("peri.png");
+			img = Herramientas.cargarImagen("vikingaizq.gif");
 			direccion = false;
 		}
 	}
@@ -68,14 +69,19 @@ public class Vikinga {
 	public void moverHaciaDerecha(Entorno e) {
 		if (x < e.ancho() - ancho / 2) {
 			x += velocidad;
-			img = Herramientas.cargarImagen("per.png");
+			img = Herramientas.cargarImagen("vikingarun.gif");
 			direccion = true;
 		}
 	}
 
 	public void saltar(Entorno e) {
 		y -= 9; // aumentar para traspasar pisos
-	} // img = Herramientas.cargarImagen("img.png");
+		if (direccion == true) {
+			img = Herramientas.cargarImagen("vikingajump.gif");
+		} else {
+			img = Herramientas.cargarImagen("vikingajumpizq.gif");
+		}
+	}
 
 	public boolean banderaDeSalto(Piso[] pisos) {
 		if (pisos[0].tocaPiso(y - alto / 2, x) || pisos[1].tocaPiso(y - alto / 2, x)
@@ -119,7 +125,7 @@ public class Vikinga {
 
 	public void muerte() {
 		x = 20;
-		y = 555;
+		y = 550;
 	}
 
 }

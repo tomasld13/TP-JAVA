@@ -29,7 +29,7 @@ public class Juego extends InterfaceJuego {
 		contador = 400;
 		this.entorno = new Entorno(this, "Blanco_CarroAvila_Ledesma_Equipo3", 800, 600);
 
-		vikinga = new Vikinga(20, 555);
+		vikinga = new Vikinga(30, 550);
 
 		commodore = new Commodore(50, 55, 50);
 
@@ -78,6 +78,8 @@ public class Juego extends InterfaceJuego {
 
 		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('a')) {
 			vikinga.moverHaciaIzquierda(entorno);
+		} else {
+			vikinga.dibujar(entorno);
 		}
 		if (entorno.estaPresionada(entorno.TECLA_DERECHA) || entorno.estaPresionada('d')) {
 			vikinga.moverHaciaDerecha(entorno);
@@ -144,10 +146,12 @@ public class Juego extends InterfaceJuego {
 		System.out.println(contador);
 		if (vidas <= 0) {
 			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
+			entorno.escribirTexto("Perdiste tu puntuacion fue" + puntaje, entorno.ancho() / 2, 400);
 		}
-		
+
 		if (commodore.recuperasteCompu(vikinga)) {
 			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
+
 		}
 	}
 
