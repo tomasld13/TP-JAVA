@@ -20,12 +20,4 @@ public class Laser {
 	public void dibujarLaser(Entorno e) {
 		e.dibujarTriangulo(x, y, tamaño, tamaño, Math.PI / 2, Color.yellow);
 	}
-	
-//	public void lanzarLaser(boolean direccion) {
-//		if(direccion) {
-//			x+=5;
-//		}else {
-//			x-=5;
-//		}
-//	}
 }

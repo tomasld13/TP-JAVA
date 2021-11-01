@@ -1,6 +1,5 @@
 package juego;
 
-import java.awt.Color; // retocar colision rectangulo verde
 import java.awt.Image;
 
 import entorno.Entorno;
@@ -16,6 +15,7 @@ public class Velociraptor {
 
 	private double velocidad;
 	private double angulo;
+	private boolean direccion;
 
 	private Image img;
 
@@ -26,17 +26,18 @@ public class Velociraptor {
 		this.y = y;
 		this.velocidad = velocidad;
 		this.angulo = Math.PI;
-		this.img = Herramientas.cargarImagen("raptorIzq.gif");
+		this.img = Herramientas.cargarImagen("raptorizq.gif");
+		this.direccion=true;
 	}
 
 	public void dibujar(Entorno e) {
-		if (angulo >= Math.PI) {
+		if (direccion) {
 			// this.img = Herramientas.cargarImagen("raptor.png");
 			this.img = Herramientas.cargarImagen("raptor.gif");
 
 		} else {
 			// this.img = Herramientas.cargarImagen("raptorizq.png");
-			this.img = Herramientas.cargarImagen("raptorIzq.gif");
+			this.img = Herramientas.cargarImagen("raptorizq.gif");
 
 		}
 		// e.dibujarRectangulo(x, y, ancho, alto, angulo, Color.green);
@@ -49,17 +50,23 @@ public class Velociraptor {
 	}
 
 	public void mover() {
-		x += velocidad * Math.cos(angulo);
+		if(direccion) {
+			x += velocidad; // * Math.cos(angulo)
+		}
+		else {
+			x-=velocidad;
+		}
+		
 
 	}
 
 	// CHECK ME
 	public boolean estasParadoEnUnPiso(Piso[] pisos) {
-		if (pisos[0].chocasteParteSuperiorCon(x, y + alto / 2) || pisos[1].chocasteParteSuperiorCon(y + alto / 2, x)
+		if (pisos[0].chocasteParteSuperiorCon(x, y + alto / 2) || pisos[1].chocasteParteSuperiorCon(x, y + alto / 2)
 				|| pisos[2].chocasteParteSuperiorCon(x, y + alto / 2)
-				|| pisos[3].chocasteParteSuperiorCon(y + alto / 2, x)
+				|| pisos[3].chocasteParteSuperiorCon(x, y + alto / 2)
 				|| pisos[4].chocasteParteSuperiorCon(x, y + alto / 2)
-				|| pisos[5].chocasteParteSuperiorCon(y + alto / 2, x)) {
+				|| pisos[5].chocasteParteSuperiorCon(x, y + alto / 2)) {
 			return true;
 		}
 		return false;
@@ -70,7 +77,12 @@ public class Velociraptor {
 	}
 
 	public void cambiarDeDireccion() {
-		angulo += -Math.PI;
+		//angulo += -Math.PI;
+		if(direccion) {
+			direccion=false;
+		}else {
+			direccion=true;
+		}
 	}
 
 //	public void cambiarDeDireccionImg(boolean a) {

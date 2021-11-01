@@ -11,20 +11,20 @@ public class Juego extends InterfaceJuego {
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 	private Velociraptor[] raptors;
-	private Piso[] pisos = new Piso[6]; // fixme
+	private Piso[] pisos; // fixme
 	private Vikinga vikinga;
 
 	private Image gameOver;
 	private Image fondo;
 	private Rayo rayo;
 	private Commodore commodore;
-	private int contador; // contadorDeTiempo, tiempo, cantidadDeFrames, cantidadDeTics
+	private int contadorDeTicks; // contadorDeTiempo, tiempo, cantidadDeFrames, cantidadDeTics
 
 	private int vidas; // fixme
 	private int puntaje;
 
 	public Juego() {
-		contador = 400;
+		contadorDeTicks = 500;
 		vidas = 3;
 		this.entorno = new Entorno(this, "Blanco_CarroAvila_Ledesma_Equipo3", 800, 600);
 
@@ -33,7 +33,7 @@ public class Juego extends InterfaceJuego {
 		commodore = new Commodore(50, 55, 50);
 
 		raptors = new Velociraptor[4];
-
+		pisos = new Piso[6];
 		pisos[0] = new Piso(entorno.ancho() / 2, entorno.alto() - 10, 800);
 		pisos[1] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 110, 680);
 		pisos[2] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 210, 680);
@@ -51,7 +51,7 @@ public class Juego extends InterfaceJuego {
 
 	public void tick() {
 
-		if (vidas < 3) {
+		if (vidas < 1) {
 			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
 			entorno.escribirTexto("Perdiste tu puntuacion fue" + puntaje, entorno.ancho() / 2, 400);
 			return;
@@ -59,6 +59,7 @@ public class Juego extends InterfaceJuego {
 
 		if (vikinga.recuperasteCommodore(commodore)) {
 			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
+			entorno.escribirTexto("!GANASTE¡tu puntuacion fue" + puntaje, entorno.ancho() / 2, 400);
 			return;
 		}
 
@@ -85,16 +86,18 @@ public class Juego extends InterfaceJuego {
 
 		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('a')) {
 			vikinga.moverHaciaIzquierda(entorno);
-		} 
-		if (entorno.estaPresionada(entorno.TECLA_DERECHA) || entorno.estaPresionada('d')) {
+			vikinga.quieta(false);
+		} else if (entorno.estaPresionada(entorno.TECLA_DERECHA) || entorno.estaPresionada('d')) {
 			vikinga.moverHaciaDerecha(entorno);
+			vikinga.quieta(false);
+		} else {
+			vikinga.quieta(true);
 		}
 		if (entorno.estaPresionada('e')) {
 			vikinga.escudo(entorno);
 		}
 
 //Rayo        
-
 		if (rayo != null) {
 			rayo.dibujar(entorno);
 			rayo.mover(entorno);
@@ -103,9 +106,9 @@ public class Juego extends InterfaceJuego {
 			}
 		}
 
-//		if (entorno.estaPresionada(entorno.TECLA_ESPACIO) && rayo == null) {
-//			rayo = vikinga.disparar(rayo);
-//		}
+		if (entorno.estaPresionada(entorno.TECLA_ESPACIO) && rayo == null) {
+			rayo = vikinga.disparar();
+		}
 
 // Raptors        
 
@@ -127,20 +130,21 @@ public class Juego extends InterfaceJuego {
 					rayo = null;
 					raptors[e] = null;
 					puntaje += 80;
-					contador = 350;
+					contadorDeTicks = 350;
 				}
 			}
 		}
-		if (contador == 500) {
-			for (int i = 0; i < 3; i++)
-				if (raptors[i] == null) {
-					raptors[i] = new Velociraptor(pisos[5 - i].getY() - pisos[5 - i].getAlto() / 2, 100, 3);
-					contador = 0;
+		if (contadorDeTicks >= 500) {
+			int nulo=0;
+			for (int i = 0; i < raptors.length; i++)
+				if (raptors[i] == null && nulo == 0) {
+					raptors[i] = new Velociraptor(40, 200, 4);
+					nulo+=1;
 				}
+			contadorDeTicks = 0;
 		}
-
-		contador += 1;
-		System.out.println(contador);
+		System.out.println(contadorDeTicks);
+		contadorDeTicks += 1;
 	}
 
 	@SuppressWarnings("unused")
