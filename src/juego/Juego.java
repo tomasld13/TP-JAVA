@@ -16,6 +16,8 @@ public class Juego extends InterfaceJuego {
 
 	private Image gameOver;
 	private Image fondo;
+	private Image vikingadead;
+	
 	private Rayo rayo;
 	private Laser[] laser;
 	private Commodore commodore;
@@ -43,7 +45,8 @@ public class Juego extends InterfaceJuego {
 		pisos[5] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 510, 680);
 
 		fondo = Herramientas.cargarImagen("fondo.png");
-		gameOver = Herramientas.cargarImagen("gameoverphrase.jpg");
+		gameOver = Herramientas.cargarImagen("endgame.png");
+		vikingadead = Herramientas.cargarImagen("vikingadead.gif");
 
 //      inicia el juego
 		this.entorno.iniciar();
@@ -54,13 +57,17 @@ public class Juego extends InterfaceJuego {
 
 		if (vidas < 1) {
 			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
-			entorno.escribirTexto("Perdiste tu puntuacion fue" + puntaje, entorno.ancho() / 2, 400);
+			entorno.cambiarFont("sans", 40, Color.white);
+			entorno.escribirTexto("Perdiste! ", 200, 350);
+			entorno.escribirTexto("tu puntuacion fue" + " " + puntaje, 200, 380);
+			entorno.dibujarImagen(vikingadead, entorno.ancho()/2, 400, 0, 0.8);
 			return;
 		}
 
 		if (vikinga.recuperasteCommodore(commodore)) {
 			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
-			entorno.escribirTexto("!GANASTE¡tu puntuacion fue" + puntaje, entorno.ancho() / 2, 400);
+			entorno.escribirTexto("¡Ganaste!", 200, 350);
+			entorno.escribirTexto("tu puntuacion fue" + " " + puntaje, 200, 380);
 			return;
 		}
 
@@ -131,15 +138,21 @@ public class Juego extends InterfaceJuego {
 					puntaje += 80;
 					contadorDeTicks = 350;
 				}
-				if(laser[e]==null) {
-					laser[e] = raptors[e].disparar(); 
+				if (laser[e] == null) {
+					laser[e] = raptors[e].disparar();
 				}
-				if(laser[e].teExcedisteDelEntorno(entorno)) {
-					laser[e]=null;
+				if (laser[e].teExcedisteDelEntorno(entorno)) {
+					laser[e] = null;
 				}
+				
+				
+			}
+			
+			if (laser[e] != null && vikinga.tuEscudoChocoConUnLaser(laser[e]) && entorno.estaPresionada('e')) {
+				laser[e] = null;
+				System.out.println("Peron vive");
 			}
 		}
-		
 
 		if (contadorDeTicks >= 400) {
 			int nulo = 0;
@@ -150,7 +163,7 @@ public class Juego extends InterfaceJuego {
 				}
 			contadorDeTicks = 0;
 		}
-		
+
 // laser
 		for (Laser l : laser) {
 			if (l != null) {
@@ -159,14 +172,15 @@ public class Juego extends InterfaceJuego {
 			}
 		}
 		for (Laser l : laser) {
-			if(l != null && vikinga.chocasteUnLaser(l)) {
+			if (l != null && vikinga.chocasteUnLaser(l)) {
 				vikinga.respawn();
-				vidas-=1;
+				vidas -= 1;
+				System.out.println("me choco");
 			}
+			
 		}
 		contadorDeTicks += 1;
 	}
-	
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {

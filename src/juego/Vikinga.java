@@ -41,10 +41,10 @@ public class Vikinga {
 		if (!estaQuieta) {
 			if (direccion) {
 				img = Herramientas.cargarImagen("vikingarun.gif");
-				 
+
 			} else {
 				img = Herramientas.cargarImagen("vikingaizq.gif");
-				
+
 			}
 			if (estaSaltando && direccion) {
 				img = Herramientas.cargarImagen("vikingajump.gif");
@@ -120,6 +120,10 @@ public class Vikinga {
 
 	}
 
+	public boolean tuEscudoChocoConUnLaser(Laser laser) {
+		return x - 60 < laser.getX()  && x + 60 > laser.getX() && y > laser.getY() - laser.getAlto()
+				&& y < laser.getY() + laser.getAlto();
+	}
 	public void quieta(boolean noSeMueve) {
 		if (noSeMueve) {
 			estaQuieta = true;
@@ -127,7 +131,7 @@ public class Vikinga {
 			estaQuieta = false;
 		}
 	}
-	
+
 	public Rayo disparar() {
 		rayo = new Rayo(x, y, direccion);
 		return rayo;
@@ -147,6 +151,7 @@ public class Vikinga {
 		return x < commodore.getX() + ancho / 2 && x > commodore.getX() - ancho / 2
 				&& y > commodore.getY() - commodore.getTamaño() && y < commodore.getY() + commodore.getTamaño();
 	}
+
 	public boolean chocasteUnLaser(Laser laser) {
 		return x < laser.getX() + ancho / 2 && x > laser.getX() - ancho / 2 && y > laser.getY() - laser.getAlto()
 				&& y < laser.getY() + laser.getAlto();

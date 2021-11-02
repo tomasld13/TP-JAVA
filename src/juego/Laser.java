@@ -19,13 +19,13 @@ public class Laser {
 		this.tamaño = 30;
 		this.x = x;
 		this.y = y;
-		this.img = Herramientas.cargarImagen("rayo.png");
+		this.img = Herramientas.cargarImagen("laser.png");
 		this.direccion = direccion;
 		this.alto=30;
 	}
 
 	public void dibujar(Entorno e) {
-		e.dibujarImagen(img, x, y, 1.05, 0.05);
+		e.dibujarImagen(img, x, y, 0, 0.25);
 	}
 
 	public void mover(Entorno e) {
