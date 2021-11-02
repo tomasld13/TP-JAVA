@@ -58,9 +58,6 @@ public class Vikinga {
 				img = Herramientas.cargarImagen("vikingaidleizq.gif");
 			}
 		}
-		// e.dibujarTriangulo(x, y, alto, ancho, Math.PI / 2, Color.CYAN);
-		// colisiones
-
 	}
 
 	public void moverHaciaIzquierda(Entorno e) {
@@ -149,6 +146,10 @@ public class Vikinga {
 	public boolean recuperasteCommodore(Commodore commodore) {
 		return x < commodore.getX() + ancho / 2 && x > commodore.getX() - ancho / 2
 				&& y > commodore.getY() - commodore.getTamaño() && y < commodore.getY() + commodore.getTamaño();
+	}
+	public boolean chocasteUnLaser(Laser laser) {
+		return x < laser.getX() + ancho / 2 && x > laser.getX() - ancho / 2 && y > laser.getY() - laser.getAlto()
+				&& y < laser.getY() + laser.getAlto();
 	}
 
 }

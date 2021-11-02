@@ -17,6 +17,7 @@ public class Juego extends InterfaceJuego {
 	private Image gameOver;
 	private Image fondo;
 	private Rayo rayo;
+	private Laser[] laser;
 	private Commodore commodore;
 	private int contadorDeTicks; // contadorDeTiempo, tiempo, cantidadDeFrames, cantidadDeTics
 
@@ -31,7 +32,7 @@ public class Juego extends InterfaceJuego {
 		vikinga = new Vikinga(30, 550);
 
 		commodore = new Commodore(50, 55, 50);
-
+		laser = new Laser[4];
 		raptors = new Velociraptor[4];
 		pisos = new Piso[6];
 		pisos[0] = new Piso(entorno.ancho() / 2, entorno.alto() - 10, 800);
@@ -68,13 +69,12 @@ public class Juego extends InterfaceJuego {
 		for (Piso p : pisos) {
 			p.dibujar(entorno);
 		}
-
 		entorno.cambiarFont("sans", 20, Color.white);
 		entorno.escribirTexto("Vidas: " + vidas + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
 
 		commodore.dibujar(entorno);
 // vikinga
-
+		vikinga.dibujar(entorno);
 		if (entorno.estaPresionada('w') && vikinga.banderaDeSalto(pisos)) {
 			vikinga.saltar(entorno);
 		}
@@ -82,7 +82,6 @@ public class Juego extends InterfaceJuego {
 		if (vikinga.banderaDeCaida(pisos)) {
 			vikinga.caer(entorno);
 		}
-		vikinga.dibujar(entorno);
 
 		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('a')) {
 			vikinga.moverHaciaIzquierda(entorno);
@@ -122,30 +121,52 @@ public class Juego extends InterfaceJuego {
 				if (raptors[e].chocasteConEntorno(entorno)) {
 					raptors[e].cambiarDeDireccion();
 				}
-				if (vikinga.ChoqueRaptor(raptors[e])) {
-					vikinga.respawn();
-					vidas -= 1;
-				}
+//				if (vikinga.ChoqueRaptor(raptors[e])) {
+//					vikinga.respawn();
+//					vidas -= 1;
+//				}
 				if (rayo != null && raptors[e].chocasteUnRayo(rayo)) {
 					rayo = null;
 					raptors[e] = null;
 					puntaje += 80;
 					contadorDeTicks = 350;
 				}
+				if(laser[e]==null) {
+					laser[e] = raptors[e].disparar(); 
+				}
+				if(laser[e].teExcedisteDelEntorno(entorno)) {
+					laser[e]=null;
+				}
 			}
 		}
-		if (contadorDeTicks >= 500) {
-			int nulo=0;
+		
+
+		if (contadorDeTicks >= 400) {
+			int nulo = 0;
 			for (int i = 0; i < raptors.length; i++)
 				if (raptors[i] == null && nulo == 0) {
 					raptors[i] = new Velociraptor(40, 200, 4);
-					nulo+=1;
+					nulo += 1;
 				}
 			contadorDeTicks = 0;
 		}
-		System.out.println(contadorDeTicks);
+		
+// laser
+		for (Laser l : laser) {
+			if (l != null) {
+				l.dibujar(entorno);
+				l.mover(entorno);
+			}
+		}
+		for (Laser l : laser) {
+			if(l != null && vikinga.chocasteUnLaser(l)) {
+				vikinga.respawn();
+				vidas-=1;
+			}
+		}
 		contadorDeTicks += 1;
 	}
+	
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {

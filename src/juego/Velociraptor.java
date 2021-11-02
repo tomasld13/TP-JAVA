@@ -16,6 +16,7 @@ public class Velociraptor {
 	private double velocidad;
 	private double angulo;
 	private boolean direccion;
+	private Laser laser;
 
 	private Image img;
 
@@ -84,7 +85,11 @@ public class Velociraptor {
 			direccion=true;
 		}
 	}
-
+	
+	public Laser disparar() {
+		laser = new Laser(x, y, direccion);
+		return laser;
+	}
 //	public void cambiarDeDireccionImg(boolean a) {
 //		if (a) {
 //			// this.img = Herramientas.cargarImagen("raptor.png");
