@@ -122,16 +122,17 @@ public class Juego extends InterfaceJuego {
 			if (raptors[e] != null) {
 				raptors[e].dibujar(entorno);
 				raptors[e].mover();
+				raptors[e].respawn(entorno);
 				if (!raptors[e].estasParadoEnUnPiso(pisos)) {
 					raptors[e].caer(entorno);
 				}
 				if (raptors[e].chocasteConEntorno(entorno)) {
 					raptors[e].cambiarDeDireccion();
 				}
-//				if (vikinga.ChoqueRaptor(raptors[e])) {
-//					vikinga.respawn();
-//					vidas -= 1;
-//				}
+				if (vikinga.ChoqueRaptor(raptors[e])) {
+					vikinga.respawn();
+					vidas -= 1;
+				}
 				if (rayo != null && raptors[e].chocasteUnRayo(rayo)) {
 					rayo = null;
 					raptors[e] = null;
@@ -139,13 +140,12 @@ public class Juego extends InterfaceJuego {
 					contadorDeTicks = 350;
 				}
 				if (laser[e] == null) {
+					if(raptors[e]!=null && raptors[e].distanciaPermitida(vikinga.getX(), vikinga.getY()))
 					laser[e] = raptors[e].disparar();
 				}
-				if (laser[e].teExcedisteDelEntorno(entorno)) {
+				if (laser[e]!= null && laser[e].teExcedisteDelEntorno(entorno)) {
 					laser[e] = null;
-				}
-				
-				raptors[e].respawn(entorno);	
+				}	
 					
 			}
 			
@@ -159,7 +159,7 @@ public class Juego extends InterfaceJuego {
 			int nulo = 0;
 			for (int i = 0; i < raptors.length; i++)
 				if (raptors[i] == null && nulo == 0) {
-					raptors[i] = new Velociraptor(40, 200, 4);
+					raptors[i] = new Velociraptor(40, 200, 3);
 					nulo += 1;
 				}
 			contadorDeTicks = 0;

@@ -15,6 +15,7 @@ public class Velociraptor {
 
 	private double velocidad;
 	private double angulo;
+	private boolean distanciaDeDisparo;
 	private boolean direccion;
 	private Laser laser;
 
@@ -29,6 +30,7 @@ public class Velociraptor {
 		this.angulo = Math.PI;
 		this.img = Herramientas.cargarImagen("raptorizq.gif");
 		this.direccion=true;
+		this.distanciaDeDisparo=true;
 	}
 
 	public void dibujar(Entorno e) {
@@ -45,7 +47,14 @@ public class Velociraptor {
 		e.dibujarImagen(img, x, y, 0, 0.6);
 
 	}
-
+	
+	public boolean distanciaPermitida(double xDeVikinga, double yDeVikinga) {
+		if(y + alto > yDeVikinga && y-alto < yDeVikinga && (x > xDeVikinga || x < xDeVikinga)) {
+			return false;
+		}
+		return true;
+	}
+	
 	public boolean chocasteConEntorno(Entorno e) {
 		return x < 0 + ancho / 2 || x > e.ancho() - ancho / 2;
 	}
@@ -112,7 +121,7 @@ public class Velociraptor {
 	}
 	
 	public void respawn(Entorno e){
-		if (x > 60 + ancho / 2 && y > e.alto()) {
+		if (x < 10 + ancho / 2 && y > e.alto()-alto) {
 			x = 200;
 			y = 40;
 		}

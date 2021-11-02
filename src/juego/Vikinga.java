@@ -156,5 +156,12 @@ public class Vikinga {
 		return x < laser.getX() + ancho / 2 && x > laser.getX() - ancho / 2 && y > laser.getY() - laser.getAlto()
 				&& y < laser.getY() + laser.getAlto();
 	}
+	
+	public double getX() {
+		return x;
+	}
 
+	public double getY() {
+		return y;
+	}
 }
