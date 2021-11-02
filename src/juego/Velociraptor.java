@@ -47,7 +47,7 @@ public class Velociraptor {
 	}
 
 	public boolean chocasteConEntorno(Entorno e) {
-		return x < 0 + ancho / 2 || x > 800 - ancho / 2;
+		return x < 0 + ancho / 2 || x > e.ancho() - ancho / 2;
 	}
 
 	public void mover() {
@@ -110,7 +110,13 @@ public class Velociraptor {
 		return x < rayo.getX() + ancho / 2 && x > rayo.getX() - ancho / 2 && y > rayo.getY() - rayo.getAlto()
 				&& y < rayo.getY() + rayo.getAlto();
 	}
-
+	
+	public void respawn(Entorno e){
+		if (x > 60 + ancho / 2 && y > e.alto()) {
+			x = 200;
+			y = 40;
+		}
+	}
 	public int getX() {
 		return x;
 	}

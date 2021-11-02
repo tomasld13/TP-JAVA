@@ -145,7 +145,8 @@ public class Juego extends InterfaceJuego {
 					laser[e] = null;
 				}
 				
-				
+				raptors[e].respawn(entorno);	
+					
 			}
 			
 			if (laser[e] != null && vikinga.tuEscudoChocoConUnLaser(laser[e]) && entorno.estaPresionada('e')) {
