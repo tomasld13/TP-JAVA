@@ -121,9 +121,10 @@ public class Vikinga {
 	}
 
 	public boolean tuEscudoChocoConUnLaser(Laser laser) {
-		return x - 60 < laser.getX()  && x + 60 > laser.getX() && y > laser.getY() - laser.getAlto()
+		return x - 60 < laser.getX() && x + 60 > laser.getX() && y > laser.getY() - laser.getAlto()
 				&& y < laser.getY() + laser.getAlto();
 	}
+
 	public void quieta(boolean noSeMueve) {
 		if (noSeMueve) {
 			estaQuieta = true;
@@ -137,7 +138,7 @@ public class Vikinga {
 		return rayo;
 	}
 
-	public boolean ChoqueRaptor(Velociraptor raptor) { // chocasteConUnRaptor
+	public boolean chocasteConUnRaptor(Velociraptor raptor) {
 		return x < raptor.getX() + raptor.getAncho() - ancho / 2 && x > raptor.getX() - raptor.getAncho() + ancho / 2
 				&& y < raptor.getY() + raptor.getAlto() / 2 && y > raptor.getY() - raptor.getAlto();
 	}
@@ -156,7 +157,7 @@ public class Vikinga {
 		return x < laser.getX() + ancho / 2 && x > laser.getX() - ancho / 2 && y > laser.getY() - laser.getAlto()
 				&& y < laser.getY() + laser.getAlto();
 	}
-	
+
 	public double getX() {
 		return x;
 	}

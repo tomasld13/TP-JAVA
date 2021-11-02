@@ -66,6 +66,7 @@ public class Juego extends InterfaceJuego {
 
 		if (vikinga.recuperasteCommodore(commodore)) {
 			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
+			entorno.cambiarFont("sans", 40, Color.white);
 			entorno.escribirTexto("¡Ganaste!", 200, 350);
 			entorno.escribirTexto("tu puntuacion fue" + " " + puntaje, 200, 380);
 			return;
@@ -129,7 +130,7 @@ public class Juego extends InterfaceJuego {
 				if (raptors[e].chocasteConEntorno(entorno)) {
 					raptors[e].cambiarDeDireccion();
 				}
-				if (vikinga.ChoqueRaptor(raptors[e])) {
+				if (vikinga.chocasteConUnRaptor(raptors[e])) {
 					vikinga.respawn();
 					vidas -= 1;
 				}

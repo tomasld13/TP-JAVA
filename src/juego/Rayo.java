@@ -7,7 +7,7 @@ import entorno.Entorno;
 import entorno.Herramientas;
 
 public class Rayo {
-	
+
 	private double x;
 	private double y;
 
@@ -36,11 +36,11 @@ public class Rayo {
 			x -= 6;
 		}
 	}
+
 	public boolean teExcedisteDelEntorno(Entorno e) {
 		return x < 0 || x > e.ancho();
 	}
 
-	
 	public double getX() {
 		return x;
 	}
@@ -51,5 +51,5 @@ public class Rayo {
 
 	public int getAlto() {
 		return alto;
-	}	
+	}
 }
