@@ -15,7 +15,6 @@ public class Piso {
 	private Image img;
 
 	public Piso(int x, int y, int ancho) {
-
 		this.x = x;
 		this.y = y;
 		this.alto = 20;

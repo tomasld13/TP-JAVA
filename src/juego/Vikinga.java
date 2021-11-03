@@ -15,7 +15,7 @@ public class Vikinga {
 	private int velocidad;
 
 	private boolean direccion; // true=derecha false=izquierda
-	private Rayo rayo;
+//	private Rayo rayo;
 	private boolean estaSaltando;
 	private boolean estaQuieta;
 
@@ -33,7 +33,6 @@ public class Vikinga {
 		this.estaQuieta = true;
 		this.direccion = true;
 		this.imagenDelEscudo = Herramientas.cargarImagen("escudo.png");
-
 	}
 
 	public void dibujar(Entorno e) {
@@ -132,9 +131,8 @@ public class Vikinga {
 	}
 
 	public Rayo disparar() {
-		rayo = new Rayo(x, y, direccion);
 		Herramientas.cargarSonido("sounds/rayo.wav").start();
-		return rayo;
+		return new Rayo(x, y, direccion);
 	}
 
 	public boolean chocasteConUnRaptor(Velociraptor raptor) {

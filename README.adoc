@@ -100,18 +100,19 @@ image::vikingaportada.png[]
  Barbarianna logra alcanzarla. 
 
 === Juego
- Es la clase donde todo fluye.
+
+Es la clase donde todo fluye.
 
  * Entorno y tick:
    Es el universo en donde se desarrolla el juego. Aporta todas las funcionalidades necesarias para el entorno gráfico ,
    incluso el texto que se muestra por pantalla.
  
-   .Marcadores
- ​  [source, java]
-​   ----
-  ​ entorno.cambiarFont("sans", 20, Color.white);
-   entorno.escribirTexto("Vidas: " + vidas + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
-   -​--- 
+.Marcadores
+[source, java]
+----
+entorno.cambiarFont("sans", 20, Color.white);
+entorno.escribirTexto("Vidas: " + vidas + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
+---- 
   
 Si entorno es el espacio donde se desarrolla el juego, la función tick es la que representará el correr del tiempo
  
@@ -137,10 +138,10 @@ Si entorno es el espacio donde se desarrolla el juego, la función tick es la qu
    Se han utilizado diferentes métodos para evaluar estos casos. Entre ellos el for each nos ha resultado el ciclo 
    mas práctico y sencillo.
    
-   .For each
-   ​[source, java]
-   ​----
-   laser
+.For each
+[source, java]
+----
+        laser
 		for (Laser l : laser) {
 			if (l != null) {
 				l.dibujar(entorno);
@@ -152,7 +153,7 @@ Si entorno es el espacio donde se desarrolla el juego, la función tick es la qu
 				vikinga.respawn();
 				vidas -= 1;
 			}
-   ----
+----
 
 == Dificultades 
  * Imagen y sonido:
