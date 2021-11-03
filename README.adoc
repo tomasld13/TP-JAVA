@@ -97,7 +97,8 @@ image::vikingaidle.gif[]
 
 === Juego
 Es la clase donde todo fluye.
- * Entorno y tick: Es el universo en donde se desarrolla el juego. Aporta todas las funcionalidades necesarias para el entorno gráfico ,
+ * Entorno y tick
+   Es el universo en donde se desarrolla el juego. Aporta todas las funcionalidades necesarias para el entorno gráfico ,
    incluso el texto que se muestra por pantalla.
    .Marcadores
    ​[source, java]
@@ -152,13 +153,6 @@ Es la clase donde todo fluye.
    - Sonido: Se los descargó en formato wav y se los editó con el programa "Ableton Live". Ajustando el volumen
    y la duración
 
-   - Invariantes de representacion
-   Ha sido necesaria la verificación constante, mediante condicionales, de la existencia de cada uno de los objetos
-   que iban a interactuar en el estado natural de juego. Muchos de los errores que arrojaba eclipse de debieron a estas
-   fallas. 
-   " Cannot invoke "juego.Velociraptor.dibujar(entorno.Entorno)" because "this.raptors[e]" is null
-    at juego.Juego.tick " 
-
    - Implementación: Se utilizaron las ventajas de la librería Entorno y sus herramientas. Un claro ejemplo de la implementación de imagenes
    puede observarse en las siguientes sentencias, donde las variables fondo, gameOver y vikingadead se cargan con archivos
    de extención tanto png como gif.
@@ -174,12 +168,12 @@ Es la clase donde todo fluye.
 ​    ----
   Herramientas.cargarSonido("sounds/risamalvada.wav").start();
     ----  
- * lógica de salto
+*  lógica de salto
  Se utilizó una funcion llamada puedoSaltar, que verifica la existencia
  de un piso sobre la vikinga. En caso de no existir, esta bandera se pondrá en true
  permitiendo que surta efecto la presión de las teclas w o u, y la vikinga se eleve al siguiente piso.
-
- * Pisos 
+ Barbarianna caerá todo el tiempo, a menos que los pisos lo eviten
+* Pisos 
  Originalmente se diseñaron de forma estática en la clase juego.
  posteriormente se optó por una clase que permitiera generar un array.
  Finalmente, Piso acabó teniendo 2 funciones booleanas fundamentales, que nos permitieron construir tanto
@@ -200,6 +194,12 @@ Es la clase donde todo fluye.
 		return true;
 	}
 ----  
+* Invariantes de representacion
+  Ha sido necesaria la verificación constante, mediante condicionales, de la existencia de cada uno de los objetos
+  que iban a interactuar en el estado natural de juego. Muchos de los errores que arrojaba eclipse de debieron a estas
+  fallas. 
+  " Cannot invoke "juego.Velociraptor.dibujar(entorno.Entorno)" because "this.raptors[e]" is null
+  at juego.Juego.tick " 
 == Conclusiones: 
 Nos parece pertinente utilizar este apartado para exponer nuestras experiencias desde lo grupal. 
   - El trabajo con git, nos ha permitido un fácil intercambio de los archivos. Luego de un difícil acercamiento, pudimos
@@ -209,3 +209,4 @@ Nos parece pertinente utilizar este apartado para exponer nuestras experiencias 
   que resultan los distintos enfoques sobre un mismo problema. 
   - Notamos también como la buena elección de los nombres de las variables, como asi también pensar adecuadamente cada objeto
   simplifican de una manera increible el algoritmo, y clarifican el camino a la hora de la toma de decisiones. 
+  
