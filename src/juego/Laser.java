@@ -24,7 +24,7 @@ public class Laser {
 		e.dibujarImagen(img, x, y, 0, 0.25);
 	}
 
-	public void mover(Entorno e) {
+	public void mover() {
 		if (direccion == true) {
 			x += 6;
 		}

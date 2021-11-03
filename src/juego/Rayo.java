@@ -28,11 +28,11 @@ public class Rayo {
 		e.dibujarImagen(img, x, y, 1.05, 0.05);
 	}
 
-	public void mover(Entorno e) {
-		if (direccion == true && x <= e.ancho()) {
+	public void mover() {
+		if (direccion == true) {
 			x += 6;
 		}
-		if (direccion == false && x >= 0) {
+		if (direccion == false) {
 			x -= 6;
 		}
 	}

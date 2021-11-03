@@ -144,7 +144,7 @@ public class Juego extends InterfaceJuego {
 //Rayo        
 		if (rayo != null) {
 			rayo.dibujar(entorno);
-			rayo.mover(entorno);
+			rayo.mover();
 			if (rayo.teExcedisteDelEntorno(entorno)) {
 				rayo = null;
 			}
@@ -211,7 +211,7 @@ public class Juego extends InterfaceJuego {
 		for (Laser l : laser) {
 			if (l != null) {
 				l.dibujar(entorno);
-				l.mover(entorno);
+				l.mover();
 			}
 		}
 		for (Laser l : laser) {
