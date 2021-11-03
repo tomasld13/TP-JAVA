@@ -142,7 +142,7 @@ public class Juego extends InterfaceJuego {
 			if (raptors[e] != null) {
 				raptors[e].dibujar(entorno);
 				raptors[e].mover();
-				raptors[e].respawn(entorno);
+
 				if (!raptors[e].estasParadoEnUnPiso(pisos)) {
 					raptors[e].caer(entorno);
 				}
@@ -157,24 +157,28 @@ public class Juego extends InterfaceJuego {
 					rayo = null;
 					raptors[e] = null;
 					puntaje += 80;
-					contadorDeTicks = 350;
+					contadorDeTicks = 250;
 				}
 				if (laser[e] == null) {
-					if (raptors[e] != null && raptors[e].distanciaPermitida(vikinga.getX(), vikinga.getY()))
+					if (raptors[e] != null)
 						laser[e] = raptors[e].disparar();
 				}
 				if (laser[e] != null && laser[e].teExcedisteDelEntorno(entorno)) {
 					laser[e] = null;
 				}
 
+				if (raptors[e] != null && raptors[e].saleDelPrimerPiso(entorno)) {
+					raptors[e] = null;
+				}
 			}
 
 			if (laser[e] != null && vikinga.tuEscudoChocoConUnLaser(laser[e]) && entorno.estaPresionada('e')) {
 				laser[e] = null;
 			}
+
 		}
 
-		if (contadorDeTicks >= 450) {
+		if (contadorDeTicks >= 350) {
 			int nulo = 0;
 			for (int i = 0; i < raptors.length; i++)
 				if (raptors[i] == null && nulo == 0) {
@@ -192,7 +196,7 @@ public class Juego extends InterfaceJuego {
 			}
 		}
 		for (Laser l : laser) {
-			if (l != null && vikinga.chocasteUnLaser(l)) {
+			if (l != null && vikinga.chocasteUnLaser(l) && !entorno.estaPresionada('w')) {
 				vikinga.respawn();
 				vidas -= 1;
 			}

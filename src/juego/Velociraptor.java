@@ -37,14 +37,7 @@ public class Velociraptor {
 		}
 		e.dibujarImagen(img, x, y, 0, 0.6);
 	}
-
-	public boolean distanciaPermitida(double xDeVikinga, double yDeVikinga) {
-		if (y + alto > yDeVikinga && y - alto < yDeVikinga && (x > xDeVikinga || x < xDeVikinga)) {
-			return false;
-		}
-		return true;
-	}
-
+	
 	public boolean chocasteConEntorno(Entorno e) {
 		return x < 0 + ancho / 2 || x > e.ancho() - ancho / 2;
 	}
@@ -92,11 +85,8 @@ public class Velociraptor {
 				&& y < rayo.getY() + rayo.getAlto();
 	}
 
-	public void respawn(Entorno e) {
-		if (x < 10 + ancho / 2 && y > e.alto() - alto) {
-			x = 200;
-			y = 40;
-		}
+	public boolean saleDelPrimerPiso(Entorno e) {
+		return x < 0 + ancho / 2 && y > e.alto() - alto;
 	}
 
 	public double getX() {
