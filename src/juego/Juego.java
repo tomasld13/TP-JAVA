@@ -152,6 +152,7 @@ public class Juego extends InterfaceJuego {
 
 		if (entorno.estaPresionada(entorno.TECLA_ESPACIO) && rayo == null) {
 			rayo = vikinga.disparar();
+			Herramientas.cargarSonido("sounds/rayo.wav").start();
 		}
 
 // Raptors        
@@ -177,9 +178,9 @@ public class Juego extends InterfaceJuego {
 					puntaje += 80;
 					contadorDeTicks = 250;
 				}
-				if (laser[e] == null) {
-					if (raptors[e] != null)
-						laser[e] = raptors[e].disparar();
+				if (laser[e] == null && raptors[e] != null) {
+					laser[e] = raptors[e].disparar();
+					Herramientas.cargarSonido("sounds/laser.wav").start();
 				}
 				if (laser[e] != null && laser[e].teExcedisteDelEntorno(entorno)) {
 					laser[e] = null;

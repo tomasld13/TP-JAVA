@@ -29,7 +29,7 @@ public class Rayo {
 	}
 
 	public void mover(Entorno e) {
-		if (direccion == true && x <= 800) {
+		if (direccion == true && x <= e.ancho()) {
 			x += 6;
 		}
 		if (direccion == false && x >= 0) {

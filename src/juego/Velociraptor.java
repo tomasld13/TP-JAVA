@@ -15,7 +15,6 @@ public class Velociraptor {
 
 	private double velocidad;
 	private boolean direccion;
-	private Laser laser;
 
 	private Image img;
 
@@ -52,12 +51,10 @@ public class Velociraptor {
 	}
 
 	public boolean estasParadoEnUnPiso(Piso[] pisos) {
-		if (pisos[0].chocasteParteSuperiorCon(x, y + alto / 2) || pisos[1].chocasteParteSuperiorCon(x, y + alto / 2)
-				|| pisos[2].chocasteParteSuperiorCon(x, y + alto / 2)
-				|| pisos[3].chocasteParteSuperiorCon(x, y + alto / 2)
-				|| pisos[4].chocasteParteSuperiorCon(x, y + alto / 2)
-				|| pisos[5].chocasteParteSuperiorCon(x, y + alto / 2)) {
-			return true;
+		for (Piso p : pisos) {
+			if (p.chocasteParteSuperiorCon(x, y + alto / 2)) {
+				return true;
+			}
 		}
 		return false;
 	}
@@ -75,9 +72,7 @@ public class Velociraptor {
 	}
 
 	public Laser disparar() {
-		laser = new Laser(x, y, direccion);
-		Herramientas.cargarSonido("sounds/laser.wav").start();
-		return laser;
+		return new Laser(x,y, direccion);
 	}
 
 	public boolean estasChocandoUnRayo(Rayo rayo) {

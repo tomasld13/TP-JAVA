@@ -82,24 +82,20 @@ public class Vikinga {
 		if (y - alto / 2 <= 0) {
 			return false;
 		}
-		if (pisos[0].chocasteParteInferiorCon(x, y - alto / 2) || pisos[1].chocasteParteInferiorCon(x, y - alto / 2)
-				|| pisos[2].chocasteParteInferiorCon(x, y - alto / 2)
-				|| pisos[3].chocasteParteInferiorCon(x, y - alto / 2)
-				|| pisos[4].chocasteParteInferiorCon(x, y - alto / 2)
-				|| pisos[5].chocasteParteInferiorCon(x, y - alto / 2)) {
-			estaSaltando = false;
-			return false;
+		for (Piso p : pisos) {
+			if (p.chocasteParteInferiorCon(x, y - alto / 2)) {
+				estaSaltando = false;
+				return false;
+			}
 		}
 		return true;
 	}
 
 	public boolean meSaliDelPiso(Piso[] pisos) {
-		if (pisos[0].chocasteParteSuperiorCon(x, y + alto / 2) || pisos[1].chocasteParteSuperiorCon(x, y + alto / 2)
-				|| pisos[2].chocasteParteSuperiorCon(x, y + alto / 2)
-				|| pisos[3].chocasteParteSuperiorCon(x, y + alto / 2)
-				|| pisos[4].chocasteParteSuperiorCon(x, y + alto / 2)
-				|| pisos[5].chocasteParteSuperiorCon(x, y + alto / 2)) {
-			return false;
+		for (Piso p : pisos) {
+			if (p.chocasteParteSuperiorCon(x, y + alto / 2)) {
+				return false;
+			}
 		}
 		return true;
 	}
@@ -131,7 +127,6 @@ public class Vikinga {
 	}
 
 	public Rayo disparar() {
-		Herramientas.cargarSonido("sounds/rayo.wav").start();
 		return new Rayo(x, y, direccion);
 	}
 
@@ -159,6 +154,6 @@ public class Vikinga {
 	public boolean agarrasteSalud(Salud salud) {
 		return x < salud.getX() + ancho / 2 && x > salud.getX() - ancho / 2 && y > salud.getY() - salud.getTamaño()
 				&& y < salud.getY() + salud.getTamaño();
-				
+
 	}
 }
