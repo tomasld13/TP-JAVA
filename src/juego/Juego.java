@@ -194,7 +194,6 @@ public class Juego extends InterfaceJuego {
 			if (laser[e] != null && vikinga.tuEscudoChocoConUnLaser(laser[e]) && entorno.estaPresionada('e')) {
 				laser[e] = null;
 			}
-
 		}
 
 		if (contadorDeTicks >= 350) {
@@ -215,10 +214,10 @@ public class Juego extends InterfaceJuego {
 			}
 		}
 		for (Laser l : laser) {
-			if (l != null && vikinga.chocasteUnLaser(l) && !entorno.estaPresionada('w')) {
+			if (l != null && vikinga.chocasteUnLaser(l) && !(entorno.estaPresionada('w') || entorno.estaPresionada('s'))) {
 				vikinga.respawn();
 				vidas -= 1;
-				//Herramientas.cargarSonido("sounds/danho.wav").start();
+				Herramientas.cargarSonido("sounds/danho.wav").start();
 			}
 
 		}
