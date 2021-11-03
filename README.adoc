@@ -3,113 +3,148 @@
 Blanco Gabriel <gabrielblanco2399@gmail.com>; Carro_Avila Emmanuel <CarroavilaEmm@gmail.com>; Ledesma Tomas <tomasld13@gmail.com>
 v1.0, {docdate}
 :toc:
-:toc-title:Contenidos
-:numbered:
-
+image::vikingaidle.gif[]
 == Introduccion 
-
   Ayuda a nuestra heroina Barbariana, a atravezar las turbulencias del tiempo, y escalar las torres mas peligrosas,
-   mientras peleas con dinosaurios mutantes y persigues al doctor Gero, que ha violado las leyes del tiempo y 
-   se ha apoderado de la Commodore 128kb.
+  mientras peleas con dinosaurios mutantes y persigues al doctor Gero, que ha violado las leyes del tiempo y 
+  se ha apoderado de la Commodore 128kb.
 
-=== Vikinga:
+=== Vikinga
   Barbarianna será nuestro personaje principal, ella realizará la mayor cantidad de tareas.
   Puede saltar, moverse, disparar rayos e ir subiendo de piso en piso hasta conseguir la Commodore
   Por eso hemos concentrado en vikinga una gran cantidad de atributos que nos permita desarrollar todas estas acciones.
 
- * Esta clase contará con el método Dibujar:
+ * Esta clase contará con el método Dibujar
     - Para dibujarse, la vikinga solo necesitará 2 parametros (x,y) que la posicionarán en la ubicación definida
     para el inicio del juego o el raspawn.
     - Según la actividad que esté realizando barbariana, se utilizará una imagen distinta de extension .GIF.
     Se implementaron imagenes para: saltar, correr, y estar quieta. 
- * Movimientos:
+ * Movimientos
     - los metodos moverHaciaDerecha y moverHaciaIzquierda, estan delimitados por el entorno, y guardan
     una variable llamada _direccion_, que será la que usaremos para ajustar tanto las imagenes de barbariana, como
     el sentido del rayo y el escudo. 
 
- * Cambio de piso:
+ * Cambio de piso
     - Segun donde esté parada, Barbarianna podrá subir de piso, o caer al piso anterior.
     Para permitir el movimiento entre dichos pisos, se le ha otorgado a barbarianna una banderaDeSalto y una BanderaDeCaida.
     Estas funciones nos devolveran true o false segun donde esté parada la vikinga. De activarse la banderaDeSalto,
     nuestro personaje tendrá permido saltar hasta el piso siguiente, y si se activa la banderaDeCaida la vikinga caerá
     hasta chocarse con el piso anterior.
     
-  * Vikinga creadora de objetos:
+  * Vikinga creadora de objetos
     - La clase disparar genera un nuevo Rayo, dando origen a otro objeto del juego con sus propios atributos y comportamientos.
     Se origina en la clase barbarianna, porque efectivamente surge de ella.
     El rayo utilizará como parámetros la posicion _x_ e _y_ de barbarianna y la _direccion_ en la que se está moviendo.
 
-  * Peligros para Barbarianna:
+  * Peligros para Barbarianna
     - Se han trabajado 2 choques peligrosos para nuestro personaje en los métodos _ChocasteConUnRaptor_ y _chocasteUnLaser_.
     ambos choques son capaces de acabar con una de las vidas de Barbarianna. Por eso en estas funciones incluimos en el 
     argumento al raptor y al laser respectivamente, para poder asi calcular la posición de ambos y detectar la colisión
     con nuestra vikinga.
 
-  * Ganar:
-    - _recuperasteCommodore_ es la función que permite a Barbarianna saber si ha llegado a la posicion de la Commodore 128kb
+  * Ganar
+     _recuperasteCommodore_ es la función que permite a Barbarianna saber si ha llegado a la posicion de la Commodore 128kb
      evaluando una colisión con el objeto. De esta manera habremos logrado el objetivo de nuestra heroina.
 
-  * Protegerse: Barbarianna tiene la posibilidad de utilizar su escudo para evitar los ataques letales de los velociraptors.
-    Para ello se creó una funcion _tuEscudoChocoConUnLaser_ que devuelve true en caso de haber colisionado con un laser
+  * Protegerse
+   Barbarianna tiene la posibilidad de utilizar su escudo para evitar los ataques letales de los velociraptors.
+    Para ello se creó una funcion _tuEscudoChocoConUnLaser_ que devuelve true en caso de que nuestra heroína haya logrado
+    bloquear un ataque raptoriano.
 
-=== Velociraptor:
+=== Velociraptor
  Nuestros recurrentes y veloces enemigos irán descendiendo ferózmente por los pisos del castillo. Una alteración
  en la linea temporal hizo que estas temibles criaturas arrojen rayos de sus bocas, y solo podrán ser detenidos por los 
  poderes de nuestra heroina.
   
-  * Movimiento:
+  * Movimiento
    Los raptors solo pueden moverse de izquierda a derecha, iran rebotando al llegar a los límites del entorno y caerán
   al llegar al hueco de cada piso. Otra vez, en esta clase, la variable _direccion_ determinará la imagen del raptor y la
   direccion en la que disparará los lasers.
 
-  * Ataque:
+  * Ataque
    Los raptors irán disparando rayos a medida que van descendiendo. estos rayos pueden quitar vidas a la vikinga, y se
   originarán en la posicion del velociraptor, respetando el direccionamiento. De esta manera el Laser pasa a ser otro objeto del
   juego.
 
-  * Muerte:
+  * Muerte
    Aunque estas criaturas sean temibles, un simple rayo de nuestra heronia puede destruirlos.
   En la funcion _chocasteUnRayo_ se evalúa la posicion del raptor y se verifica un posible impacto con el poder de Barbarianna.
   De darse la colisión, tanto el raptor como el rayo seran puestos en _null_, es decir, serán destruidos.
 
 
-=== Rayo:
+=== Rayo
  Este objeto es creado dentro de la clase Vikinga.
- Utiliza la posicion y direccionamiento de la
- vikinga para dibujarse.
+ Utiliza la posicion y direccionamiento de Barbarianna para dibujarse.
  
-  * Utilidad: A esta clase se le evaluará la posición constantemente para verificar si ha colisiónado con otro objeto.
-  por ese motivo no tiene otro comportamiento mas que dibujarse y moverse.
+  * Utilidad 
+   A esta clase se le evaluará la posición constantemente para verificar si ha colisiónado con otro objeto.
+   por ese motivo no tiene otro comportamiento mas que dibujarse y moverse, hasta chocar y desaparecer.
 
-=== Laser:
+=== Laser
  Son una amenaza constante.
  Pero a diferencia del velociraptor, pueden ser bloqueados por el escudo mágico de Barbarianna.
  Este objeto se origina dentro de Velociraptor, y desaparece cuando llega al límite del entorno o cuando el escudo los destruye.
 
-=== Pisos:
+=== Pisos
  Esta clase, si bien se pensó como un objeto estático, durante el desarrollo se ha convirtido en una clase de referencia.
  Con el correr de los días se otorgó al piso la funcion de evaluar el contacto con otro objeto. Esto permitió obtener las posiciones 
  de caida de los raptors y la vikinga, como asi tambien la posición de ascenso, para sortear los distintos niveles.
 
-=== commodore:
+=== commodore
  El objeto mas preciado.
- Esta clase es estática, no hace nada. Solo se posiciona en el extremo superior
- izquierdo de la pantalla, y finalizará el juego si Barbarianna logra alcanzarla. 
+ Esta clase es estática, no hace nada. Solo se posiciona en el extremo superior izquierdo de la pantalla, y finalizará el juego si 
+ Barbarianna logra alcanzarla. 
 
-=== Juego:
-Es la clase donde todo el juego se desarrolla.
- * Entorno: 
+=== Juego
+Es la clase donde todo fluye.
+ * Entorno y tick: Es el universo en donde se desarrolla el juego. Aporta todas las funcionalidades necesarias para el entorno gráfico del juego,
+   incluso el texto que se muestra por pantalla.
+   .Marcadores
+   ​[source, java]
+   ​----
+   ​entorno.cambiarFont("sans", 20, Color.white);
+   entorno.escribirTexto("Vidas: " + vidas + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
+   ​--- 
+   Si entorno es el espacio donde se desarrolla el juego, la función tick es la que representará el correr del tiempo
+ 
+ * Casos especiales
+   Finalizará el juego en caso de que las vidas de la vikinga disminuyan a 0. O cuando Barbarianna
+   alcance la Commodore 128kb y destruya al Dr Gero.
 
- * Casos especiales:
-
- * Los rayos
-
- * Los raptors
-
- * Lasers
-
-== Dificultades: 
-
+ * Asignación de teclas
+    - saltar: "w" o "u" 
+    - lanzar rayo: "space"
+    - mover izquierda: "a"
+    - mover derecha: "d"
+    - bloqueo con escudo: "e"
+ 
+ * Eventos
+   Durante el juego se irán dando diferentes situaciones que se resolveran en esta clase:
+   - Puede que la vikinga choque con un raptor. En tal caso la vikinga morirá y reaparecerá en el punto de partida.
+   las vidas de vikinga se disminuirán en 1
+   - Lo mismo ocurrirá si un laser logra impactar en la heroína.
+   - Puede un rayo chocar un raptor. Dicho caso significaría la muerte del raptor y la desaparición del rayo.
+   los puntos del jugador se incrementan en 80
+   - Puede un laser impactar el escudo de Barbarianna y desintegrarse.
+   Se han utilizado diferentes métodos para evaluar estos casos. Entre ellos el for each nos ha resultado el ciclo 
+   mas práctico y sencillo.
+   .For each
+   ​[source, java]
+   ​----
+   laser
+		for (Laser l : laser) {
+			if (l != null) {
+				l.dibujar(entorno);
+				l.mover(entorno);
+			}
+		}
+		for (Laser l : laser) {
+			if (l != null && vikinga.chocasteUnLaser(l)) {
+				vikinga.respawn();
+				vidas -= 1;
+				System.out.println("me choco");
+			}
+== Dificultades 
 * Imagen y sonido:
    - Todas las imagenes se editaron desde la pagina "http:// www.gifgifs.com", esto permitió ajustar el 
    sentido de las imagenes, derecha o izquierda, segun la acción que realizan nuestros personajes.
@@ -121,46 +156,43 @@ Es la clase donde todo el juego se desarrolla.
    - Implementación: Se utilizaron las ventajas de la librería Entorno y sus herramientas. Un claro ejemplo de la implementación de imagenes
    puede observarse en las siguientes sentencias, donde las variables fondo, gameOver y vikingadead se cargan con archivos
    de extención tanto png como gif.
+   . Utilidades de entorno
    ​[source, java]
-​----
-​		fondo = Herramientas.cargarImagen("fondo.png");
+    ​----
+​		 fondo = Herramientas.cargarImagen("fondo.png");
 		gameOver = Herramientas.cargarImagen("endgame.png");
-		vikingadead = Herramientas.cargarImagen("vikingadead.gif");
-​----
+		vikingaLose = Herramientas.cargarImagen("vikingadead.gif");
+​    ----
    En cuanto al sonido:
    ​[source, java]
-​----
+​    ----
   Herramientas.cargarSonido("sounds/risamalvada.wav").start();
-----  
+    ----  
+ * lógica de salto
+ Se utilizó una funcion llamada puedoSaltar, que verifica la existencia
+ de un piso sobre la vikinga. En caso de no existir, esta bandera se pondrá en true
+ permitiendo que surta efecto la presión de las teclas w o u, y la vikinga se eleve al siguiente piso.
 
-* lógica de salto: Se utilizó una banderaDeSalto, que verifica la existencia
-de un piso sobre la vikinga. En caso de no existir, esta bandera se pondrá en true
-permitiendo que surta efecto la presión de las teclas w o u, y la vikinga se eleve al siguiente piso.
-
-* Pisos: Originalmente se diseñaron de forma estática en la clase juego.
-posteriormente se optó por una clase que permitiera generar un array.
-Finalmente, Piso acabó teniendo 2 funciones booleanas fundamentales, que nos permitieron construir tanto
-el descenso de los raptors como el salto de piso de la vikinga.
-
+ * Pisos 
+ Originalmente se diseñaron de forma estática en la clase juego.
+ posteriormente se optó por una clase que permitiera generar un array.
+ Finalmente, Piso acabó teniendo 2 funciones booleanas fundamentales, que nos permitieron construir tanto
+ el descenso de los raptors como el salto de piso de la vikinga.
+   .salto entre pisos  
    ​[source, java]
-​----
-  public boolean banderaDeSalto(Piso[] pisos) {
+​​  ----
+  	public boolean puedoSaltar(Piso[] pisos) {
 		if (y - alto / 2 <= 0) {
 			return false;
 		}
-		if (pisos[0].tocaPiso(x, y - alto / 2) || pisos[1].tocaPiso(x, y - alto / 2)
-				|| pisos[2].tocaPiso(x, y - alto / 2) || pisos[3].tocaPiso(x, y - alto / 2)
-				|| pisos[4].tocaPiso(x, y - alto / 2) || pisos[5].tocaPiso(x, y - alto / 2)) {
+		if (pisos[0].chocasteParteInferiorCon(x, y - alto / 2) || pisos[1].chocasteParteInferiorCon(x, y - alto / 2)
+				|| pisos[2].chocasteParteInferiorCon(x, y - alto / 2) || pisos[3].chocasteParteInferiorCon(x, y - alto / 2)
+				|| pisos[4].chocasteParteInferiorCon(x, y - alto / 2) || pisos[5].chocasteParteInferiorCon(x, y - alto / 2)) {
 			estaSaltando = false;
 			return false;
 		}
 		return true;
 	}
-
 ----  
-
-* Arreglos: 
-
-* Tecnicismos: escudito
-
-== Conclusiones:
+== Conclusiones: 
+Nos parece pertinente utilizar este apartado para exponer nuestras experiencias desde lo grupal.
