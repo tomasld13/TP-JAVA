@@ -171,6 +171,7 @@ public class Juego extends InterfaceJuego {
 				if (vikinga.chocasteConUnRaptor(raptors[e])) {
 					vikinga.respawn();
 					vidas -= 1;
+					Herramientas.cargarSonido("sounds/danho.wav").start();
 				}
 				if (rayo != null && raptors[e].estasChocandoUnRayo(rayo)) {
 					rayo = null;
@@ -180,7 +181,6 @@ public class Juego extends InterfaceJuego {
 				}
 				if (laser[e] == null && raptors[e] != null) {
 					laser[e] = raptors[e].disparar();
-					Herramientas.cargarSonido("sounds/laser.wav").start();
 				}
 				if (laser[e] != null && laser[e].teExcedisteDelEntorno(entorno)) {
 					laser[e] = null;
@@ -218,6 +218,7 @@ public class Juego extends InterfaceJuego {
 			if (l != null && vikinga.chocasteUnLaser(l) && !entorno.estaPresionada('w')) {
 				vikinga.respawn();
 				vidas -= 1;
+				//Herramientas.cargarSonido("sounds/danho.wav").start();
 			}
 
 		}
