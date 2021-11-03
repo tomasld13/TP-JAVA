@@ -168,20 +168,20 @@ for (Laser l : laser){
    - Implementación: Se utilizaron las ventajas de la librería Entorno y sus herramientas. Un claro ejemplo de la implementación de imagenes
    puede observarse en las siguientes sentencias, donde las variables fondo, gameOver y vikingadead se cargan con archivos
    de extención tanto png como gif.
-   
+
 .Utilidades de entorno
-​[source, java]
-​----
-​fondo = Herramientas.cargarImagen("fondo.png");
+[source, java]
+----
+fondo = Herramientas.cargarImagen("fondo.png");
 gameOver = Herramientas.cargarImagen("endgame.png");
 vikingaLose = Herramientas.cargarImagen("vikingadead.gif");
-​----
+----
 
 .En cuanto al sonido:
-​[source, java]
+[source, java]
 ----
 Herramientas.cargarSonido("sounds/risamalvada.wav").start();
-----  
+----
 
  * lógica de salto:
  Se utilizó una funcion llamada puedoSaltar, que verifica la existencia
@@ -193,23 +193,23 @@ Herramientas.cargarSonido("sounds/risamalvada.wav").start();
  posteriormente se optó por una clase que permitiera generar un array.
  Finalmente, Piso acabó teniendo 2 funciones booleanas fundamentales, que nos permitieron construir tanto
  el descenso de los raptors como el salto de piso de la vikinga.
-   
-.salto entre pisos  
-​[source, java]
+
+.salto entre pisos
+[source, java]
 ----
 public boolean puedoSaltar(Piso[] pisos) {
-if (y - alto / 2 <= 0) {
-return false;
+  if (y - alto / 2 <= 0){
+    return false;
+  }
+  if (pisos[0].chocasteParteInferiorCon(x, y - alto / 2) || pisos[1].chocasteParteInferiorCon(x, y - alto / 2)
+  || pisos[2].chocasteParteInferiorCon(x, y - alto / 2) || pisos[3].chocasteParteInferiorCon(x, y - alto / 2)
+  ||pisos[4].chocasteParteInferiorCon(x, y - alto / 2) || pisos[5].chocasteParteInferiorCon(x, y - alto / 2)){
+    estaSaltando = false;
+    return false;
+  }
+  return true
 }
-if (pisos[0].chocasteParteInferiorCon(x, y - alto / 2) || pisos[1].chocasteParteInferiorCon(x, y - alto / 2)
- || pisos[2].chocasteParteInferiorCon(x, y - alto / 2) || pisos[3].chocasteParteInferiorCon(x, y - alto / 2)
- || pisos[4].chocasteParteInferiorCon(x, y - alto / 2) || pisos[5].chocasteParteInferiorCon(x, y - alto / 2)) {
- estaSaltando = false;
-return false;
-}
-	return true;
-}
-----  
+----
 
  * Invariantes de representacion:
   Ha sido necesaria la verificación constante, mediante condicionales, de la existencia de cada uno de los objetos
