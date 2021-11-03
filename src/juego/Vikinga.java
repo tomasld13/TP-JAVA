@@ -5,22 +5,19 @@ import entorno.Entorno;
 import entorno.Herramientas;
 
 public class Vikinga {
-
 	private double x;
 	private double y;
 
-	private int alto; // tamaño, size
-	private int ancho; // 0.5 * size
+	private int alto;
+	private int ancho;
 
 	private int velocidad;
 
 	private boolean direccion; // true=derecha false=izquierda
-//	private Rayo rayo;
-	private boolean estaSaltando;
 	private boolean estaQuieta;
 
-	private Image img; // img
-	private Image imagenDelEscudo; // imagenDelEscudo
+	private Image img;
+	private Image imagenDelEscudo;
 
 	public Vikinga(double x, double y) {
 		this.alto = 65;
@@ -29,26 +26,17 @@ public class Vikinga {
 		this.y = y;
 		this.velocidad = 5;
 		this.img = Herramientas.cargarImagen("vikingaidle.gif");
-		this.estaSaltando = false;
 		this.estaQuieta = true;
 		this.direccion = true;
 		this.imagenDelEscudo = Herramientas.cargarImagen("escudo.png");
 	}
 
 	public void dibujar(Entorno e) {
-		e.dibujarImagen(img, x, y, 0, 0.20);
 		if (!estaQuieta) {
 			if (direccion) {
 				img = Herramientas.cargarImagen("vikingarun.gif");
-
 			} else {
 				img = Herramientas.cargarImagen("vikingaizq.gif");
-
-			}
-			if (estaSaltando && direccion) {
-				img = Herramientas.cargarImagen("vikingajump.gif");
-			} else if (estaSaltando && !direccion) {
-				img = Herramientas.cargarImagen("vikingajumpizq.gif");
 			}
 		} else {
 			if (direccion) {
@@ -57,6 +45,7 @@ public class Vikinga {
 				img = Herramientas.cargarImagen("vikingaidleizq.gif");
 			}
 		}
+		e.dibujarImagen(img, x, y, 0, 0.20);
 	}
 
 	public void moverHaciaIzquierda(Entorno e) {
@@ -75,7 +64,6 @@ public class Vikinga {
 
 	public void saltar(Entorno e) {
 		y -= 9;
-		estaSaltando = true;
 	}
 
 	public boolean puedoSaltar(Piso[] pisos) {
@@ -84,7 +72,6 @@ public class Vikinga {
 		}
 		for (Piso p : pisos) {
 			if (p.chocasteParteInferiorCon(x, y - alto / 2)) {
-				estaSaltando = false;
 				return false;
 			}
 		}
