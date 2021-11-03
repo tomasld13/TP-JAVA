@@ -100,13 +100,15 @@ Es la clase donde todo fluye.
  * Entorno y tick:
    Es el universo en donde se desarrolla el juego. Aporta todas las funcionalidades necesarias para el entorno gráfico ,
    incluso el texto que se muestra por pantalla.
-   .Marcadores
-   ​[source, java]
-   ​----
-   ​entorno.cambiarFont("sans", 20, Color.white);
-   entorno.escribirTexto("Vidas: " + vidas + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
-   ​--- 
-   Si entorno es el espacio donde se desarrolla el juego, la función tick es la que representará el correr del tiempo
+  
+  .Marcadores
+  ​[source, java]
+  ​----
+  ​entorno.cambiarFont("sans", 20, Color.white);
+  entorno.escribirTexto("Vidas: " + vidas + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
+  ​--- 
+  
+  Si entorno es el espacio donde se desarrolla el juego, la función tick es la que representará el correr del tiempo
  
  * Casos especiales:
    Finalizará el juego en caso de que las vidas de la vikinga disminuyan a 0. O cuando Barbarianna
@@ -129,6 +131,7 @@ Es la clase donde todo fluye.
    - Puede un laser impactar el escudo de Barbarianna y desintegrarse.
    Se han utilizado diferentes métodos para evaluar estos casos. Entre ellos el for each nos ha resultado el ciclo 
    mas práctico y sencillo.
+   
    .For each
    ​[source, java]
    ​----
@@ -144,6 +147,8 @@ Es la clase donde todo fluye.
 				vikinga.respawn();
 				vidas -= 1;
 			}
+   ----
+
 == Dificultades 
  * Imagen y sonido:
    - Todas las imagenes se editaron desde la pagina "http:// www.gifgifs.com", esto permitió ajustar el 
@@ -156,6 +161,7 @@ Es la clase donde todo fluye.
    - Implementación: Se utilizaron las ventajas de la librería Entorno y sus herramientas. Un claro ejemplo de la implementación de imagenes
    puede observarse en las siguientes sentencias, donde las variables fondo, gameOver y vikingadead se cargan con archivos
    de extención tanto png como gif.
+   
    . Utilidades de entorno
    ​[source, java]
     ​----
@@ -163,11 +169,13 @@ Es la clase donde todo fluye.
 		gameOver = Herramientas.cargarImagen("endgame.png");
 		vikingaLose = Herramientas.cargarImagen("vikingadead.gif");
 ​    ----
-   En cuanto al sonido:
+
+   .En cuanto al sonido:
    ​[source, java]
 ​    ----
-  Herramientas.cargarSonido("sounds/risamalvada.wav").start();
+   Herramientas.cargarSonido("sounds/risamalvada.wav").start();
     ----  
+
  * lógica de salto:
  Se utilizó una funcion llamada puedoSaltar, que verifica la existencia
  de un piso sobre la vikinga. En caso de no existir, esta bandera se pondrá en true
