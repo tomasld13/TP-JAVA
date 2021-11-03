@@ -27,6 +27,15 @@ public class Piso {
 		e.dibujarImagen(img, x, y, 0);
 	}
 
+	public boolean chocasteParteSuperiorCon(double xDeUnPersonaje, double yDeUnPersonaje) {
+		return yDeUnPersonaje > y - alto / 2 && yDeUnPersonaje < y && xDeUnPersonaje < x + ancho / 2
+				&& xDeUnPersonaje > x - ancho / 2;
+	}
+
+	public boolean chocasteParteInferiorCon(double XdelObjeto, double YdelObjeto) {
+		return YdelObjeto < y + alto / 2 && YdelObjeto > y && XdelObjeto < x + ancho / 2 && XdelObjeto > x - ancho / 2;
+	}
+	
 	public int getX() {
 		return x;
 	}
@@ -42,18 +51,4 @@ public class Piso {
 	public int getAlto() {
 		return alto;
 	}
-
-	public boolean chocasteParteSuperiorCon(double xDeUnPersonaje, double yDeUnPersonaje) {
-		return yDeUnPersonaje > y - alto / 2 && yDeUnPersonaje < y && xDeUnPersonaje < x + ancho / 2 && xDeUnPersonaje > x - ancho / 2;
-	}
-
-	// FIXME!!!
-	public boolean tocaPiso(double XdelObjeto, double YdelObjeto) {
-		if (YdelObjeto < y + alto / 2 && YdelObjeto > y && XdelObjeto < x + ancho / 2 && XdelObjeto > x - ancho / 2) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
 }

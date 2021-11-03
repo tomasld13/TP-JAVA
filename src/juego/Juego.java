@@ -96,11 +96,11 @@ public class Juego extends InterfaceJuego {
 		commodore.dibujar(entorno);
 // vikinga
 		vikinga.dibujar(entorno);
-		if (entorno.estaPresionada('w') && vikinga.banderaDeSalto(pisos)) {
+		if ((entorno.estaPresionada('w') || entorno.estaPresionada('u')) && vikinga.puedoSaltar(pisos) ) {
 			vikinga.saltar(entorno);
 		}
 
-		if (vikinga.banderaDeCaida(pisos)) {
+		if (vikinga.meSaliDelPiso(pisos)) {
 			vikinga.caer(entorno);
 		}
 
@@ -143,11 +143,11 @@ public class Juego extends InterfaceJuego {
 				if (raptors[e].chocasteConEntorno(entorno)) {
 					raptors[e].cambiarDeDireccion();
 				}
-//				if (vikinga.chocasteConUnRaptor(raptors[e])) {
-//					vikinga.respawn();
-//					vidas -= 1;
-//				}
-				if (rayo != null && raptors[e].chocasteUnRayo(rayo)) {
+				if (vikinga.chocasteConUnRaptor(raptors[e])) {
+					vikinga.respawn();
+					vidas -= 1;
+				}
+				if (rayo != null && raptors[e].estasChocandoUnRayo(rayo)) {
 					rayo = null;
 					raptors[e] = null;
 					puntaje += 80;

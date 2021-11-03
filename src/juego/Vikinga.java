@@ -79,13 +79,13 @@ public class Vikinga {
 		estaSaltando = true;
 	}
 
-	public boolean banderaDeSalto(Piso[] pisos) {
+	public boolean puedoSaltar(Piso[] pisos) {
 		if (y - alto / 2 <= 0) {
 			return false;
 		}
-		if (pisos[0].tocaPiso(x, y - alto / 2) || pisos[1].tocaPiso(x, y - alto / 2)
-				|| pisos[2].tocaPiso(x, y - alto / 2) || pisos[3].tocaPiso(x, y - alto / 2)
-				|| pisos[4].tocaPiso(x, y - alto / 2) || pisos[5].tocaPiso(x, y - alto / 2)) {
+		if (pisos[0].chocasteParteInferiorCon(x, y - alto / 2) || pisos[1].chocasteParteInferiorCon(x, y - alto / 2)
+				|| pisos[2].chocasteParteInferiorCon(x, y - alto / 2) || pisos[3].chocasteParteInferiorCon(x, y - alto / 2)
+				|| pisos[4].chocasteParteInferiorCon(x, y - alto / 2) || pisos[5].chocasteParteInferiorCon(x, y - alto / 2)) {
 			estaSaltando = false;
 			return false;
 		}
@@ -94,7 +94,7 @@ public class Vikinga {
 
 	// !estasParadeEnUnPiso()
 	// CHECKME
-	public boolean banderaDeCaida(Piso[] pisos) {
+	public boolean meSaliDelPiso(Piso[] pisos) {
 		if (pisos[0].chocasteParteSuperiorCon(x, y + alto / 2) || pisos[1].chocasteParteSuperiorCon(x, y + alto / 2)
 				|| pisos[2].chocasteParteSuperiorCon(x, y + alto / 2)
 				|| pisos[3].chocasteParteSuperiorCon(x, y + alto / 2)

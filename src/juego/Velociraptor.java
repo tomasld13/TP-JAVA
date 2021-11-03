@@ -92,7 +92,7 @@ public class Velociraptor {
 	// hasColour()
 	// isChocandoUnRayo()
 	// estásChocandoUnRayo()
-	public boolean chocasteUnRayo(Rayo rayo) {
+	public boolean estasChocandoUnRayo(Rayo rayo) {
 		return x < rayo.getX() + ancho / 2 && x > rayo.getX() - ancho / 2 && y > rayo.getY() - rayo.getAlto()
 				&& y < rayo.getY() + rayo.getAlto();
 	}
