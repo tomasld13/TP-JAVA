@@ -16,19 +16,21 @@ public class Juego extends InterfaceJuego {
 
 	private Image gameOver;
 	private Image fondo;
-	private Image vikingadead;
-	private Image drGero;
+	private Image vikingaLose;
+	private Image vikingaVictory;
 
 	private Rayo rayo;
 	private Laser[] laser;
 	private Commodore commodore;
 	private int contadorDeTicks;
 	private int contadorParaMusica;
+	private int contadorMusicaPrincipal;
 	private int vidas;
 	private int puntaje;
 
 	public Juego() {
 		contadorParaMusica = 0;
+		contadorMusicaPrincipal = 0;
 		contadorDeTicks = 500;
 		vidas = 3;
 		this.entorno = new Entorno(this, "Blanco_CarroAvila_Ledesma_Equipo3", 800, 600);
@@ -48,8 +50,8 @@ public class Juego extends InterfaceJuego {
 
 		fondo = Herramientas.cargarImagen("fondo.png");
 		gameOver = Herramientas.cargarImagen("endgame.png");
-		vikingadead = Herramientas.cargarImagen("vikingadead.gif");
-		drGero = Herramientas.cargarImagen("vikingarun.gif");
+		vikingaLose = Herramientas.cargarImagen("vikingadead.gif");
+		vikingaVictory = Herramientas.cargarImagen("vikingarun.gif");
 
 //      inicia el juego
 		this.entorno.iniciar();
@@ -63,7 +65,7 @@ public class Juego extends InterfaceJuego {
 			entorno.cambiarFont("sans", 40, Color.white);
 			entorno.escribirTexto("Perdiste! ", 200, 350);
 			entorno.escribirTexto("tu puntuacion fue: " + " " + puntaje, 200, 380);
-			entorno.dibujarImagen(vikingadead, entorno.ancho() / 2, 400, 0, 0.8);
+			entorno.dibujarImagen(vikingaLose, entorno.ancho() / 2, 400, 0, 0.8);
 			if (contadorParaMusica == 0) {
 				Herramientas.cargarSonido("sounds/risamalvada.wav").start();
 				contadorParaMusica += 1;
@@ -77,7 +79,7 @@ public class Juego extends InterfaceJuego {
 			entorno.escribirTexto("¡Ganaste!", 200, 320);
 			entorno.escribirTexto("Lograste detener al malvado Dr. Gero", 50, 380);
 			entorno.escribirTexto("tu puntuacion fue: " + " " + puntaje, 200, 440);
-			entorno.dibujarImagen(drGero, 100, 500, 0, 0.4);
+			entorno.dibujarImagen(vikingaVictory, 100, 500, 0, 0.4);
 			if (contadorParaMusica == 0) {
 				Herramientas.cargarSonido("sounds/winmusic.wav").start();
 				contadorParaMusica += 1;
@@ -86,6 +88,10 @@ public class Juego extends InterfaceJuego {
 		}
 
 		entorno.dibujarImagen(fondo, entorno.ancho() / 2, entorno.alto() / 2, 0);
+		if (contadorMusicaPrincipal == 0) {
+			Herramientas.cargarSonido("sounds/musicgame.wav").start();
+			contadorMusicaPrincipal += 1;
+		}
 
 		for (Piso p : pisos) {
 			p.dibujar(entorno);
@@ -96,7 +102,7 @@ public class Juego extends InterfaceJuego {
 		commodore.dibujar(entorno);
 // vikinga
 		vikinga.dibujar(entorno);
-		if ((entorno.estaPresionada('w') || entorno.estaPresionada('u')) && vikinga.puedoSaltar(pisos) ) {
+		if ((entorno.estaPresionada('w') || entorno.estaPresionada('u')) && vikinga.puedoSaltar(pisos)) {
 			vikinga.saltar(entorno);
 		}
 
@@ -166,7 +172,6 @@ public class Juego extends InterfaceJuego {
 
 			if (laser[e] != null && vikinga.tuEscudoChocoConUnLaser(laser[e]) && entorno.estaPresionada('e')) {
 				laser[e] = null;
-				System.out.println("Peron vive");
 			}
 		}
 
@@ -191,7 +196,6 @@ public class Juego extends InterfaceJuego {
 			if (l != null && vikinga.chocasteUnLaser(l)) {
 				vikinga.respawn();
 				vidas -= 1;
-				System.out.println("me choco");
 			}
 
 		}

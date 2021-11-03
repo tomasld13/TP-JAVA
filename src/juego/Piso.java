@@ -35,7 +35,7 @@ public class Piso {
 	public boolean chocasteParteInferiorCon(double XdelObjeto, double YdelObjeto) {
 		return YdelObjeto < y + alto / 2 && YdelObjeto > y && XdelObjeto < x + ancho / 2 && XdelObjeto > x - ancho / 2;
 	}
-	
+
 	public int getX() {
 		return x;
 	}

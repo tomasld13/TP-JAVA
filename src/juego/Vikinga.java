@@ -84,16 +84,16 @@ public class Vikinga {
 			return false;
 		}
 		if (pisos[0].chocasteParteInferiorCon(x, y - alto / 2) || pisos[1].chocasteParteInferiorCon(x, y - alto / 2)
-				|| pisos[2].chocasteParteInferiorCon(x, y - alto / 2) || pisos[3].chocasteParteInferiorCon(x, y - alto / 2)
-				|| pisos[4].chocasteParteInferiorCon(x, y - alto / 2) || pisos[5].chocasteParteInferiorCon(x, y - alto / 2)) {
+				|| pisos[2].chocasteParteInferiorCon(x, y - alto / 2)
+				|| pisos[3].chocasteParteInferiorCon(x, y - alto / 2)
+				|| pisos[4].chocasteParteInferiorCon(x, y - alto / 2)
+				|| pisos[5].chocasteParteInferiorCon(x, y - alto / 2)) {
 			estaSaltando = false;
 			return false;
 		}
 		return true;
 	}
 
-	// !estasParadeEnUnPiso()
-	// CHECKME
 	public boolean meSaliDelPiso(Piso[] pisos) {
 		if (pisos[0].chocasteParteSuperiorCon(x, y + alto / 2) || pisos[1].chocasteParteSuperiorCon(x, y + alto / 2)
 				|| pisos[2].chocasteParteSuperiorCon(x, y + alto / 2)
@@ -112,10 +112,8 @@ public class Vikinga {
 	public void escudo(Entorno e) {
 		if (direccion) {
 			e.dibujarImagen(imagenDelEscudo, x + 60, y, 0, 0.07);
-			// e.dibujarRectangulo(x + 40, y, 5, alto, 0, Color.cyan);
 		} else {
 			e.dibujarImagen(imagenDelEscudo, x - 60, y, 0, 0.07);
-			// e.dibujarRectangulo(x - 40, y, 5, alto, 0, Color.cyan);
 		}
 
 	}

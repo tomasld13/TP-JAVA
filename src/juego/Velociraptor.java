@@ -58,7 +58,6 @@ public class Velociraptor {
 
 	}
 
-	// CHECK ME
 	public boolean estasParadoEnUnPiso(Piso[] pisos) {
 		if (pisos[0].chocasteParteSuperiorCon(x, y + alto / 2) || pisos[1].chocasteParteSuperiorCon(x, y + alto / 2)
 				|| pisos[2].chocasteParteSuperiorCon(x, y + alto / 2)
@@ -88,10 +87,6 @@ public class Velociraptor {
 		return laser;
 	}
 
-	// isEmpty()
-	// hasColour()
-	// isChocandoUnRayo()
-	// estásChocandoUnRayo()
 	public boolean estasChocandoUnRayo(Rayo rayo) {
 		return x < rayo.getX() + ancho / 2 && x > rayo.getX() - ancho / 2 && y > rayo.getY() - rayo.getAlto()
 				&& y < rayo.getY() + rayo.getAlto();
