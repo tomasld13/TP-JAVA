@@ -162,7 +162,6 @@ public class Juego extends InterfaceJuego {
 				if (laser[e] == null) {
 					if (raptors[e] != null && raptors[e].distanciaPermitida(vikinga.getX(), vikinga.getY()))
 						laser[e] = raptors[e].disparar();
-
 				}
 				if (laser[e] != null && laser[e].teExcedisteDelEntorno(entorno)) {
 					laser[e] = null;
