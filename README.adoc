@@ -97,6 +97,7 @@ image::vikingaidle.gif[]
 
 === Juego
 Es la clase donde todo fluye.
+
  * Entorno y tick:
    Es el universo en donde se desarrolla el juego. Aporta todas las funcionalidades necesarias para el entorno gráfico ,
    incluso el texto que se muestra por pantalla.
@@ -108,7 +109,7 @@ Es la clase donde todo fluye.
   entorno.escribirTexto("Vidas: " + vidas + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
   ​--- 
   
-  Si entorno es el espacio donde se desarrolla el juego, la función tick es la que representará el correr del tiempo
+Si entorno es el espacio donde se desarrolla el juego, la función tick es la que representará el correr del tiempo
  
  * Casos especiales:
    Finalizará el juego en caso de que las vidas de la vikinga disminuyan a 0. O cuando Barbarianna
@@ -162,7 +163,7 @@ Es la clase donde todo fluye.
    puede observarse en las siguientes sentencias, donde las variables fondo, gameOver y vikingadead se cargan con archivos
    de extención tanto png como gif.
    
-   . Utilidades de entorno
+   .Utilidades de entorno
    ​[source, java]
     ​----
 ​		 fondo = Herramientas.cargarImagen("fondo.png");
@@ -205,14 +206,15 @@ Es la clase donde todo fluye.
    ----  
 
  *Invariantes de representacion:
-   Ha sido necesaria la verificación constante, mediante condicionales, de la existencia de cada uno de los objetos
-   que iban a interactuar en el estado natural de juego. Muchos de los errores que arrojaba eclipse de debieron a estas
-   fallas. 
+  Ha sido necesaria la verificación constante, mediante condicionales, de la existencia de cada uno de los objetos
+  que iban a interactuar en el estado natural de juego. Muchos de los errores que arrojaba eclipse de debieron a estas
+  fallas. 
    " Cannot invoke "juego.Velociraptor.dibujar(entorno.Entorno)" because "this.raptors[e]" is null
    at juego.Juego.tick " 
 
 == Conclusiones
-Nos parece pertinente utilizar este apartado para exponer nuestras experiencias desde lo grupal. 
+Nos parece pertinente utilizar este apartado para exponer nuestras experiencias desde lo grupal.
+
   * El trabajo con git, nos ha permitido un fácil intercambio de los archivos. Luego de un difícil acercamiento, pudimos
   comprobar la eficiencia y seguridad que otorga a los proyectos.
   * El tp permitió poner en práctica y en discusión todos los conocimientos adquiridos durante la cursada, brindandonos la
