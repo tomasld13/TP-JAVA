@@ -3,7 +3,7 @@
 Blanco Gabriel <gabrielblanco2399@gmail.com>; Carro_Avila Emmanuel <CarroavilaEmm@gmail.com>; Ledesma Tomas <tomasld13@gmail.com>
 v1.0, {docdate}
 :toc:
-image::vikingaidle.gif[]
+image::src\vikingaportada.png[]
 == Introduccion 
   Ayuda a nuestra heroina Barbariana, a atravezar las turbulencias del tiempo, y escalar las torres mas peligrosas,
   mientras peleas con dinosaurios mutantes y persigues al doctor Gero, que ha violado las leyes del tiempo y 
@@ -84,6 +84,10 @@ image::vikingaidle.gif[]
  Son una amenaza constante.
  Pero a diferencia del velociraptor, pueden ser bloqueados por el escudo mágico de Barbarianna.
  Este objeto se origina dentro de Velociraptor, y desaparece cuando llega al límite del entorno o cuando el escudo los destruye.
+
+=== Salud
+ Esta clase brindará chances extras de Ganar.
+ Se mostrará como un corazón en pantalla que aumentará la vida de Barbarianna en 1.
 
 === Pisos
  Esta clase, si bien se pensó como un objeto estático, durante el desarrollo se ha convirtido en una clase de referencia.
@@ -209,6 +213,7 @@ Si entorno es el espacio donde se desarrolla el juego, la función tick es la qu
   Ha sido necesaria la verificación constante, mediante condicionales, de la existencia de cada uno de los objetos
   que iban a interactuar en el estado natural de juego. Muchos de los errores que arrojaba eclipse de debieron a estas
   fallas. 
+  
    " Cannot invoke "juego.Velociraptor.dibujar(entorno.Entorno)" because "this.raptors[e]" is null
    at juego.Juego.tick " 
 
