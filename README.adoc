@@ -3,7 +3,7 @@
 Blanco Gabriel <gabrielblanco2399@gmail.com>; Carro_Avila Emmanuel <CarroavilaEmm@gmail.com>; Ledesma Tomas <tomasld13@gmail.com>
 v1.0, {docdate}
 :toc:
-image::src\vikingaportada.png[]
+image::vikingaportada.png[]
 == Introduccion 
   Ayuda a nuestra heroina Barbariana, a atravezar las turbulencias del tiempo, y escalar las torres mas peligrosas,
   mientras peleas con dinosaurios mutantes y persigues al doctor Gero, que ha violado las leyes del tiempo y 
