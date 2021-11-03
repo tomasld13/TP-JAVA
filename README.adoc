@@ -106,12 +106,12 @@ image::src\vikingaportada.png[]
    Es el universo en donde se desarrolla el juego. Aporta todas las funcionalidades necesarias para el entorno gráfico ,
    incluso el texto que se muestra por pantalla.
  
-.Marcadores
-​[source, java]
-​----
-​entorno.cambiarFont("sans", 20, Color.white);
-entorno.escribirTexto("Vidas: " + vidas + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
--​--- 
+   .Marcadores
+ ​  [source, java]
+​   ----
+  ​ entorno.cambiarFont("sans", 20, Color.white);
+   entorno.escribirTexto("Vidas: " + vidas + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
+   -​--- 
   
 Si entorno es el espacio donde se desarrolla el juego, la función tick es la que representará el correr del tiempo
  
