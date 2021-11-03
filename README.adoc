@@ -2,8 +2,10 @@
 // completar mails
 Blanco Gabriel <gabrielblanco2399@gmail.com>; Carro_Avila Emmanuel <CarroavilaEmm@gmail.com>; Ledesma Tomas <tomasld13@gmail.com>
 v1.0, {docdate}
+
 :toc:
 image::vikingaportada.png[]
+
 == Introduccion 
   Ayuda a nuestra heroina Barbariana, a atravezar las turbulencias del tiempo, y escalar las torres mas peligrosas,
   mientras peleas con dinosaurios mutantes y persigues al doctor Gero, que ha violado las leyes del tiempo y 
@@ -100,8 +102,7 @@ image::vikingaportada.png[]
  Barbarianna logra alcanzarla. 
 
 === Juego
-
-Es la clase donde todo fluye.
+Es la clase donde convergen todos los elementos del programa.
 
  * Entorno y tick:
    Es el universo en donde se desarrolla el juego. Aporta todas las funcionalidades necesarias para el entorno gráfico ,
@@ -137,23 +138,23 @@ Si entorno es el espacio donde se desarrolla el juego, la función tick es la qu
    - Puede un laser impactar el escudo de Barbarianna y desintegrarse.
    Se han utilizado diferentes métodos para evaluar estos casos. Entre ellos el for each nos ha resultado el ciclo 
    mas práctico y sencillo.
-   
-.For each
+
+ .For each
 [source, java]
 ----
-        laser
-		for (Laser l : laser) {
-			if (l != null) {
-				l.dibujar(entorno);
-				l.mover(entorno);
-			}
-		}
-		for (Laser l : laser) {
-			if (l != null && vikinga.chocasteUnLaser(l)) {
-				vikinga.respawn();
-				vidas -= 1;
-			}
-----
+for (Laser l :laser) {
+  if (l != null){
+    l.dibujar(entorno);
+    l.mover(entorno);
+  }
+}
+for (Laser l : laser){
+  if (l != null && vikinga.chocasteUnLaser(l)) {
+    vikinga.respawn();
+    vidas -= 1;
+  }
+}
+---- 
 
 == Dificultades 
  * Imagen y sonido:
@@ -168,19 +169,19 @@ Si entorno es el espacio donde se desarrolla el juego, la función tick es la qu
    puede observarse en las siguientes sentencias, donde las variables fondo, gameOver y vikingadead se cargan con archivos
    de extención tanto png como gif.
    
-   .Utilidades de entorno
-   ​[source, java]
-    ​----
-​		 fondo = Herramientas.cargarImagen("fondo.png");
-		gameOver = Herramientas.cargarImagen("endgame.png");
-		vikingaLose = Herramientas.cargarImagen("vikingadead.gif");
-​    ----
+.Utilidades de entorno
+​[source, java]
+​----
+​fondo = Herramientas.cargarImagen("fondo.png");
+gameOver = Herramientas.cargarImagen("endgame.png");
+vikingaLose = Herramientas.cargarImagen("vikingadead.gif");
+​----
 
-   .En cuanto al sonido:
-   ​[source, java]
-​    ----
-   Herramientas.cargarSonido("sounds/risamalvada.wav").start();
-    ----  
+.En cuanto al sonido:
+​[source, java]
+----
+Herramientas.cargarSonido("sounds/risamalvada.wav").start();
+----  
 
  * lógica de salto:
  Se utilizó una funcion llamada puedoSaltar, que verifica la existencia
@@ -193,22 +194,22 @@ Si entorno es el espacio donde se desarrolla el juego, la función tick es la qu
  Finalmente, Piso acabó teniendo 2 funciones booleanas fundamentales, que nos permitieron construir tanto
  el descenso de los raptors como el salto de piso de la vikinga.
    
-   .salto entre pisos  
-   ​[source, java]
-​​    ----
-  	public boolean puedoSaltar(Piso[] pisos) {
-		if (y - alto / 2 <= 0) {
-			return false;
-		}
-		if (pisos[0].chocasteParteInferiorCon(x, y - alto / 2) || pisos[1].chocasteParteInferiorCon(x, y - alto / 2)
-				|| pisos[2].chocasteParteInferiorCon(x, y - alto / 2) || pisos[3].chocasteParteInferiorCon(x, y - alto / 2)
-				|| pisos[4].chocasteParteInferiorCon(x, y - alto / 2) || pisos[5].chocasteParteInferiorCon(x, y - alto / 2)) {
-			estaSaltando = false;
-			return false;
-		}
-		return true;
-	  }
-   ----  
+.salto entre pisos  
+​[source, java]
+----
+public boolean puedoSaltar(Piso[] pisos) {
+if (y - alto / 2 <= 0) {
+return false;
+}
+if (pisos[0].chocasteParteInferiorCon(x, y - alto / 2) || pisos[1].chocasteParteInferiorCon(x, y - alto / 2)
+ || pisos[2].chocasteParteInferiorCon(x, y - alto / 2) || pisos[3].chocasteParteInferiorCon(x, y - alto / 2)
+ || pisos[4].chocasteParteInferiorCon(x, y - alto / 2) || pisos[5].chocasteParteInferiorCon(x, y - alto / 2)) {
+ estaSaltando = false;
+return false;
+}
+	return true;
+}
+----  
 
  * Invariantes de representacion:
   Ha sido necesaria la verificación constante, mediante condicionales, de la existencia de cada uno de los objetos
