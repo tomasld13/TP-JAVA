@@ -159,8 +159,8 @@ public class Vikinga {
 	}
 
 	public boolean agarrasteSalud(Salud salud) {
-		return x < salud.getX() + ancho / 2 && x > salud.getX() - ancho / 2
-				&& y > salud.getY() - salud.getTamaño() && y < salud.getY() + salud.getTamaño();
+		return x < salud.getX() + ancho / 2 && x > salud.getX() - ancho / 2 && y > salud.getY() - salud.getTamaño()
+				&& y < salud.getY() + salud.getTamaño();
 				
 	}
 }

@@ -5,10 +5,10 @@ import entorno.Herramientas;
 import java.awt.Image;
 
 public class Commodore {
-	
-	private int tamaño;
 	private double x;
 	private double y;
+
+	private int tamaño;
 	private Image img;
 
 	public Commodore(int tamaño, double x, double y) {
@@ -19,7 +19,7 @@ public class Commodore {
 	}
 
 	public void dibujar(Entorno e) {
-		e.dibujarImagen(img, x, y, 0,0.15);
+		e.dibujarImagen(img, x, y, 0, 0.15);
 	}
 
 	public int getTamaño() {

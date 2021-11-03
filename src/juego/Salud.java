@@ -8,16 +8,21 @@ import entorno.Herramientas;
 public class Salud {
 	private double x;
 	private double y;
+
 	private int tamaño;
 	private Image img;
+
 	public Salud(double x, double y) {
 		this.x = x;
 		this.y = y;
+
+		this.tamaño = 30;
+
 		this.img = Herramientas.cargarImagen("corazon.png");
 	}
-	
+
 	public void dibujar(Entorno e) {
-		e.dibujarImagen(img, x, y, 0, 0.1);
+		e.dibujarImagen(img, x, y, 0, 0.08);
 	}
 
 	public double getX() {
@@ -27,11 +32,9 @@ public class Salud {
 	public double getY() {
 		return y;
 	}
-	
+
 	public int getTamaño() {
 		return tamaño;
 	}
-	
-	
-	
+
 }

@@ -51,8 +51,8 @@ public class Juego extends InterfaceJuego {
 		pisos[4] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 410, 680);
 		pisos[5] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 510, 680);
 
-		salud[0] = new Salud(500, 150);
-		salud[1] = new Salud(300, 350);
+		salud[0] = new Salud(300, 350);
+		salud[1] = new Salud(500, 150);
 
 		fondo = Herramientas.cargarImagen("fondo.png");
 		gameOver = Herramientas.cargarImagen("endgame.png");
@@ -103,16 +103,6 @@ public class Juego extends InterfaceJuego {
 			p.dibujar(entorno);
 		}
 
-		for (Salud s : salud) {
-			if (s != null) {
-				s.dibujar(entorno);
-				if (vikinga.agarrasteSalud(s)) {
-					System.out.println("peron el mejor");
-					
-				}
-			}
-		}
-
 		entorno.cambiarFont("sans", 20, Color.white);
 		entorno.escribirTexto("Vidas: " + vidas + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
 
@@ -138,6 +128,17 @@ public class Juego extends InterfaceJuego {
 		}
 		if (entorno.estaPresionada('e')) {
 			vikinga.escudo(entorno);
+		}
+
+		for (int i = 0; i < salud.length; i++) {
+			if (salud[i] != null) {
+				salud[i].dibujar(entorno);
+				if (vikinga.agarrasteSalud(salud[i])) {
+					vidas += 1;
+					salud[i] = null;
+					Herramientas.cargarSonido("sounds/lifeup.wav").start();
+				}
+			}
 		}
 
 //Rayo        
