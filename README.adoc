@@ -7,7 +7,7 @@ v1.0, {docdate}
 image::vikingaportada.png[]
 
 == Introduccion 
-  Ayuda a nuestra heroina Barbariana, a atravezar las turbulencias del tiempo, y escalar las torres mas peligrosas,
+  Ayuda a nuestra heroína Barbarianna, a atravezar las turbulencias del tiempo, y escalar las torres mas peligrosas,
   mientras peleas con dinosaurios mutantes y persigues al doctor Gero, que ha violado las leyes del tiempo y 
   se ha apoderado de la Commodore 128kb.
 
@@ -18,19 +18,19 @@ image::vikingaportada.png[]
 
  * Método Dibujar:
     - Para dibujarse, la vikinga solo necesitará 2 parametros (x,y) que la posicionarán en la ubicación definida
-    para el inicio del juego o el raspawn.
-    - Según la actividad que esté realizando barbariana, se utilizará una imagen distinta de extension .GIF.
+    para el inicio del juego o el respawn.
+    - Según la actividad que esté realizando barbariana, se utilizará una imagen distinta de extensión .GIF.
     Se implementaron imagenes para: saltar, correr, y estar quieta. 
  * Movimientos:
     - los metodos moverHaciaDerecha y moverHaciaIzquierda, estan delimitados por el entorno, y guardan
-    una variable llamada _direccion_, que será la que usaremos para ajustar tanto las imagenes de barbariana, como
+    una variable llamada _direccion_, que será la que usaremos para ajustar tanto las imagenes de barbarianna, como
     el sentido del rayo y el escudo. 
 
  * Cambio de piso:
-    - Segun donde esté parada, Barbarianna podrá subir de piso, o caer al piso anterior.
+    - Según donde esté parada, Barbarianna podrá subir de piso, o caer al piso anterior.
     Para permitir el movimiento entre dichos pisos, se le ha otorgado a barbarianna una banderaDeSalto y una BanderaDeCaida.
-    Estas funciones nos devolveran true o false segun donde esté parada la vikinga. De activarse la banderaDeSalto,
-    nuestro personaje tendrá permido saltar hasta el piso siguiente, y si se activa la banderaDeCaida la vikinga caerá
+    Estas funciones nos devolveran true o false segun donde esté parada la vikinga. De activarse puedoSaltar,
+    nuestro personaje tendrá permido saltar hasta el piso siguiente, y si se activa meSaliDelPiso la vikinga caerá
     hasta chocarse con el piso anterior.
     
   * Vikinga creadora de objetos:
@@ -45,38 +45,41 @@ image::vikingaportada.png[]
     con nuestra vikinga.
 
   * Ganar:
-   _recuperasteCommodore_ es la función que permite a Barbarianna saber si ha llegado a la posicion de la Commodore 128kb
+   _recuperasteCommodore_ es la función que permite a Barbarianna saber si ha llegado a la posición de la Commodore 128kb
     evaluando una colisión con el objeto. De esta manera habremos logrado el objetivo de nuestra heroina.
 
   * Protegerse:
    Barbarianna tiene la posibilidad de utilizar su escudo para evitar los ataques letales de los velociraptors.
-   Para ello se creó una funcion _tuEscudoChocoConUnLaser_ que devuelve true en caso de que nuestra heroína haya logrado
+   Para ello se creó una función _tuEscudoChocoConUnLaser_ que devuelve true en caso de que nuestra heroína haya logrado
    bloquear un ataque raptoriano.
+
+  * Agacharse: 
+   Vikinga tiene la facutad de evitar los lasers raptonianos mediante un rápido movimiento. 
 
 === Velociraptor
  Nuestros recurrentes y veloces enemigos irán descendiendo ferózmente por los pisos del castillo. Una alteración
- en la linea temporal hizo que estas temibles criaturas arrojen rayos de sus bocas, y solo podrán ser detenidos por los 
- poderes de nuestra heroina.
+ en la linea temporal hizo que estas temibles criaturas arrojen rayos de sus ojos, y solo podrán ser detenidos por los 
+ poderes de nuestra heroína.
   
   * Movimiento:
-   Los raptors solo pueden moverse de izquierda a derecha, iran rebotando al llegar a los límites del entorno y caerán
+   Los raptors solo pueden moverse de izquierda a derecha, irán rebotando al llegar a los límites del entorno y caerán
    al llegar al hueco de cada piso. Otra vez, en esta clase, la variable _direccion_ determinará la imagen del raptor y la
-   direccion en la que disparará los lasers.
+   dirección en la que disparará los lasers.
 
   * Ataque:
-   Los raptors irán disparando rayos a medida que van descendiendo. estos rayos pueden quitar vidas a la vikinga, y se
-   originarán en la posicion del velociraptor, respetando el direccionamiento. De esta manera el Laser pasa a ser otro objeto del
+   Los raptors irán disparando lasers a medida que van descendiendo. estos lasers pueden quitar vidas a la vikinga, y se
+   originarán en la posición del velociraptor, respetando el direccionamiento. De esta manera el Laser pasa a ser otro objeto del
    juego.
 
   * Muerte:
-   Aunque estas criaturas sean temibles, un simple rayo de nuestra heronia puede destruirlos.
-   En la funcion _chocasteUnRayo_ se evalúa la posicion del raptor y se verifica un posible impacto con el poder de Barbarianna.
-   De darse la colisión, tanto el raptor como el rayo seran puestos en _null_, es decir, serán destruidos.
+   Aunque estas criaturas sean temibles, un simple rayo de nuestra heroína puede destruirlos.
+   En la funcion _chocasteUnRayo_ se evalúa la posición del raptor y se verifica un posible impacto con el poder de Barbarianna.
+   De darse la colisión, tanto el raptor como el rayo serán puestos en _null_, es decir, serán destruidos.
 
 
 === Rayo
  Este objeto es creado dentro de la clase Vikinga.
- Utiliza la posicion y direccionamiento de Barbarianna para dibujarse.
+ Utiliza la posición y direccionamiento de Barbarianna para dibujarse.
  
   * Utilidad: 
    A esta clase se le evaluará la posición constantemente para verificar si ha colisiónado con otro objeto.
@@ -93,10 +96,10 @@ image::vikingaportada.png[]
 
 === Pisos
  Esta clase, si bien se pensó como un objeto estático, durante el desarrollo se ha convirtido en una clase de referencia.
- Con el correr de los días se otorgó al piso la funcion de evaluar el contacto con otro objeto. Esto permitió obtener las posiciones 
- de caida de los raptors y la vikinga, como asi tambien la posición de ascenso, para sortear los distintos niveles.
+ Con el correr de los días se otorgó al piso la función de evaluar el contacto con otro objeto. Esto permitió obtener las posiciones 
+ de caída de los raptors y la vikinga, como así también la posición de ascenso, para sortear los distintos niveles.
 
-=== commodore
+=== Commodore
  El objeto mas preciado.
  Esta clase es estática, no hace nada. Solo se posiciona en el extremo superior izquierdo de la pantalla, y finalizará el juego si 
  Barbarianna logra alcanzarla. 
@@ -127,15 +130,17 @@ Si entorno es el espacio donde se desarrolla el juego, la función tick es la qu
     - mover izquierda: "a"
     - mover derecha: "d"
     - bloqueo con escudo: "e"
+    - agacharse: "s"
  
  * Eventos:
-   Durante el juego se irán dando diferentes situaciones que se resolveran en esta clase:
+   Durante el juego se irán dando diferentes situaciones que se resolverán en esta clase:
    - Puede que la vikinga choque con un raptor. En tal caso la vikinga morirá y reaparecerá en el punto de partida.
-   las vidas de vikinga se disminuirán en 1
+   Las vidas de vikinga se disminuirán en 1
    - Lo mismo ocurrirá si un laser logra impactar en la heroína.
    - Puede un rayo chocar un raptor. Dicho caso significaría la muerte del raptor y la desaparición del rayo.
    los puntos del jugador se incrementan en 80
    - Puede un laser impactar el escudo de Barbarianna y desintegrarse.
+   
    Se han utilizado diferentes métodos para evaluar estos casos. Entre ellos el for each nos ha resultado el ciclo 
    mas práctico y sencillo.
 
@@ -184,14 +189,14 @@ Herramientas.cargarSonido("sounds/risamalvada.wav").start();
 ----
 
  * lógica de salto:
- Se utilizó una funcion llamada puedoSaltar, que verifica la existencia
+ Se utilizó una función llamada puedoSaltar, que verifica la existencia
  de un piso sobre la vikinga. En caso de no existir, esta bandera se pondrá en true
- permitiendo que surta efecto la presión de las teclas w o u, y la vikinga se eleve al siguiente piso.
+ permitiendo que surta efecto la presión de las teclas "u" o "w", y la vikinga se eleve al siguiente piso.
  Barbarianna caerá todo el tiempo, a menos que los pisos lo eviten
  * Pisos: 
  Originalmente se diseñaron de forma estática en la clase juego.
  posteriormente se optó por una clase que permitiera generar un array.
- Finalmente, Piso acabó teniendo 2 funciones booleanas fundamentales, que nos permitieron construir tanto
+ Finalmente, Piso acabó teniendo 2 funciones booleanas fundamentales, que nos permitieron construír tanto
  el descenso de los raptors como el salto de piso de la vikinga.
 
 .salto entre pisos
