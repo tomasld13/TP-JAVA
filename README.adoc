@@ -195,11 +195,12 @@ Es la clase donde todo fluye.
 	}
 ----  
  * Invariantes de representacion:
-  Ha sido necesaria la verificación constante, mediante condicionales, de la existencia de cada uno de los objetos
-  que iban a interactuar en el estado natural de juego. Muchos de los errores que arrojaba eclipse de debieron a estas
-  fallas. 
-  " Cannot invoke "juego.Velociraptor.dibujar(entorno.Entorno)" because "this.raptors[e]" is null
-  at juego.Juego.tick " 
+   Ha sido necesaria la verificación constante, mediante condicionales, de la existencia de cada uno de los objetos
+   que iban a interactuar en el estado natural de juego. Muchos de los errores que arrojaba eclipse de debieron a estas
+   fallas. 
+   " Cannot invoke "juego.Velociraptor.dibujar(entorno.Entorno)" because "this.raptors[e]" is null
+   at juego.Juego.tick " 
+
 == Conclusiones
 Nos parece pertinente utilizar este apartado para exponer nuestras experiencias desde lo grupal. 
   - El trabajo con git, nos ha permitido un fácil intercambio de los archivos. Luego de un difícil acercamiento, pudimos
