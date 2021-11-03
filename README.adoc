@@ -178,9 +178,10 @@ Es la clase donde todo fluye.
  posteriormente se optó por una clase que permitiera generar un array.
  Finalmente, Piso acabó teniendo 2 funciones booleanas fundamentales, que nos permitieron construir tanto
  el descenso de los raptors como el salto de piso de la vikinga.
+   
    .salto entre pisos  
    ​[source, java]
-​​  ----
+​​    ----
   	public boolean puedoSaltar(Piso[] pisos) {
 		if (y - alto / 2 <= 0) {
 			return false;
@@ -192,10 +193,10 @@ Es la clase donde todo fluye.
 			return false;
 		}
 		return true;
-	}
-----  
+	  }
+   ----  
 
- * Invariantes de representacion:
+ *Invariantes de representacion:
    Ha sido necesaria la verificación constante, mediante condicionales, de la existencia de cada uno de los objetos
    que iban a interactuar en el estado natural de juego. Muchos de los errores que arrojaba eclipse de debieron a estas
    fallas. 
