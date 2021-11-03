@@ -72,7 +72,7 @@ public class Velociraptor {
 	}
 
 	public Laser disparar() {
-		return new Laser(x, y, direccion);
+		return new Laser(x, y - 20, direccion);
 	}
 
 	public boolean estasChocandoUnRayo(Rayo rayo) {

@@ -129,7 +129,14 @@ public class Juego extends InterfaceJuego {
 		if (entorno.estaPresionada('e')) {
 			vikinga.escudo(entorno);
 		}
-
+		
+		if(entorno.estaPresionada('s')) {
+			vikinga.agacharse(true);
+			vikinga.quieta(false);
+		} else {
+			vikinga.agacharse(false);
+		}
+		
 		for (int i = 0; i < salud.length; i++) {
 			if (salud[i] != null) {
 				salud[i].dibujar(entorno);
@@ -161,7 +168,6 @@ public class Juego extends InterfaceJuego {
 			if (raptors[e] != null) {
 				raptors[e].dibujar(entorno);
 				raptors[e].mover();
-
 				if (!raptors[e].estasParadoEnUnPiso(pisos)) {
 					raptors[e].caer(entorno);
 				}

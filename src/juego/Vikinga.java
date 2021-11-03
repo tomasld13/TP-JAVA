@@ -15,6 +15,7 @@ public class Vikinga {
 
 	private boolean direccion; // true=derecha false=izquierda
 	private boolean estaQuieta;
+	private boolean estaAgachada;
 
 	private Image img;
 	private Image imagenDelEscudo;
@@ -29,13 +30,19 @@ public class Vikinga {
 		this.estaQuieta = true;
 		this.direccion = true;
 		this.imagenDelEscudo = Herramientas.cargarImagen("escudo.png");
+		this.estaAgachada = false;
 	}
 
 	public void dibujar(Entorno e) {
 		if (!estaQuieta) {
-			if (direccion) {
+			if (estaAgachada && direccion) {
+				img = Herramientas.cargarImagen("vikingaAgachada.png");
+			} else if (estaAgachada && !direccion) {
+				img = Herramientas.cargarImagen("vikingaAgachadaIzq.png");
+			}
+			if (direccion && !estaAgachada) {
 				img = Herramientas.cargarImagen("vikingarun.gif");
-			} else {
+			} else if (!direccion && !estaAgachada) {
 				img = Herramientas.cargarImagen("vikingaizq.gif");
 			}
 		} else {
@@ -50,20 +57,32 @@ public class Vikinga {
 
 	public void moverHaciaIzquierda(Entorno e) {
 		if (x > ancho / 2) {
-			x -= velocidad;
+			if (estaAgachada) {
+				x -= velocidad / 2;
+			} else {
+				x -= velocidad;
+			}
 			direccion = false;
 		}
 	}
 
 	public void moverHaciaDerecha(Entorno e) {
 		if (x < e.ancho() - ancho / 2) {
-			x += velocidad;
+			if (estaAgachada) {
+				x += velocidad / 2;
+			} else {
+				x += velocidad;
+			}
 			direccion = true;
 		}
 	}
 
 	public void saltar(Entorno e) {
 		y -= 9;
+	}
+
+	public void agacharse(boolean agachada) {
+		estaAgachada = agachada;
 	}
 
 	public boolean puedoSaltar(Piso[] pisos) {
@@ -97,7 +116,6 @@ public class Vikinga {
 		} else {
 			e.dibujarImagen(imagenDelEscudo, x - 60, y, 0, 0.07);
 		}
-
 	}
 
 	public boolean tuEscudoChocoConUnLaser(Laser laser) {
