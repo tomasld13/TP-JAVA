@@ -17,16 +17,17 @@ public class Juego extends InterfaceJuego {
 	private Image gameOver;
 	private Image fondo;
 	private Image vikingadead;
-	
+
 	private Rayo rayo;
 	private Laser[] laser;
 	private Commodore commodore;
-	private int contadorDeTicks; // contadorDeTiempo, tiempo, cantidadDeFrames, cantidadDeTics
-
-	private int vidas; // fixme
+	private int contadorDeTicks;
+	private int contadorParaMusica;
+	private int vidas;
 	private int puntaje;
 
 	public Juego() {
+		contadorParaMusica = 0;
 		contadorDeTicks = 500;
 		vidas = 3;
 		this.entorno = new Entorno(this, "Blanco_CarroAvila_Ledesma_Equipo3", 800, 600);
@@ -60,7 +61,11 @@ public class Juego extends InterfaceJuego {
 			entorno.cambiarFont("sans", 40, Color.white);
 			entorno.escribirTexto("Perdiste! ", 200, 350);
 			entorno.escribirTexto("tu puntuacion fue" + " " + puntaje, 200, 380);
-			entorno.dibujarImagen(vikingadead, entorno.ancho()/2, 400, 0, 0.8);
+			entorno.dibujarImagen(vikingadead, entorno.ancho() / 2, 400, 0, 0.8);
+			if (contadorParaMusica == 0) {
+				Herramientas.cargarSonido("sounds/risamalvada.wav").start();
+				contadorParaMusica += 1;
+			}
 			return;
 		}
 
@@ -69,6 +74,10 @@ public class Juego extends InterfaceJuego {
 			entorno.cambiarFont("sans", 40, Color.white);
 			entorno.escribirTexto("¡Ganaste!", 200, 350);
 			entorno.escribirTexto("tu puntuacion fue" + " " + puntaje, 200, 380);
+			if (contadorParaMusica == 0) {
+				Herramientas.cargarSonido("sounds/winmusic.wav").start();
+				contadorParaMusica += 1;
+			}
 			return;
 		}
 
@@ -141,15 +150,16 @@ public class Juego extends InterfaceJuego {
 					contadorDeTicks = 350;
 				}
 				if (laser[e] == null) {
-					if(raptors[e]!=null && raptors[e].distanciaPermitida(vikinga.getX(), vikinga.getY()))
-					laser[e] = raptors[e].disparar();
+					if (raptors[e] != null && raptors[e].distanciaPermitida(vikinga.getX(), vikinga.getY()))
+						laser[e] = raptors[e].disparar();
+
 				}
-				if (laser[e]!= null && laser[e].teExcedisteDelEntorno(entorno)) {
+				if (laser[e] != null && laser[e].teExcedisteDelEntorno(entorno)) {
 					laser[e] = null;
-				}	
-					
+				}
+
 			}
-			
+
 			if (laser[e] != null && vikinga.tuEscudoChocoConUnLaser(laser[e]) && entorno.estaPresionada('e')) {
 				laser[e] = null;
 				System.out.println("Peron vive");
@@ -179,7 +189,7 @@ public class Juego extends InterfaceJuego {
 				vidas -= 1;
 				System.out.println("me choco");
 			}
-			
+
 		}
 		contadorDeTicks += 1;
 	}

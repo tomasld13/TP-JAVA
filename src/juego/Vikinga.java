@@ -135,6 +135,7 @@ public class Vikinga {
 
 	public Rayo disparar() {
 		rayo = new Rayo(x, y, direccion);
+		Herramientas.cargarSonido("sounds/rayo.wav").start();
 		return rayo;
 	}
 

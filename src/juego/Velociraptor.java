@@ -84,6 +84,7 @@ public class Velociraptor {
 
 	public Laser disparar() {
 		laser = new Laser(x, y, direccion);
+		Herramientas.cargarSonido("sounds/laser.wav").start();
 		return laser;
 	}
 
