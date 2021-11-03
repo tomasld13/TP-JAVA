@@ -194,6 +194,7 @@ Es la clase donde todo fluye.
 		return true;
 	}
 ----  
+
  * Invariantes de representacion:
    Ha sido necesaria la verificación constante, mediante condicionales, de la existencia de cada uno de los objetos
    que iban a interactuar en el estado natural de juego. Muchos de los errores que arrojaba eclipse de debieron a estas
@@ -203,11 +204,11 @@ Es la clase donde todo fluye.
 
 == Conclusiones
 Nos parece pertinente utilizar este apartado para exponer nuestras experiencias desde lo grupal. 
-  - El trabajo con git, nos ha permitido un fácil intercambio de los archivos. Luego de un difícil acercamiento, pudimos
+  * El trabajo con git, nos ha permitido un fácil intercambio de los archivos. Luego de un difícil acercamiento, pudimos
   comprobar la eficiencia y seguridad que otorga a los proyectos.
-  - El tp permitió poner en práctica y en discusión todos los conocimientos adquiridos durante la cursada, brindandonos la
+  * El tp permitió poner en práctica y en discusión todos los conocimientos adquiridos durante la cursada, brindandonos la
   oportunidad de profundizar, de forma muy amena, temas que parecían inaccesibles. Descubrimos de esta manera, lo beneficioso
   que resultan los distintos enfoques sobre un mismo problema. 
-  - Notamos también como la buena elección de los nombres de las variables, como asi también pensar adecuadamente cada objeto
+  * Notamos también como la buena elección de los nombres de las variables, como asi también pensar adecuadamente cada objeto
   simplifican de una manera increible el algoritmo, y clarifican el camino a la hora de la toma de decisiones. 
   
