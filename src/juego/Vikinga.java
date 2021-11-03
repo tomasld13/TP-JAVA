@@ -147,6 +147,7 @@ public class Vikinga {
 	public void respawn() {
 		x = 20;
 		y = 550;
+		Herramientas.cargarSonido("sounds/danho.wav").start();
 	}
 
 	public boolean recuperasteCommodore(Commodore commodore) {

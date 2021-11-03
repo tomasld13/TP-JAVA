@@ -17,6 +17,7 @@ public class Juego extends InterfaceJuego {
 	private Image gameOver;
 	private Image fondo;
 	private Image vikingadead;
+	private Image drGero;
 
 	private Rayo rayo;
 	private Laser[] laser;
@@ -48,6 +49,7 @@ public class Juego extends InterfaceJuego {
 		fondo = Herramientas.cargarImagen("fondo.png");
 		gameOver = Herramientas.cargarImagen("endgame.png");
 		vikingadead = Herramientas.cargarImagen("vikingadead.gif");
+		drGero = Herramientas.cargarImagen("vikingarun.gif");
 
 //      inicia el juego
 		this.entorno.iniciar();
@@ -60,7 +62,7 @@ public class Juego extends InterfaceJuego {
 			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
 			entorno.cambiarFont("sans", 40, Color.white);
 			entorno.escribirTexto("Perdiste! ", 200, 350);
-			entorno.escribirTexto("tu puntuacion fue" + " " + puntaje, 200, 380);
+			entorno.escribirTexto("tu puntuacion fue: " + " " + puntaje, 200, 380);
 			entorno.dibujarImagen(vikingadead, entorno.ancho() / 2, 400, 0, 0.8);
 			if (contadorParaMusica == 0) {
 				Herramientas.cargarSonido("sounds/risamalvada.wav").start();
@@ -72,8 +74,10 @@ public class Juego extends InterfaceJuego {
 		if (vikinga.recuperasteCommodore(commodore)) {
 			entorno.dibujarImagen(gameOver, entorno.ancho() / 2, entorno.alto() / 2, 0);
 			entorno.cambiarFont("sans", 40, Color.white);
-			entorno.escribirTexto("¡Ganaste!", 200, 350);
-			entorno.escribirTexto("tu puntuacion fue" + " " + puntaje, 200, 380);
+			entorno.escribirTexto("¡Ganaste!", 200, 320);
+			entorno.escribirTexto("Lograste detener al malvado Dr. Gero", 50, 380);
+			entorno.escribirTexto("tu puntuacion fue: " + " " + puntaje, 200, 440);
+			entorno.dibujarImagen(drGero, 100, 500, 0, 0.4);
 			if (contadorParaMusica == 0) {
 				Herramientas.cargarSonido("sounds/winmusic.wav").start();
 				contadorParaMusica += 1;
@@ -139,10 +143,10 @@ public class Juego extends InterfaceJuego {
 				if (raptors[e].chocasteConEntorno(entorno)) {
 					raptors[e].cambiarDeDireccion();
 				}
-				if (vikinga.chocasteConUnRaptor(raptors[e])) {
-					vikinga.respawn();
-					vidas -= 1;
-				}
+//				if (vikinga.chocasteConUnRaptor(raptors[e])) {
+//					vikinga.respawn();
+//					vidas -= 1;
+//				}
 				if (rayo != null && raptors[e].chocasteUnRayo(rayo)) {
 					rayo = null;
 					raptors[e] = null;
