@@ -174,7 +174,7 @@ public class Juego extends InterfaceJuego {
 			}
 		}
 
-		if (contadorDeTicks >= 400) {
+		if (contadorDeTicks >= 450) {
 			int nulo = 0;
 			for (int i = 0; i < raptors.length; i++)
 				if (raptors[i] == null && nulo == 0) {
