@@ -11,7 +11,7 @@ public class Juego extends InterfaceJuego {
 	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
 	private Velociraptor[] raptors;
-	private Piso[] pisos; // fixme
+	private Piso[] pisos;
 	private Vikinga vikinga;
 
 	private Image gameOver;
@@ -19,6 +19,7 @@ public class Juego extends InterfaceJuego {
 	private Image vikingaLose;
 	private Image vikingaVictory;
 
+	private Salud[] salud;
 	private Rayo rayo;
 	private Laser[] laser;
 	private Commodore commodore;
@@ -41,12 +42,17 @@ public class Juego extends InterfaceJuego {
 		laser = new Laser[4];
 		raptors = new Velociraptor[4];
 		pisos = new Piso[6];
+		salud = new Salud[2];
+
 		pisos[0] = new Piso(entorno.ancho() / 2, entorno.alto() - 10, 800);
 		pisos[1] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 110, 680);
 		pisos[2] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 210, 680);
 		pisos[3] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 310, 680);
 		pisos[4] = new Piso(entorno.ancho() / 2 + 60, entorno.alto() - 410, 680);
 		pisos[5] = new Piso(entorno.ancho() / 2 - 60, entorno.alto() - 510, 680);
+
+		salud[0] = new Salud(500, 150);
+		salud[1] = new Salud(300, 350);
 
 		fondo = Herramientas.cargarImagen("fondo.png");
 		gameOver = Herramientas.cargarImagen("endgame.png");
@@ -96,6 +102,17 @@ public class Juego extends InterfaceJuego {
 		for (Piso p : pisos) {
 			p.dibujar(entorno);
 		}
+
+		for (Salud s : salud) {
+			if (s != null) {
+				s.dibujar(entorno);
+				if (vikinga.agarrasteSalud(s)) {
+					System.out.println("peron el mejor");
+					
+				}
+			}
+		}
+
 		entorno.cambiarFont("sans", 20, Color.white);
 		entorno.escribirTexto("Vidas: " + vidas + " Puntos: " + puntaje, entorno.ancho() - 200, 22);
 

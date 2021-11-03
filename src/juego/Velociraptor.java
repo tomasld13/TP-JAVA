@@ -37,7 +37,7 @@ public class Velociraptor {
 		}
 		e.dibujarImagen(img, x, y, 0, 0.6);
 	}
-	
+
 	public boolean chocasteConEntorno(Entorno e) {
 		return x < 0 + ancho / 2 || x > e.ancho() - ancho / 2;
 	}

@@ -157,4 +157,10 @@ public class Vikinga {
 		return x < laser.getX() + ancho / 2 && x > laser.getX() - ancho / 2 && y > laser.getY() - laser.getAlto()
 				&& y < laser.getY() + laser.getAlto();
 	}
+
+	public boolean agarrasteSalud(Salud salud) {
+		return x < salud.getX() + ancho / 2 && x > salud.getX() - ancho / 2
+				&& y > salud.getY() - salud.getTamaño() && y < salud.getY() + salud.getTamaño();
+				
+	}
 }
