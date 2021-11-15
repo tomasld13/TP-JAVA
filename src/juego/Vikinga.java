@@ -81,6 +81,7 @@ public class Vikinga {
 		y -= 9;
 	}
 
+	// cuidado esto es un setter
 	public void agacharse(boolean agachada) {
 		estaAgachada = agachada;
 	}
@@ -123,6 +124,7 @@ public class Vikinga {
 				&& y < laser.getY() + laser.getAlto();
 	}
 
+	// cuidado esto es un setter
 	public void quieta(boolean noSeMueve) {
 		if (noSeMueve) {
 			estaQuieta = true;
