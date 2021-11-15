@@ -109,7 +109,7 @@ public class Juego extends InterfaceJuego {
 		commodore.dibujar(entorno);
 // vikinga
 		vikinga.dibujar(entorno);
-		if ((entorno.estaPresionada('w') || entorno.estaPresionada('u')) && vikinga.puedoSaltar(pisos)) {
+		if ((entorno.estaPresionada('w') || entorno.estaPresionada(entorno.TECLA_ARRIBA) ||entorno.estaPresionada('u')) && vikinga.puedoSaltar(pisos)) {
 			vikinga.saltar(entorno);
 		}
 
@@ -119,22 +119,20 @@ public class Juego extends InterfaceJuego {
 
 		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('a')) {
 			vikinga.moverHaciaIzquierda(entorno);
-			vikinga.quieta(false);
+			vikinga.moverse();
 		} else if (entorno.estaPresionada(entorno.TECLA_DERECHA) || entorno.estaPresionada('d')) {
 			vikinga.moverHaciaDerecha(entorno);
-			vikinga.quieta(false);
+			vikinga.moverse();
 		} else {
-			vikinga.quieta(true);
+			vikinga.quedarseQuieta();
 		}
 		if (entorno.estaPresionada('e')) {
 			vikinga.escudo(entorno);
 		}
 		
 		if(entorno.estaPresionada('s')) {
-			vikinga.agacharse(true);
-			vikinga.quieta(false);
-		} else {
-			vikinga.agacharse(false);
+			vikinga.agacharse();
+			vikinga.moverse();
 		}
 		
 		for (int i = 0; i < salud.length; i++) {
@@ -203,7 +201,7 @@ public class Juego extends InterfaceJuego {
 			}
 		}
 
-		if (contadorDeTicks >= 350) {
+		if (contadorDeTicks >= 450) {
 			int nulo = 0;
 			for (int i = 0; i < raptors.length; i++)
 				if (raptors[i] == null && nulo == 0) {

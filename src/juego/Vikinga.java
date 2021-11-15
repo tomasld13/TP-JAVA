@@ -63,6 +63,7 @@ public class Vikinga {
 				x -= velocidad;
 			}
 			direccion = false;
+			estaAgachada=false;
 		}
 	}
 
@@ -74,6 +75,7 @@ public class Vikinga {
 				x += velocidad;
 			}
 			direccion = true;
+			estaAgachada=false;
 		}
 	}
 
@@ -81,9 +83,8 @@ public class Vikinga {
 		y -= 9;
 	}
 
-	// cuidado esto es un setter
-	public void agacharse(boolean agachada) {
-		estaAgachada = agachada;
+	public void agacharse() {
+		estaAgachada = true;
 	}
 
 	public boolean puedoSaltar(Piso[] pisos) {
@@ -124,15 +125,14 @@ public class Vikinga {
 				&& y < laser.getY() + laser.getAlto();
 	}
 
-	// cuidado esto es un setter
-	public void quieta(boolean noSeMueve) {
-		if (noSeMueve) {
-			estaQuieta = true;
-		} else {
-			estaQuieta = false;
-		}
+	public void quedarseQuieta() {
+		estaQuieta = true;
 	}
-
+	
+	public void moverse() {
+		estaQuieta = false;
+	}
+	
 	public Rayo disparar() {
 		return new Rayo(x, y, direccion);
 	}
