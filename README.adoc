@@ -11,6 +11,11 @@ image::vikingaportada.png[]
   mientras peleas con dinosaurios mutantes y persigues al doctor Gero, que ha violado las leyes del tiempo y 
   se ha apoderado de la Commodore 128kb.
 
+== ¿Como jugarlo?
+  *Primero debemos tener JAVA instalado en nuestro sistema operativo.
+  *Segundo clonar el repositorio y abrirlo desde nuestro IDE, por ejemplo Eclipse.
+  *Tercer nos pocisionamos sobre el archivo "src/juego/Juego.java" y ejecutamos el código. 
+
 === Vikinga
   Barbarianna será nuestro personaje principal, ella realizará la mayor cantidad de tareas.
   Puede saltar, moverse, disparar rayos e ir subiendo de piso en piso hasta conseguir la Commodore
