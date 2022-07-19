@@ -13,8 +13,8 @@ image::vikingaportada.png[]
 
 == ¿Como jugarlo?
   *Primero debemos tener JAVA instalado en nuestro sistema operativo.
-  *Segundo clonar el repositorio y abrirlo desde nuestro IDE, por ejemplo Eclipse.
-  *Tercer nos pocisionamos sobre el archivo "src/juego/Juego.java" y ejecutamos el código. 
+  *Segundo clonamos el repositorio y lo abrirmos desde nuestro IDE, por ejemplo Eclipse.
+  *Tercero nos pocisionamos sobre el archivo "src/juego/Juego.java" y ejecutamos el código. 
 
 === Vikinga
   Barbarianna será nuestro personaje principal, ella realizará la mayor cantidad de tareas.
